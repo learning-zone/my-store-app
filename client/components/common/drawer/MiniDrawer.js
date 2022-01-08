@@ -67,26 +67,12 @@ const MiniDrawer = (props) => {
       }}
       open={navDrawerOpen}
     >
-      <div className={classes.drawerHeader} />
+     <Avatar
+        alt="User"
+        src="/img/avatar5.png"
+        className={classNames(classes.avatar, classes.bigAvatar)}
+      />
       <Divider />
-
-      <div className={classes.root}>
-        <Avatar
-          alt="User"
-          src="/img/avatar5.png"
-          className={classNames(classes.avatar, classes.bigAvatar)}
-        />
-        <Typography component="p" className={classes.avatar}>
-          John Doe
-        </Typography>
-        <Typography component="span" className={classes.avatar}>
-          john.doe@example.com
-        </Typography>
-      </div>
-      <div className="box" style={{ background: '#eee', padding: '8px 16px' }}>
-        MAIN NAVIGATION
-      </div>
-
       <List>
         <ListItem button>
           <ListItemIcon>
