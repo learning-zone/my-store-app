@@ -12,26 +12,27 @@
 
 On the command prompt run the following commands:
 
-``` 
- $ git clone https://github.com/learning-zone/my-store.git
- $ cd express-react-boilerplate
- $ cp .env.example .env (edit it with your secret key and database information)
- $ npm install
- $ npm run migrate
- ```
+```cmd
+$ git clone https://github.com/learning-zone/my-store.git
+$ cd my-store
+$ cp .env.example .env (edit it with your secret key and database information)
+$ npm install
+$ npm run migrate
+```
+
  Finally, start and build the application:
  
- ```
- $ npm run build (For development)
- $ npm run build:prod (For production)
+```cmd
+$ npm run build (For development)
+$ npm run build:prod (For production)
 ```
 
 List of NPM Commands:
- 
-  ```
-  $ npm run lint       # linting
-  $ npm run clean      # remove dist and node_modules folder and install dependencies
- ```
+
+```cmd
+$ npm run lint       # linting
+$ npm run clean      # remove dist and node_modules folder and install dependencies
+```
 
 ### 3. Usage
 
@@ -40,6 +41,7 @@ URL : http://localhost:3000/
 Navigate to http://localhost:3000/swagger/ for the API documentation.
 
 ### 4. Useful Link
+
 - Web framework for Node.js - [Express](http://expressjs.com/)
 - JavaScript ORM  for Node.js - [Bookshelf](http://bookshelfjs.org/)
 - SQL Query Builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, and Oracle - [Knex](http://knexjs.org/)
