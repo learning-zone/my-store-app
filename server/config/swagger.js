@@ -6,7 +6,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
  */
 const swaggerDefinition = {
     info: {
-        title: 'Express React Boilerplate',
+        title: 'My Store',
         version: '1.0.0',
         description: 'RESTful API description with Swagger',
     },
