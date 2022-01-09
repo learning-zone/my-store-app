@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "node-version": "14.16.0",
   "description": "Online Store Management System",
+  "private": true,
+  "main": "./server/server.js",
   "scripts": {
     "start": "babel-node server/app.js",
     "clean": "rimraf node_modules && rimraf dist && npm install",
@@ -15,22 +17,6 @@
     "migrate:rollback": "knex migrate:rollback",
     "lint": "eslint client server; exit 0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:learning-zone/my-store.git"
-  },
-  "keywords": [
-    "node",
-    "es6",
-    "express",
-    "react",
-    "redux",
-    "react-router",
-    "webpack",
-    "boilerplate"
-  ],
-  "author": "Pradeep Kumar <pradeep.vwa@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@loadable/component": "^5.14.1",
@@ -111,5 +97,21 @@
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.10.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:learning-zone/my-store.git"
+  },
+  "keywords": [
+    "node",
+    "es6",
+    "express",
+    "react",
+    "redux",
+    "react-router",
+    "webpack",
+    "boilerplate"
+  ],
+  "author": "Pradeep Kumar <pradeep.vwa@gmail.com>",
+  "license": "MIT"
 }
