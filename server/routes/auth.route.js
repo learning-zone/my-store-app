@@ -18,16 +18,16 @@ const router = express.Router();
  *     properties:
  *       email:
  *         type: string
- *         example: test@gmail.com
+ *         example: test@email.com
  *       password:
  *         type: string
- *         example: "1234"
+ *         example: "@ppl#12"
  *   Token:
  *    type: object
  *    properties:
  *      email:
  *        type: string
- *        example: test@gmail.com
+ *        example: test@email.com
  *      token:
  *        type: string
  *        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE1MDk5ODg2NDZ9.1zTKAzXmuyQDHw4uJXa324fFS1yZwlriFSppvK6nOQY

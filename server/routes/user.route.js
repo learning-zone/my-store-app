@@ -26,21 +26,21 @@ const router = express.Router();
  *       first_name:
  *         type: string
  *         description: first name of the user
- *         example: Krishna
+ *         example: Pradeep
  *       last_name:
  *         type: string
  *         description: last name of the user
- *         example: Timilsina
+ *         example: Kumar
  *       email:
  *         type: string
  *         description: email of the user
  *         required: true
- *         example: test@gmail.com
+ *         example: test@email.com
  *       password:
  *         type: string
  *         description: password of the user
  *         required: true
- *         example: "1234"
+ *         example: "@ppl#12"
  *       status:
  *         type: integer
  *         description: status of the user
