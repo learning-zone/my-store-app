@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
 
 import store, { history } from './store/configureStore';
@@ -11,7 +11,7 @@ import App from './containers/app/AppContainer';
 
 const mountNode = document.getElementById('root');
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     useNextVariants: true,
   },

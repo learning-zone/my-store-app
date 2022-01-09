@@ -36,7 +36,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={24} style={{ marginBottom: '15px' }}>
+      <Grid container spacing={10} style={{ marginBottom: '15px' }}>
         <Grid item xs>
           <Product data={products} />
         </Grid>

@@ -39,7 +39,7 @@ const SummaryBox = (props) => {
   return (
     <Card>
       <CardContent>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid item>
             <span className={classes.iconSpan} style={{ backgroundColor: color }}>
               <Icon className={classes.icon} />
