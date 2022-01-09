@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 import store, { history } from './store/configureStore';
 import { verifyToken } from './services/tokenService';
@@ -16,7 +16,7 @@ const theme = createTheme({
     useNextVariants: true,
   },
   palette: {
-    primary: blueGrey,
+    primary: blue,
   },
 });
 

@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { PowerSettingsNew } from '@material-ui/icons';
+
 
 import * as authService from '../../../services/authService';
 
@@ -64,10 +66,10 @@ class Header extends Component {
                 navDrawerOpen && classes.menuButtonShift
               )}
             >
-              <MenuIcon />
+              <MenuIcon style={{color: "#FFF", fontWeight: "bold"}}/>
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}></Typography>
-            <Button onClick={this.logOut.bind(this)}>Logout</Button>
+            <Button onClick={this.logOut.bind(this)}><PowerSettingsNew style={{color: "#FFF", fontWeight: "bold"}} /></Button>
           </Toolbar>
         </AppBar>
       </div>
