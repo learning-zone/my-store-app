@@ -69,7 +69,7 @@ class Header extends Component {
               <MenuIcon style={{color: "#FFF", fontWeight: "bold"}}/>
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}></Typography>
-            <Button onClick={this.logOut.bind(this)}><PowerSettingsNew style={{color: "#FFF", fontWeight: "bold"}} /></Button>
+            <Button onClick={this.logOut.bind(this)} title="Sign Out"><PowerSettingsNew style={{color: "#FFF", fontWeight: "bold"}} /></Button>
           </Toolbar>
         </AppBar>
       </div>
