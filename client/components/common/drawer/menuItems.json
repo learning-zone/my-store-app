@@ -1,0 +1,234 @@
+{
+  "data": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "icon": "HomeIcon"
+    },
+    {
+      "name": "Catalog",
+      "children": [
+        {
+          "name": "Categories",
+          "url": "/categories",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Products",
+          "url": "/products",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Recuring Profiles",
+          "url": "/recuring-profiles",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Filters",
+          "url": "/filters",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Attribues",
+          "url": "/attribues",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Options",
+          "url": "/Options",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Manufacturers",
+          "url": "/manufacturers",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Downloads",
+          "url": "/downloads",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Reviews",
+          "url": "/reviews",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Information",
+          "url": "/information",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Extensions",
+      "children": [
+        {
+          "name": "Marketplace",
+          "url": "/marketplace",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Installer",
+          "url": "/installer",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Extensions",
+          "url": "/extensions",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Modifications",
+          "url": "/modifictions",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Events",
+          "url": "/events",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Design",
+      "children": [
+        {
+          "name": "Layouts",
+          "url": "/layouts",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Theme Editor",
+          "url": "/theme-editor",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Language Editor",
+          "url": "/language-editor",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Banners",
+          "url": "/banners",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "SEO URL",
+          "url": "/seo-url",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "children": [
+        {
+          "name": "Orders",
+          "url": "/orders",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Recurring Profiles",
+          "url": "/recurring-profiles",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Returns",
+          "url": "/returns",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Gift Vouchers",
+          "url": "/gift-vouchers",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "children": [
+        {
+          "name": "Customers",
+          "url": "/customers",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Customers Groups",
+          "url": "/customers-groups",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Customers Approvals",
+          "url": "/customers-approvals",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Custom Fields",
+          "url": "/custom-fields",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "children": [
+        {
+          "name": "Marketing",
+          "url": "/marketing",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Coupons",
+          "url": "/coupons",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Email",
+          "url": "/email",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "System",
+      "children": [
+        {
+          "name": "Settings",
+          "url": "/settings",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Localization",
+          "url": "/localization",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Maintenance",
+          "url": "/maintenance",
+          "icon": "DoubleArrow"
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "children": [
+        {
+          "name": "Reports",
+          "url": "/reports",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Who's Online",
+          "url": "/who-is-online",
+          "icon": "DoubleArrow"
+        },
+        {
+          "name": "Statistics",
+          "url": "/statistics",
+          "icon": "DoubleArrow"
+        }
+      ]
+    }
+  ]
+}
