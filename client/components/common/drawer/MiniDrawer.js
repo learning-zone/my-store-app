@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,6 +12,25 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
+
+import { Collapse } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
+import { ExpandLess } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import {
+  DoubleArrow,
+  LocalOffer,
+  Extension,
+  Computer,
+  ShoppingCart,
+  PermIdentity,
+  Share,
+  Settings,
+  InsertChart,
+} from '@material-ui/icons';
+import { Icon } from '@material-ui/core';
+
+import menuItems from './menuItems';
 
 const drawerWidth = 250;
 
@@ -53,71 +72,85 @@ const styles = (theme) => ({
     width: 60,
     height: 60,
   },
+  list: {
+    width: 250,
+  },
+  links: {
+    textDecoration: 'none',
+  },
+  menuHeader: {
+    paddingLeft: '5px',
+  },
 });
 
-const MiniDrawer = (props) => {
-  let { navDrawerOpen, classes } = props;
+class MenuBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-  return (
-    <Drawer
-      variant="permanent"
-      classes={{
-        paper: classNames(classes.drawerPaper, !navDrawerOpen && classes.drawerPaperClose),
-      }}
-      open={navDrawerOpen}
-    >
-     <Avatar
-        alt="User"
-        src="/img/avatar5.png"
-        className={classNames(classes.avatar, classes.bigAvatar)}
-      />
-      <Divider />
-      <List>
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary="Users" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LocalTaxiIcon />
-          </ListItemIcon>
-          <ListItemText primary="Products" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <NotificationsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Notifications" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
-        <Divider />
-        <ListItem button>
-          <ListItemIcon>
-            <HelpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Help" />
-        </ListItem>
-      </List>
-    </Drawer>
-  );
-};
+  handleClick(item) {
+    this.setState((prevState) => ({ [item]: !prevState[item] }));
+  }
 
-MiniDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  navDrawerOpen: PropTypes.bool,
-};
+  handler(children) {
+    const { classes } = this.props;
+    const { state } = this;
+    return children.map((subOption) => {
+      if (!subOption.children) {
+        return (
+          <div key={subOption.name}>
+            <ListItem button key={subOption.name}>
+              <Link to={subOption.url} className={classes.links}>
+                <ListItemText inset primary={subOption.name} />
+              </Link>
+            </ListItem>
+          </div>
+        );
+      }
+      return (
+        <div key={subOption.name}>
+          <ListItem button onClick={() => this.handleClick(subOption.name)}>
+            <ListItemText inset primary={subOption.name} />
+            {state[subOption.name] ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={state[subOption.name]} timeout="auto" unmountOnExit>
+            {this.handler(subOption.children)}
+          </Collapse>
+        </div>
+      );
+    });
+  }
+  render() {
+    const { classes, navDrawerOpen } = this.props;
 
-export default withStyles(styles)(MiniDrawer);
+    return (
+      <div className={classes.list}>
+        <Drawer
+          variant="permanent"
+          anchor="left"
+          variant="permanent"
+          classes={{
+            paper: classNames(classes.drawerPaper, !navDrawerOpen && classes.drawerPaperClose),
+          }}
+          open={navDrawerOpen}
+        >
+          <div>
+            <List>
+              <ListItem key="menuHeading" divider disableGutters>
+                <Avatar
+                  alt="User"
+                  src="/img/avatar5.png"
+                  className={classNames(classes.avatar, classes.bigAvatar)}
+                />
+                <ListItemText className={classes.menuHeader} inset primary="Administrator" />
+              </ListItem>
+              {this.handler(menuItems.data)}
+            </List>
+          </div>
+        </Drawer>
+      </div>
+    );
+  }
+}
+export default withStyles(styles)(MenuBar);
