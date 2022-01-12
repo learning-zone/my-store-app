@@ -7,6 +7,7 @@
     },
     {
       "name": "Catalog",
+      "icon": "LocalOffer",
       "children": [
         {
           "name": "Categories",
@@ -62,6 +63,7 @@
     },
     {
       "name": "Extensions",
+      "icon": "Extension",
       "children": [
         {
           "name": "Marketplace",
@@ -92,6 +94,7 @@
     },
     {
       "name": "Design",
+      "icon": "Computer",
       "children": [
         {
           "name": "Layouts",
@@ -122,6 +125,7 @@
     },
     {
       "name": "Sales",
+      "icon": "ShoppingCart",
       "children": [
         {
           "name": "Orders",
@@ -147,6 +151,7 @@
     },
     {
       "name": "Customers",
+      "icon": "PermIdentity",
       "children": [
         {
           "name": "Customers",
@@ -172,6 +177,7 @@
     },
     {
       "name": "Marketing",
+      "icon": "Share",
       "children": [
         {
           "name": "Marketing",
@@ -192,6 +198,7 @@
     },
     {
       "name": "System",
+      "icon": "Settings",
       "children": [
         {
           "name": "Settings",
@@ -212,6 +219,7 @@
     },
     {
       "name": "Reports",
+      "icon": "InsertChart",
       "children": [
         {
           "name": "Reports",
