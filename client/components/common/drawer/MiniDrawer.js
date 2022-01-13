@@ -70,7 +70,7 @@ const styles = (theme) => ({
   },
 });
 
-class MenuBar extends Component {
+class MiniDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -140,4 +140,8 @@ class MenuBar extends Component {
     );
   }
 }
-export default withStyles(styles)(MenuBar);
+MiniDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  navDrawerOpen: PropTypes.bool,
+};
+export default withStyles(styles)(MiniDrawer);
