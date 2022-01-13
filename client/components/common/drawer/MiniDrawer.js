@@ -17,20 +17,7 @@ import { Collapse } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import { ExpandLess } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import {
-  DoubleArrow,
-  LocalOffer,
-  Extension,
-  Computer,
-  ShoppingCart,
-  PermIdentity,
-  Share,
-  Settings,
-  InsertChart,
-} from '@material-ui/icons';
-import { Icon } from '@material-ui/core';
 
-import menuItems from './menuItems';
 
 const drawerWidth = 250;
 
@@ -102,7 +89,7 @@ class MenuBar extends Component {
           <div key={subOption.name}>
             <ListItem button key={subOption.name}>
               <Link to={subOption.url} className={classes.links}>
-                <ListItemText inset primary={subOption.name} />
+              <ListItemText inset primary={subOption.name} />
               </Link>
             </ListItem>
           </div>
@@ -122,7 +109,7 @@ class MenuBar extends Component {
     });
   }
   render() {
-    const { classes, navDrawerOpen } = this.props;
+    const { classes, navDrawerOpen, menuItems } = this.props;
 
     return (
       <div className={classes.list}>
@@ -145,7 +132,7 @@ class MenuBar extends Component {
                 />
                 <ListItemText className={classes.menuHeader} inset primary="Administrator" />
               </ListItem>
-              {this.handler(menuItems.data)}
+              {this.handler(menuItems)}
             </List>
           </div>
         </Drawer>
