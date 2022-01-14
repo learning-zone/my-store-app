@@ -56,6 +56,7 @@ const styles = (theme) => ({
   },
   links: {
     textDecoration: 'none',
+    color: '#333',
   },
   menuHeader: {
     paddingLeft: '5px',
@@ -73,7 +74,7 @@ const styles = (theme) => ({
   },
   ListItemIcon: {
     minWidth: '42px',
-  }
+  },
 });
 
 class MiniDrawer extends React.Component {
@@ -120,14 +121,22 @@ class MiniDrawer extends React.Component {
                   </ListItem>
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                      {items.map(({ key: childKey, label: childLabel, icon: ChildIcon }) => (
-                        <ListItem key={childKey} button className={classes.nested}>
-                          <ListItemIcon className={classes.ListItemIcon}>
-                            <ChildIcon />
-                          </ListItemIcon>
-                          <ListItemText inset primary={childLabel} className={classes.ListItemText} />
-                        </ListItem>
-                      ))}
+                      {items.map(
+                        ({ key: childKey, label: childLabel, icon: ChildIcon, url: ChildUrl }) => (
+                          <ListItem key={childKey} button className={classes.nested}>
+                            <ListItemIcon className={classes.ListItemIcon}>
+                              <ChildIcon />
+                            </ListItemIcon>
+                            <Link to={ChildUrl} className={classes.links}>
+                              <ListItemText
+                                inset
+                                primary={childLabel}
+                                className={classes.ListItemText}
+                              />
+                            </Link>
+                          </ListItem>
+                        )
+                      )}
                     </List>
                   </Collapse>
                 </div>
