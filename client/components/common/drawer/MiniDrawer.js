@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
-import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
-import SettingsIcon from '@material-ui/icons/Settings';
-import HelpIcon from '@material-ui/icons/Help';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
-
 import { Collapse } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import { ExpandLess } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
-
 
 const drawerWidth = 250;
 
@@ -68,46 +60,34 @@ const styles = (theme) => ({
   menuHeader: {
     paddingLeft: '5px',
   },
+  root: {
+    width: '100%',
+    maxWidth: 250,
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+  ListItemText: {
+    paddingLeft: '2px',
+  },
+  ListItemIcon: {
+    minWidth: '42px',
+  }
 });
 
-class MiniDrawer extends Component {
+class MiniDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  state = { open: {} };
 
-  handleClick(item) {
-    this.setState((prevState) => ({ [item]: !prevState[item] }));
-  }
+  handleClick = (key) => () => {
+    console.log(key);
+    this.setState({ [key]: !this.state[key] });
+  };
 
-  handler(children) {
-    const { classes } = this.props;
-    const { state } = this;
-    return children.map((subOption) => {
-      if (!subOption.children) {
-        return (
-          <div key={subOption.name}>
-            <ListItem button key={subOption.name}>
-              <Link to={subOption.url} className={classes.links}>
-              <ListItemText inset primary={subOption.name} />
-              </Link>
-            </ListItem>
-          </div>
-        );
-      }
-      return (
-        <div key={subOption.name}>
-          <ListItem button onClick={() => this.handleClick(subOption.name)}>
-            <ListItemText inset primary={subOption.name} />
-            {state[subOption.name] ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={state[subOption.name]} timeout="auto" unmountOnExit>
-            {this.handler(subOption.children)}
-          </Collapse>
-        </div>
-      );
-    });
-  }
   render() {
     const { classes, navDrawerOpen, menuItems } = this.props;
 
@@ -115,33 +95,53 @@ class MiniDrawer extends Component {
       <div className={classes.list}>
         <Drawer
           variant="permanent"
-          anchor="left"
-          variant="permanent"
           classes={{
             paper: classNames(classes.drawerPaper, !navDrawerOpen && classes.drawerPaperClose),
           }}
           open={navDrawerOpen}
         >
-          <div>
-            <List>
-              <ListItem key="menuHeading" divider disableGutters>
-                <Avatar
-                  alt="User"
-                  src="/img/avatar5.png"
-                  className={classNames(classes.avatar, classes.bigAvatar)}
-                />
-                <ListItemText className={classes.menuHeader} inset primary="Administrator" />
-              </ListItem>
-              {this.handler(menuItems)}
-            </List>
-          </div>
+          <Avatar
+            alt="User"
+            src="/img/avatar5.png"
+            className={classNames(classes.avatar, classes.bigAvatar)}
+          />
+          <Divider />
+          <List>
+            {menuItems.map(({ key, label, icon: Icon, items }) => {
+              const open = this.state[key] || false;
+              return (
+                <div key={key}>
+                  <ListItem button onClick={this.handleClick(key)}>
+                    <ListItemIcon className={classes.ListItemIcon}>
+                      <Icon />
+                    </ListItemIcon>
+                    <ListItemText inset primary={label} className={classes.ListItemText} />
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                  </ListItem>
+                  <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {items.map(({ key: childKey, label: childLabel, icon: ChildIcon }) => (
+                        <ListItem key={childKey} button className={classes.nested}>
+                          <ListItemIcon className={classes.ListItemIcon}>
+                            <ChildIcon />
+                          </ListItemIcon>
+                          <ListItemText inset primary={childLabel} className={classes.ListItemText} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                </div>
+              );
+            })}
+          </List>
         </Drawer>
       </div>
     );
   }
 }
+
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  navDrawerOpen: PropTypes.bool,
 };
+
 export default withStyles(styles)(MiniDrawer);

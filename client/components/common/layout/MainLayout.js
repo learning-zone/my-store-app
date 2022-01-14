@@ -6,8 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from '../header/Header';
 import MiniDrawer from '../drawer/MiniDrawer';
 import Footer from '../footer/Footer';
-import HomeIcon from '@material-ui/icons/Home';
+
 import {
+  Home,
   DoubleArrow,
   LocalOffer,
   Extension,
@@ -22,238 +23,279 @@ import {
 
 const menuItems = [
   {
-    name: 'Dashboard',
-    icon: HomeIcon,
-    url: '/dashboard',
-  },
-  {
-    name: 'Catalog',
+    key: 'catalog',
+    label: 'Catalog',
     icon: LocalOffer,
-    children: [
+    items: [
       {
-        name: 'Categories',
+        key: 'categories',
+        label: 'Categories',
         icon: DoubleArrow,
         url: '/categories',
       },
       {
-        name: 'Products',
+        key: 'products',
+        label: 'Products',
         icon: DoubleArrow,
         url: '/products',
       },
       {
-        name: 'Recuring Profiles',
+        key: 'recuring-profiles',
+        label: 'Recuring Profiles',
         icon: DoubleArrow,
         url: '/recuring-profiles',
       },
       {
-        name: 'Filters',
+        key: 'filters',
+        label: 'Filters',
         icon: DoubleArrow,
         url: '/filters',
       },
       {
-        name: 'Attribues',
+        key: 'attribues',
+        label: 'Attribues',
         icon: DoubleArrow,
         url: '/attribues',
       },
       {
-        name: 'Options',
+        key: 'Options',
+        label: 'Options',
         icon: DoubleArrow,
         url: '/Options',
       },
       {
-        name: 'Manufacturers',
+        key: 'manufacturers',
+        label: 'Manufacturers',
         icon: DoubleArrow,
         url: '/manufacturers',
       },
       {
-        name: 'Downloads',
+        key: 'downloads',
+        label: 'Downloads',
         icon: DoubleArrow,
         url: '/downloads',
       },
       {
-        name: 'Reviews',
+        key: 'reviews',
+        label: 'Reviews',
         icon: DoubleArrow,
         url: '/reviews',
       },
       {
-        name: 'Information',
+        key: 'information',
+        label: 'Information',
         icon: DoubleArrow,
         url: '/information',
       },
     ],
   },
   {
-    name: 'Extensions',
+    key: 'extension',
+    label: 'Extensions',
     icon: Extension,
-    children: [
+    items: [
       {
-        name: 'Marketplace',
+        key: 'marketplace',
+        label: 'Marketplace',
         icon: DoubleArrow,
         url: '/marketplace',
       },
       {
-        name: 'Installer',
+        key: 'installer',
+        label: 'Installer',
         icon: DoubleArrow,
         url: '/installer',
       },
       {
-        name: 'Extensions',
+        key: 'extensions',
+        label: 'Extensions',
         icon: DoubleArrow,
         url: '/extensions',
       },
       {
-        name: 'Modifications',
+        key: 'modifictions',
+        label: 'Modifications',
         icon: DoubleArrow,
         url: '/modifictions',
       },
       {
-        name: 'Events',
+        key: 'events',
+        label: 'Events',
         icon: DoubleArrow,
         url: '/events',
       },
     ],
   },
   {
-    name: 'Design',
+    key: 'design',
+    label: 'Design',
     icon: Computer,
-    children: [
+    items: [
       {
-        name: 'Layouts',
+        key: 'layouts',
+        label: 'Layouts',
         icon: DoubleArrow,
         url: '/layouts',
       },
       {
-        name: 'Theme Editor',
+        key: 'theme-editor',
+        label: 'Theme Editor',
         icon: DoubleArrow,
         url: '/theme-editor',
       },
       {
-        name: 'Language Editor',
+        key: 'language-editor',
+        label: 'Language Editor',
         icon: DoubleArrow,
         url: '/language-editor',
       },
       {
-        name: 'Banners',
+        key: 'banners',
+        label: 'Banners',
         icon: DoubleArrow,
         url: '/banners',
       },
       {
-        name: 'SEO URL',
+        key: 'seo-url',
+        label: 'SEO URL',
         icon: DoubleArrow,
         url: '/seo-url',
       },
     ],
   },
   {
-    name: 'Sales',
+    key: 'sales',
+    label: 'Sales',
     icon: ShoppingCart,
-    children: [
+    items: [
       {
-        name: 'Orders',
+        key: 'orders',
+        label: 'Orders',
         icon: DoubleArrow,
         url: '/orders',
       },
       {
-        name: 'Recurring Profiles',
+        key: 'recurring-profiles',
+        label: 'Recurring Profiles',
         icon: DoubleArrow,
         url: '/recurring-profiles',
       },
       {
-        name: 'Returns',
+        key: 'returns',
+        label: 'Returns',
         icon: DoubleArrow,
         url: '/returns',
       },
       {
-        name: 'Gift Vouchers',
+        key: 'gift-vouchers',
+        label: 'Gift Vouchers',
         icon: DoubleArrow,
         url: '/gift-vouchers',
       },
     ],
   },
   {
-    name: 'Customers',
+    key: 'customers',
+    label: 'Customers',
     icon: PermIdentity,
-    children: [
+    items: [
       {
-        name: 'Customers',
+        key: 'customer',
+        label: 'Customers',
         icon: DoubleArrow,
         url: '/customers',
       },
       {
-        name: 'Customers Groups',
+        key: 'customers-groups',
+        label: 'Customers Groups',
         icon: DoubleArrow,
         url: '/customers-groups',
       },
       {
-        name: 'Customers Approvals',
+        key: 'customers-approvals',
+        label: 'Customers Approvals',
         icon: DoubleArrow,
         url: '/customers-approvals',
       },
       {
-        name: 'Custom Fields',
+        key: 'custom-fields',
+        label: 'Custom Fields',
         icon: DoubleArrow,
         url: '/custom-fields',
       },
     ],
   },
   {
-    name: 'Marketing',
+    key: 'marketing',
+    label: 'Marketing',
     icon: Share,
-    children: [
+    items: [
       {
-        name: 'Marketing',
+        key: 'Marketings',
+        label: 'Marketing',
         icon: DoubleArrow,
         url: '/marketing',
       },
       {
-        name: 'Coupons',
+        key: 'coupons',
+        label: 'Coupons',
         icon: DoubleArrow,
         url: '/coupons',
       },
       {
-        name: 'Email',
+        key: 'email',
+        label: 'Email',
         icon: DoubleArrow,
         url: '/email',
       },
     ],
   },
   {
-    name: 'System',
+    key: 'system',
+    label: 'System',
     icon: Settings,
-    children: [
+    items: [
       {
-        name: 'Settings',
+        key: 'settings',
+        label: 'Settings',
         icon: DoubleArrow,
         url: '/settings',
       },
       {
-        name: 'Localization',
+        key: 'localization',
+        label: 'Localization',
         icon: DoubleArrow,
         url: '/localization',
       },
       {
-        name: 'Maintenance',
+        key: 'maintenance',
+        label: 'Maintenance',
         icon: DoubleArrow,
         url: '/maintenance',
       },
     ],
   },
+
   {
-    name: 'Reports',
+    key: 'reports',
+    label: 'Reports',
     icon: InsertChart,
-    children: [
+    items: [
       {
-        name: 'Reports',
+        key: 'report',
+        label: 'Reports',
         icon: DoubleArrow,
         url: '/reports',
       },
       {
-        name: "Who's Online",
+        key: 'who-is-online',
+        label: "Who's Online",
         icon: DoubleArrow,
         url: '/who-is-online',
       },
       {
-        name: 'Statistics',
+        key: 'statistics',
+        label: 'Statistics',
         icon: DoubleArrow,
         url: '/statistics',
       },
