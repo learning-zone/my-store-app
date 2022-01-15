@@ -53,7 +53,7 @@ const styles = (theme) => ({
     height: 50,
   },
   list: {
-    width: 250,
+    width: 'auto',
   },
   links: {
     textDecoration: 'none',
