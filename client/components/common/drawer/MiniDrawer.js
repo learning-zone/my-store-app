@@ -25,6 +25,7 @@ const styles = (theme) => ({
   },
   drawerPaperClose: {
     width: 60,
+    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -45,11 +46,11 @@ const styles = (theme) => ({
     },
   },
   avatar: {
-    margin: 10,
+    margin: 7,
   },
   bigAvatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
   },
   list: {
     width: 250,
