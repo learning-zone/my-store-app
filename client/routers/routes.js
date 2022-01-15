@@ -11,6 +11,7 @@ import NotFound from '../components/error/NotFound';
 const AsyncLoginForm = loadable(() => import('../containers/auth/LoginContainer'));
 const AsyncSignUpForm = loadable(() => import('../containers/auth/SignUpContainer'));
 const AsyncDashboard = loadable(() => import('../containers/dashboard/DashboardContainer'));
+const AsyncCategories = loadable(() => import('../containers/catalog/CategoriesContainers'));
 
 const Router = () => (
   <Fragment>
@@ -19,6 +20,7 @@ const Router = () => (
       <RestrictRoute exact path="/signup" component={AsyncSignUpForm} />
 
       <PrivateRoute exact path="/dashboard" layout={MainLayout} component={AsyncDashboard} />
+      <PrivateRoute exact path="/categories" layout={MainLayout} component={AsyncCategories} />
 
       <Route component={NotFound} />
     </Switch>
