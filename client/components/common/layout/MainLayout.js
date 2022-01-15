@@ -61,7 +61,7 @@ const menuItems = [
         key: 'Options',
         label: 'Options',
         icon: DoubleArrow,
-        url: '/Options',
+        url: '/options',
       },
       {
         key: 'manufacturers',
@@ -288,10 +288,10 @@ const menuItems = [
         url: '/reports',
       },
       {
-        key: 'who-is-online',
+        key: 'online-users',
         label: "Who's Online",
         icon: DoubleArrow,
-        url: '/who-is-online',
+        url: '/online-users',
       },
       {
         key: 'statistics',
