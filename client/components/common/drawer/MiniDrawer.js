@@ -112,7 +112,7 @@ class MiniDrawer extends React.Component {
               const open = this.state[key] || false;
               return (
                 <div key={key}>
-                  <ListItem button onClick={this.handleClick(key)}>
+                  <ListItem button onClick={this.handleClick(key)} title={label}>
                     <ListItemIcon className={classes.ListItemIcon}>
                       <Icon />
                     </ListItemIcon>
@@ -123,7 +123,7 @@ class MiniDrawer extends React.Component {
                     <List component="div" disablePadding>
                       {items.map(
                         ({ key: childKey, label: childLabel, icon: ChildIcon, url: ChildUrl }) => (
-                          <ListItem key={childKey} button className={classes.nested}>
+                          <ListItem key={childKey} button className={classes.nested} title={childLabel}>
                             <ListItemIcon className={classes.ListItemIcon}>
                               <ChildIcon />
                             </ListItemIcon>
