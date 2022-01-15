@@ -18,6 +18,7 @@ const styles = (theme) => ({
     position: 'relative',
     height: 'auto',
     width: drawerWidth,
+    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -25,7 +26,6 @@ const styles = (theme) => ({
   },
   drawerPaperClose: {
     width: 60,
-    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -102,11 +102,13 @@ class MiniDrawer extends React.Component {
           }}
           open={navDrawerOpen}
         >
-          <Avatar
-            alt="User"
-            src="/img/avatar5.png"
-            className={classNames(classes.avatar, classes.bigAvatar)}
-          />
+          <Link to="/dashboard" className={classes.links}>
+            <Avatar
+              alt="User"
+              src="/img/avatar5.png"
+              className={classNames(classes.avatar, classes.bigAvatar)}
+            />
+          </Link>
           <Divider />
           <List>
             {menuItems.map(({ key, label, icon: Icon, items }) => {
@@ -124,7 +126,12 @@ class MiniDrawer extends React.Component {
                     <List component="div" disablePadding>
                       {items.map(
                         ({ key: childKey, label: childLabel, icon: ChildIcon, url: ChildUrl }) => (
-                          <ListItem key={childKey} button className={classes.nested} title={childLabel}>
+                          <ListItem
+                            key={childKey}
+                            button
+                            className={classes.nested}
+                            title={childLabel}
+                          >
                             <ListItemIcon className={classes.ListItemIcon}>
                               <ChildIcon />
                             </ListItemIcon>

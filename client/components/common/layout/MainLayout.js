@@ -343,7 +343,7 @@ const MainLayout = (props) => {
         <MiniDrawer navDrawerOpen={open} menuItems={menuItems} />
         <main className={classes.content}>{children}</main>
       </div>
-      <Footer />
+      {/**<Footer />**/}
     </div>
   );
 };
