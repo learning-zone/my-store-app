@@ -69,62 +69,62 @@ const AsyncStatistics = loadable(() => import('../containers/reports/statisticsC
 const Router = () => (
   <Fragment>
     <Switch>
-      <RestrictRoute exact path="/" component={AsyncLoginForm} />
-      <RestrictRoute exact path="/signup" component={AsyncSignUpForm} />
+      <RestrictRoute exact path='/' component={AsyncLoginForm} />
+      <RestrictRoute exact path='/signup' component={AsyncSignUpForm} />
 
       {/** Catalog Module **/}
-      <PrivateRoute exact path="/dashboard" layout={MainLayout} component={AsyncDashboard} />
-      <PrivateRoute exact path="/categories" layout={MainLayout} component={AsyncCategories} />
-      <PrivateRoute exact path="/products" layout={MainLayout} component={AsyncProducts} />
-      <PrivateRoute exact path="/recuring-profiles" layout={MainLayout} component={AsyncRecuringProfiles} />
-      <PrivateRoute exact path="/filters" layout={MainLayout} component={AsyncFilters} />
-      <PrivateRoute exact path="/attribues" layout={MainLayout} component={AsyncAttribues} />
-      <PrivateRoute exact path="/options" layout={MainLayout} component={AsyncOptions} />
-      <PrivateRoute exact path="/manufacturers" layout={MainLayout} component={AsyncManufacturers} />
-      <PrivateRoute exact path="/downloads" layout={MainLayout} component={AsyncDownloads} />
-      <PrivateRoute exact path="/reviews" layout={MainLayout} component={AsyncReviews} />
-      <PrivateRoute exact path="/information" layout={MainLayout} component={AsyncInformation} />
+      <PrivateRoute exact path='/dashboard' layout={MainLayout} component={AsyncDashboard} />
+      <PrivateRoute exact path='/categories' layout={MainLayout} component={AsyncCategories} />
+      <PrivateRoute exact path='/products' layout={MainLayout} component={AsyncProducts} />
+      <PrivateRoute exact path='/recuring-profiles' layout={MainLayout} component={AsyncRecuringProfiles} />
+      <PrivateRoute exact path='/filters' layout={MainLayout} component={AsyncFilters} />
+      <PrivateRoute exact path='/attribues' layout={MainLayout} component={AsyncAttribues} />
+      <PrivateRoute exact path='/options' layout={MainLayout} component={AsyncOptions} />
+      <PrivateRoute exact path='/manufacturers' layout={MainLayout} component={AsyncManufacturers} />
+      <PrivateRoute exact path='/downloads' layout={MainLayout} component={AsyncDownloads} />
+      <PrivateRoute exact path='/reviews' layout={MainLayout} component={AsyncReviews} />
+      <PrivateRoute exact path='/information' layout={MainLayout} component={AsyncInformation} />
       
       {/** Extensions Module **/}
-      <PrivateRoute exact path="/marketplace" layout={MainLayout} component={AsyncMarketplace} />
-      <PrivateRoute exact path="/installer" layout={MainLayout} component={AsyncInstaller} />
-      <PrivateRoute exact path="/extensions" layout={MainLayout} component={AsyncExtensions} />
-      <PrivateRoute exact path="/modifictions" layout={MainLayout} component={AsyncModifictions} />
-      <PrivateRoute exact path="/events" layout={MainLayout} component={AsyncEvents} />
+      <PrivateRoute exact path='/marketplace' layout={MainLayout} component={AsyncMarketplace} />
+      <PrivateRoute exact path='/installer' layout={MainLayout} component={AsyncInstaller} />
+      <PrivateRoute exact path='/extensions' layout={MainLayout} component={AsyncExtensions} />
+      <PrivateRoute exact path='/modifictions' layout={MainLayout} component={AsyncModifictions} />
+      <PrivateRoute exact path='/events' layout={MainLayout} component={AsyncEvents} />
 
       {/** Design Module **/}
-      <PrivateRoute exact path="/layouts" layout={MainLayout} component={AsyncLayouts} />
-      <PrivateRoute exact path="/theme-editor" layout={MainLayout} component={AsyncThemeEditor} />
-      <PrivateRoute exact path="/language-editor" layout={MainLayout} component={AsyncLanguageEditor} />
-      <PrivateRoute exact path="/banners" layout={MainLayout} component={AsyncBanners} />
-      <PrivateRoute exact path="/seo-url" layout={MainLayout} component={AsyncSeoUrl} />
+      <PrivateRoute exact path='/layouts' layout={MainLayout} component={AsyncLayouts} />
+      <PrivateRoute exact path='/theme-editor' layout={MainLayout} component={AsyncThemeEditor} />
+      <PrivateRoute exact path='/language-editor' layout={MainLayout} component={AsyncLanguageEditor} />
+      <PrivateRoute exact path='/banners' layout={MainLayout} component={AsyncBanners} />
+      <PrivateRoute exact path='/seo-url' layout={MainLayout} component={AsyncSeoUrl} />
 
       {/** Sales Module **/}
-      <PrivateRoute exact path="/orders" layout={MainLayout} component={AsyncOrders} />
-      <PrivateRoute exact path="/recurring-profiles" layout={MainLayout} component={AsyncRecurringProfiles} />
-      <PrivateRoute exact path="/returns" layout={MainLayout} component={AsyncReturns} />
-      <PrivateRoute exact path="/gift-vouchers" layout={MainLayout} component={AsyncGiftVouchers} />
+      <PrivateRoute exact path='/orders' layout={MainLayout} component={AsyncOrders} />
+      <PrivateRoute exact path='/recurring-profiles' layout={MainLayout} component={AsyncRecurringProfiles} />
+      <PrivateRoute exact path='/returns' layout={MainLayout} component={AsyncReturns} />
+      <PrivateRoute exact path='/gift-vouchers' layout={MainLayout} component={AsyncGiftVouchers} />
 
       {/** Customers Module **/}
-      <PrivateRoute exact path="/customers" layout={MainLayout} component={AsyncCustomers} />
-      <PrivateRoute exact path="/customers-groups" layout={MainLayout} component={AsyncCustomersGroups} />
-      <PrivateRoute exact path="/customers-approvals" layout={MainLayout} component={AsyncCustomersApprovals} />
-      <PrivateRoute exact path="/custom-fields" layout={MainLayout} component={AsyncCustomFields} />
+      <PrivateRoute exact path='/customers' layout={MainLayout} component={AsyncCustomers} />
+      <PrivateRoute exact path='/customers-groups' layout={MainLayout} component={AsyncCustomersGroups} />
+      <PrivateRoute exact path='/customers-approvals' layout={MainLayout} component={AsyncCustomersApprovals} />
+      <PrivateRoute exact path='/custom-fields' layout={MainLayout} component={AsyncCustomFields} />
 
       {/** Marketing Module **/}
-      <PrivateRoute exact path="/marketing" layout={MainLayout} component={AsyncMarketing} />
-      <PrivateRoute exact path="/coupons" layout={MainLayout} component={AsyncCoupons} />
-      <PrivateRoute exact path="/email" layout={MainLayout} component={AsyncEmail} />
+      <PrivateRoute exact path='/marketing' layout={MainLayout} component={AsyncMarketing} />
+      <PrivateRoute exact path='/coupons' layout={MainLayout} component={AsyncCoupons} />
+      <PrivateRoute exact path='/email' layout={MainLayout} component={AsyncEmail} />
       
       {/** System Module **/}
-      <PrivateRoute exact path="/settings" layout={MainLayout} component={AsyncSettings} />
-      <PrivateRoute exact path="/localization" layout={MainLayout} component={AsyncLocalization} />
-      <PrivateRoute exact path="/maintenance" layout={MainLayout} component={AsyncMaintenance} />
+      <PrivateRoute exact path='/settings' layout={MainLayout} component={AsyncSettings} />
+      <PrivateRoute exact path='/localization' layout={MainLayout} component={AsyncLocalization} />
+      <PrivateRoute exact path='/maintenance' layout={MainLayout} component={AsyncMaintenance} />
 
       {/** Reports Module **/}
-      <PrivateRoute exact path="/reports" layout={MainLayout} component={AsyncReports} />
-      <PrivateRoute exact path="/online-users" layout={MainLayout} component={AsyncOnlineUsers} />
-      <PrivateRoute exact path="/statistics" layout={MainLayout} component={AsyncStatistics} />
+      <PrivateRoute exact path='/reports' layout={MainLayout} component={AsyncReports} />
+      <PrivateRoute exact path='/online-users' layout={MainLayout} component={AsyncOnlineUsers} />
+      <PrivateRoute exact path='/statistics' layout={MainLayout} component={AsyncStatistics} />
 
       <Route component={NotFound} />
     </Switch>
