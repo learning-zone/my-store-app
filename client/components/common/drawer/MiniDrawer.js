@@ -87,12 +87,12 @@ class MiniDrawer extends React.Component {
   state = { open: {} };
 
   handleClick = (key, label) => () => {
-    document.title = label;
+    document.title = 'My Store | ' + label;
     this.setState({ [key]: !this.state[key] });
   };
 
   updateTitle = (label) => () => {
-    document.title = label;
+    document.title = 'My Store | ' + label;
   }
 
   render() {
