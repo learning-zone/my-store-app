@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
+import { Home } from '@material-ui/icons';
 import { Collapse } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import { ExpandLess } from '@material-ui/icons';
@@ -102,15 +103,21 @@ class MiniDrawer extends React.Component {
           }}
           open={navDrawerOpen}
         >
-          <Link to="/dashboard" className={classes.links}>
-            <Avatar
-              alt="User"
-              src="/img/avatar5.png"
-              className={classNames(classes.avatar, classes.bigAvatar)}
-            />
-          </Link>
+          <Avatar
+            alt="User"
+            src="/img/avatar5.png"
+            className={classNames(classes.avatar, classes.bigAvatar)}
+          />
           <Divider />
           <List>
+            <ListItem button title="Dashboard">
+              <ListItemIcon className={classes.ListItemIcon}>
+                <Home />
+              </ListItemIcon>
+              <Link to="/dashboard" className={classes.links}>
+                <ListItemText inset primary="Dashboard" className={classes.ListItemText} />
+              </Link>
+            </ListItem>
             {menuItems.map(({ key, label, icon: Icon, items }) => {
               const open = this.state[key] || false;
               return (
