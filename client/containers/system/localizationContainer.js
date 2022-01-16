@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Categories from '../../components/catalog/categories';
+import Localization from '../../components/system/localization';
 
-class CategoriesContainer extends Component {
+class LocalizationContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <Categories />;
+    return <Localization />;
   }
 }
 
-export default CategoriesContainer;
+export default LocalizationContainer;

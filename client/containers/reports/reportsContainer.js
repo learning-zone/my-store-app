@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Categories from '../../components/catalog/categories';
+import Reports from '../../components/reports/reports';
 
-class CategoriesContainer extends Component {
+class ReportsContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <Categories />;
+    return <Reports />;
   }
 }
 
-export default CategoriesContainer;
+export default ReportsContainer;

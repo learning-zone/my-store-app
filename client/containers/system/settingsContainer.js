@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Categories from '../../components/catalog/categories';
+import Settings from '../../components/system/settings';
 
-class CategoriesContainer extends Component {
+class SettingsContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <Categories />;
+    return <Settings />;
   }
 }
 
-export default CategoriesContainer;
+export default SettingsContainer;

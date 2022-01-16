@@ -55,6 +55,17 @@ const AsyncMarketing = loadable(() => import('../containers/marketing/marketingC
 const AsyncCoupons = loadable(() => import('../containers/marketing/couponsContainer'));
 const AsyncEmail = loadable(() => import('../containers/marketing/emailContainer'));
 
+/** System Module **/
+const AsyncSettings = loadable(() => import('../containers/system/settingsContainer'));
+const AsyncLocalization = loadable(() => import('../containers/system/localizationContainer'));
+const AsyncMaintenance = loadable(() => import('../containers/system/maintenanceContainer'));
+
+/** Reports Module **/
+const AsyncReports = loadable(() => import('../containers/reports/reportsContainer'));
+const AsyncOnlineUsers = loadable(() => import('../containers/reports/onlineUsersContainer'));
+const AsyncStatistics = loadable(() => import('../containers/reports/statisticsContainer'));
+
+
 const Router = () => (
   <Fragment>
     <Switch>
@@ -104,6 +115,16 @@ const Router = () => (
       <PrivateRoute exact path="/marketing" layout={MainLayout} component={AsyncMarketing} />
       <PrivateRoute exact path="/coupons" layout={MainLayout} component={AsyncCoupons} />
       <PrivateRoute exact path="/email" layout={MainLayout} component={AsyncEmail} />
+      
+      {/** System Module **/}
+      <PrivateRoute exact path="/settings" layout={MainLayout} component={AsyncSettings} />
+      <PrivateRoute exact path="/localization" layout={MainLayout} component={AsyncLocalization} />
+      <PrivateRoute exact path="/maintenance" layout={MainLayout} component={AsyncMaintenance} />
+
+      {/** Reports Module **/}
+      <PrivateRoute exact path="/reports" layout={MainLayout} component={AsyncReports} />
+      <PrivateRoute exact path="/online-users" layout={MainLayout} component={AsyncOnlineUsers} />
+      <PrivateRoute exact path="/statistics" layout={MainLayout} component={AsyncStatistics} />
 
       <Route component={NotFound} />
     </Switch>

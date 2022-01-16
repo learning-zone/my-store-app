@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Categories from '../../components/catalog/categories';
+import Maintenance from '../../components/system/maintenance';
 
-class CategoriesContainer extends Component {
+class MaintenanceContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <Categories />;
+    return <Maintenance />;
   }
 }
 
-export default CategoriesContainer;
+export default MaintenanceContainer;
