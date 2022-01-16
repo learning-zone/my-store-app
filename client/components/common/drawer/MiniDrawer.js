@@ -86,10 +86,14 @@ class MiniDrawer extends React.Component {
   }
   state = { open: {} };
 
-  handleClick = (key) => () => {
-    console.log(key);
+  handleClick = (key, label) => () => {
+    document.title = label;
     this.setState({ [key]: !this.state[key] });
   };
+
+  updateTitle = (label) => () => {
+    document.title = label;
+  }
 
   render() {
     const { classes, navDrawerOpen, menuItems } = this.props;
@@ -114,7 +118,7 @@ class MiniDrawer extends React.Component {
               <ListItemIcon className={classes.ListItemIcon}>
                 <Home />
               </ListItemIcon>
-              <Link to="/dashboard" className={classes.links}>
+              <Link to="/dashboard" className={classes.links} onClick={this.updateTitle('Dashboard')}>
                 <ListItemText inset primary="Dashboard" className={classes.ListItemText} />
               </Link>
             </ListItem>
@@ -122,7 +126,7 @@ class MiniDrawer extends React.Component {
               const open = this.state[key] || false;
               return (
                 <div key={key}>
-                  <ListItem button onClick={this.handleClick(key)} title={label}>
+                  <ListItem button onClick={this.handleClick(key, label)} title={label}>
                     <ListItemIcon className={classes.ListItemIcon}>
                       <Icon />
                     </ListItemIcon>
@@ -142,7 +146,7 @@ class MiniDrawer extends React.Component {
                             <ListItemIcon className={classes.ListItemIcon}>
                               <ChildIcon />
                             </ListItemIcon>
-                            <Link to={ChildUrl} className={classes.links}>
+                            <Link to={ChildUrl} className={classes.links} onClick={this.updateTitle(childLabel)}>
                               <ListItemText
                                 inset
                                 primary={childLabel}
