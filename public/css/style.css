@@ -1,26 +1,37 @@
 body {
-    font-size: 15px;
-    margin: 0;
-    line-height: 24px;
+  font-size: 15px;
+  margin: 0;
+  line-height: 24px;
 }
 
 body {
-    margin: 0;
-    background-color: #f2f2f2;
+  margin: 0;
+  background-color: #f2f2f2;
 }
 
-body, html, #app, #app > div {
-    height: 100%;
+body,
+html,
+#app,
+#app > div {
+  height: 100%;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .m-b-15 {
-    margin-bottom: 15px
+  margin-bottom: 15px;
+}
+
+.MuiListItemText-inset {
+  padding-left: 0px !important;
+}
+
+.MiniDrawer-ListItemIcon-21 {
+  min-width: 30px !important;
 }

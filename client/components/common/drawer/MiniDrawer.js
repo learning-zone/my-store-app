@@ -73,6 +73,7 @@ const styles = (theme) => ({
   },
   ListItemText: {
     paddingLeft: '2px',
+    fontSize:'14px',
   },
   ListItemIcon: {
     minWidth: '42px',
@@ -150,7 +151,7 @@ class MiniDrawer extends React.Component {
                               <ListItemText
                                 inset
                                 primary={childLabel}
-                                className={classes.ListItemText}
+                                classes={{primary:classes.ListItemText}}
                               />
                             </Link>
                           </ListItem>
