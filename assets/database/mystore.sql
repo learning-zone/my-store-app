@@ -18,19 +18,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `opencart`
+-- Database: `mystore`
 --
-CREATE DATABASE IF NOT EXISTS `opencart` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `opencart`;
+CREATE DATABASE IF NOT EXISTS `mystore` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `mystore`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_address`
+-- Table structure for table `ms_address`
 --
 
-DROP TABLE IF EXISTS `oc_address`;
-CREATE TABLE `oc_address` (
+DROP TABLE IF EXISTS `ms_address`;
+CREATE TABLE `ms_address` (
   `address_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `firstname` varchar(32) NOT NULL,
@@ -48,11 +48,11 @@ CREATE TABLE `oc_address` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_api`
+-- Table structure for table `ms_api`
 --
 
-DROP TABLE IF EXISTS `oc_api`;
-CREATE TABLE `oc_api` (
+DROP TABLE IF EXISTS `ms_api`;
+CREATE TABLE `ms_api` (
   `api_id` int(11) NOT NULL,
   `username` varchar(64) NOT NULL,
   `key` text NOT NULL,
@@ -64,11 +64,11 @@ CREATE TABLE `oc_api` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_api_ip`
+-- Table structure for table `ms_api_ip`
 --
 
-DROP TABLE IF EXISTS `oc_api_ip`;
-CREATE TABLE `oc_api_ip` (
+DROP TABLE IF EXISTS `ms_api_ip`;
+CREATE TABLE `ms_api_ip` (
   `api_ip_id` int(11) NOT NULL,
   `api_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL
@@ -77,11 +77,11 @@ CREATE TABLE `oc_api_ip` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_api_session`
+-- Table structure for table `ms_api_session`
 --
 
-DROP TABLE IF EXISTS `oc_api_session`;
-CREATE TABLE `oc_api_session` (
+DROP TABLE IF EXISTS `ms_api_session`;
+CREATE TABLE `ms_api_session` (
   `api_session_id` int(11) NOT NULL,
   `api_id` int(11) NOT NULL,
   `session_id` varchar(32) NOT NULL,
@@ -93,21 +93,21 @@ CREATE TABLE `oc_api_session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_attribute`
+-- Table structure for table `ms_attribute`
 --
 
-DROP TABLE IF EXISTS `oc_attribute`;
-CREATE TABLE `oc_attribute` (
+DROP TABLE IF EXISTS `ms_attribute`;
+CREATE TABLE `ms_attribute` (
   `attribute_id` int(11) NOT NULL,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_attribute`
+-- Dumping data for table `ms_attribute`
 --
 
-INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
+INSERT INTO `ms_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
 (1, 6, 1),
 (2, 6, 5),
 (3, 6, 3),
@@ -123,21 +123,21 @@ INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_attribute_description`
+-- Table structure for table `ms_attribute_description`
 --
 
-DROP TABLE IF EXISTS `oc_attribute_description`;
-CREATE TABLE `oc_attribute_description` (
+DROP TABLE IF EXISTS `ms_attribute_description`;
+CREATE TABLE `ms_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_attribute_description`
+-- Dumping data for table `ms_attribute_description`
 --
 
-INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
 (1, 1, 'Description'),
 (2, 1, 'No. of Cores'),
 (4, 1, 'test 1'),
@@ -153,20 +153,20 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_attribute_group`
+-- Table structure for table `ms_attribute_group`
 --
 
-DROP TABLE IF EXISTS `oc_attribute_group`;
-CREATE TABLE `oc_attribute_group` (
+DROP TABLE IF EXISTS `ms_attribute_group`;
+CREATE TABLE `ms_attribute_group` (
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_attribute_group`
+-- Dumping data for table `ms_attribute_group`
 --
 
-INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
+INSERT INTO `ms_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 (3, 2),
 (4, 1),
 (5, 3),
@@ -175,21 +175,21 @@ INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_attribute_group_description`
+-- Table structure for table `ms_attribute_group_description`
 --
 
-DROP TABLE IF EXISTS `oc_attribute_group_description`;
-CREATE TABLE `oc_attribute_group_description` (
+DROP TABLE IF EXISTS `ms_attribute_group_description`;
+CREATE TABLE `ms_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_attribute_group_description`
+-- Dumping data for table `ms_attribute_group_description`
 --
 
-INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
 (3, 1, 'Memory'),
 (4, 1, 'Technical'),
 (5, 1, 'Motherboard'),
@@ -198,21 +198,21 @@ INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_banner`
+-- Table structure for table `ms_banner`
 --
 
-DROP TABLE IF EXISTS `oc_banner`;
-CREATE TABLE `oc_banner` (
+DROP TABLE IF EXISTS `ms_banner`;
+CREATE TABLE `ms_banner` (
   `banner_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_banner`
+-- Dumping data for table `ms_banner`
 --
 
-INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
+INSERT INTO `ms_banner` (`banner_id`, `name`, `status`) VALUES
 (6, 'HP Products', 1),
 (7, 'Home Page Slideshow', 1),
 (8, 'Manufacturers', 1);
@@ -220,11 +220,11 @@ INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_banner_image`
+-- Table structure for table `ms_banner_image`
 --
 
-DROP TABLE IF EXISTS `oc_banner_image`;
-CREATE TABLE `oc_banner_image` (
+DROP TABLE IF EXISTS `ms_banner_image`;
+CREATE TABLE `ms_banner_image` (
   `banner_image_id` int(11) NOT NULL,
   `banner_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -235,10 +235,10 @@ CREATE TABLE `oc_banner_image` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_banner_image`
+-- Dumping data for table `ms_banner_image`
 --
 
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
+INSERT INTO `ms_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
 (79, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
 (87, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
 (94, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
@@ -257,11 +257,11 @@ INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_cart`
+-- Table structure for table `ms_cart`
 --
 
-DROP TABLE IF EXISTS `oc_cart`;
-CREATE TABLE `oc_cart` (
+DROP TABLE IF EXISTS `ms_cart`;
+CREATE TABLE `ms_cart` (
   `cart_id` int(11) UNSIGNED NOT NULL,
   `api_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -276,11 +276,11 @@ CREATE TABLE `oc_cart` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category`
+-- Table structure for table `ms_category`
 --
 
-DROP TABLE IF EXISTS `oc_category`;
-CREATE TABLE `oc_category` (
+DROP TABLE IF EXISTS `ms_category`;
+CREATE TABLE `ms_category` (
   `category_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT 0,
@@ -293,10 +293,10 @@ CREATE TABLE `oc_category` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_category`
+-- Dumping data for table `ms_category`
 --
 
-INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
 (25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
 (27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2010-08-22 06:32:15'),
 (20, 'catalog/demo/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2011-07-16 02:14:42'),
@@ -339,11 +339,11 @@ INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category_description`
+-- Table structure for table `ms_category_description`
 --
 
-DROP TABLE IF EXISTS `oc_category_description`;
-CREATE TABLE `oc_category_description` (
+DROP TABLE IF EXISTS `ms_category_description`;
+CREATE TABLE `ms_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -354,10 +354,10 @@ CREATE TABLE `oc_category_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_category_description`
+-- Dumping data for table `ms_category_description`
 --
 
-INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+INSERT INTO `ms_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (28, 1, 'Monitors', '', 'Monitors', '', ''),
 (33, 1, 'Cameras', '', 'Cameras', '', ''),
 (32, 1, 'Web Cameras', '', 'Web Cameras', '', ''),
@@ -400,11 +400,11 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `de
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category_filter`
+-- Table structure for table `ms_category_filter`
 --
 
-DROP TABLE IF EXISTS `oc_category_filter`;
-CREATE TABLE `oc_category_filter` (
+DROP TABLE IF EXISTS `ms_category_filter`;
+CREATE TABLE `ms_category_filter` (
   `category_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -412,21 +412,21 @@ CREATE TABLE `oc_category_filter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category_path`
+-- Table structure for table `ms_category_path`
 --
 
-DROP TABLE IF EXISTS `oc_category_path`;
-CREATE TABLE `oc_category_path` (
+DROP TABLE IF EXISTS `ms_category_path`;
+CREATE TABLE `ms_category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
   `level` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_category_path`
+-- Dumping data for table `ms_category_path`
 --
 
-INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
+INSERT INTO `ms_category_path` (`category_id`, `path_id`, `level`) VALUES
 (25, 25, 0),
 (28, 25, 0),
 (28, 28, 1),
@@ -502,11 +502,11 @@ INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category_to_layout`
+-- Table structure for table `ms_category_to_layout`
 --
 
-DROP TABLE IF EXISTS `oc_category_to_layout`;
-CREATE TABLE `oc_category_to_layout` (
+DROP TABLE IF EXISTS `ms_category_to_layout`;
+CREATE TABLE `ms_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
@@ -515,20 +515,20 @@ CREATE TABLE `oc_category_to_layout` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_category_to_store`
+-- Table structure for table `ms_category_to_store`
 --
 
-DROP TABLE IF EXISTS `oc_category_to_store`;
-CREATE TABLE `oc_category_to_store` (
+DROP TABLE IF EXISTS `ms_category_to_store`;
+CREATE TABLE `ms_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_category_to_store`
+-- Dumping data for table `ms_category_to_store`
 --
 
-INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
+INSERT INTO `ms_category_to_store` (`category_id`, `store_id`) VALUES
 (17, 0),
 (18, 0),
 (20, 0),
@@ -571,11 +571,11 @@ INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_country`
+-- Table structure for table `ms_country`
 --
 
-DROP TABLE IF EXISTS `oc_country`;
-CREATE TABLE `oc_country` (
+DROP TABLE IF EXISTS `ms_country`;
+CREATE TABLE `ms_country` (
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `iso_code_2` varchar(2) NOT NULL,
@@ -586,10 +586,10 @@ CREATE TABLE `oc_country` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_country`
+-- Dumping data for table `ms_country`
 --
 
-INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
+INSERT INTO `ms_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
 (1, 'Afghanistan', 'AF', 'AFG', '', 0, 1),
 (2, 'Albania', 'AL', 'ALB', '', 0, 1),
 (3, 'Algeria', 'DZ', 'DZA', '', 0, 1),
@@ -847,11 +847,11 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_coupon`
+-- Table structure for table `ms_coupon`
 --
 
-DROP TABLE IF EXISTS `oc_coupon`;
-CREATE TABLE `oc_coupon` (
+DROP TABLE IF EXISTS `ms_coupon`;
+CREATE TABLE `ms_coupon` (
   `coupon_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `code` varchar(20) NOT NULL,
@@ -869,10 +869,10 @@ CREATE TABLE `oc_coupon` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_coupon`
+-- Dumping data for table `ms_coupon`
 --
 
-INSERT INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
+INSERT INTO `ms_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
 (4, '-10% Discount', '2222', 'P', '10.0000', 0, 0, '0.0000', '2014-01-01', '2020-01-01', 10, '10', 0, '2009-01-27 13:55:03'),
 (5, 'Free Shipping', '3333', 'P', '0.0000', 0, 1, '100.0000', '2014-01-01', '2014-02-01', 10, '10', 0, '2009-03-14 21:13:53'),
 (6, '-10.00 Discount', '1111', 'F', '10.0000', 0, 0, '10.0000', '2014-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
@@ -880,11 +880,11 @@ INSERT INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logge
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_coupon_category`
+-- Table structure for table `ms_coupon_category`
 --
 
-DROP TABLE IF EXISTS `oc_coupon_category`;
-CREATE TABLE `oc_coupon_category` (
+DROP TABLE IF EXISTS `ms_coupon_category`;
+CREATE TABLE `ms_coupon_category` (
   `coupon_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -892,11 +892,11 @@ CREATE TABLE `oc_coupon_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_coupon_history`
+-- Table structure for table `ms_coupon_history`
 --
 
-DROP TABLE IF EXISTS `oc_coupon_history`;
-CREATE TABLE `oc_coupon_history` (
+DROP TABLE IF EXISTS `ms_coupon_history`;
+CREATE TABLE `ms_coupon_history` (
   `coupon_history_id` int(11) NOT NULL,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -908,11 +908,11 @@ CREATE TABLE `oc_coupon_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_coupon_product`
+-- Table structure for table `ms_coupon_product`
 --
 
-DROP TABLE IF EXISTS `oc_coupon_product`;
-CREATE TABLE `oc_coupon_product` (
+DROP TABLE IF EXISTS `ms_coupon_product`;
+CREATE TABLE `ms_coupon_product` (
   `coupon_product_id` int(11) NOT NULL,
   `coupon_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
@@ -921,11 +921,11 @@ CREATE TABLE `oc_coupon_product` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_currency`
+-- Table structure for table `ms_currency`
 --
 
-DROP TABLE IF EXISTS `oc_currency`;
-CREATE TABLE `oc_currency` (
+DROP TABLE IF EXISTS `ms_currency`;
+CREATE TABLE `ms_currency` (
   `currency_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `code` varchar(3) NOT NULL,
@@ -938,10 +938,10 @@ CREATE TABLE `oc_currency` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_currency`
+-- Dumping data for table `ms_currency`
 --
 
-INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
+INSERT INTO `ms_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 1, '2014-09-25 14:40:00'),
 (2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2014-09-25 14:40:00'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 1, '2014-09-25 14:40:00');
@@ -949,11 +949,11 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer`
+-- Table structure for table `ms_customer`
 --
 
-DROP TABLE IF EXISTS `oc_customer`;
-CREATE TABLE `oc_customer` (
+DROP TABLE IF EXISTS `ms_customer`;
+CREATE TABLE `ms_customer` (
   `customer_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
@@ -981,11 +981,11 @@ CREATE TABLE `oc_customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_activity`
+-- Table structure for table `ms_customer_activity`
 --
 
-DROP TABLE IF EXISTS `oc_customer_activity`;
-CREATE TABLE `oc_customer_activity` (
+DROP TABLE IF EXISTS `ms_customer_activity`;
+CREATE TABLE `ms_customer_activity` (
   `customer_activity_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
@@ -997,11 +997,11 @@ CREATE TABLE `oc_customer_activity` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_affiliate`
+-- Table structure for table `ms_customer_affiliate`
 --
 
-DROP TABLE IF EXISTS `oc_customer_affiliate`;
-CREATE TABLE `oc_customer_affiliate` (
+DROP TABLE IF EXISTS `ms_customer_affiliate`;
+CREATE TABLE `ms_customer_affiliate` (
   `customer_id` int(11) NOT NULL,
   `company` varchar(40) NOT NULL,
   `website` varchar(255) NOT NULL,
@@ -1024,11 +1024,11 @@ CREATE TABLE `oc_customer_affiliate` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_approval`
+-- Table structure for table `ms_customer_approval`
 --
 
-DROP TABLE IF EXISTS `oc_customer_approval`;
-CREATE TABLE `oc_customer_approval` (
+DROP TABLE IF EXISTS `ms_customer_approval`;
+CREATE TABLE `ms_customer_approval` (
   `customer_approval_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `type` varchar(9) NOT NULL,
@@ -1038,31 +1038,31 @@ CREATE TABLE `oc_customer_approval` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_group`
+-- Table structure for table `ms_customer_group`
 --
 
-DROP TABLE IF EXISTS `oc_customer_group`;
-CREATE TABLE `oc_customer_group` (
+DROP TABLE IF EXISTS `ms_customer_group`;
+CREATE TABLE `ms_customer_group` (
   `customer_group_id` int(11) NOT NULL,
   `approval` int(1) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_customer_group`
+-- Dumping data for table `ms_customer_group`
 --
 
-INSERT INTO `oc_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
+INSERT INTO `ms_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
 (1, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_group_description`
+-- Table structure for table `ms_customer_group_description`
 --
 
-DROP TABLE IF EXISTS `oc_customer_group_description`;
-CREATE TABLE `oc_customer_group_description` (
+DROP TABLE IF EXISTS `ms_customer_group_description`;
+CREATE TABLE `ms_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
@@ -1070,20 +1070,20 @@ CREATE TABLE `oc_customer_group_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_customer_group_description`
+-- Dumping data for table `ms_customer_group_description`
 --
 
-INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
+INSERT INTO `ms_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
 (1, 1, 'Default', 'test');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_history`
+-- Table structure for table `ms_customer_history`
 --
 
-DROP TABLE IF EXISTS `oc_customer_history`;
-CREATE TABLE `oc_customer_history` (
+DROP TABLE IF EXISTS `ms_customer_history`;
+CREATE TABLE `ms_customer_history` (
   `customer_history_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
@@ -1093,11 +1093,11 @@ CREATE TABLE `oc_customer_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_ip`
+-- Table structure for table `ms_customer_ip`
 --
 
-DROP TABLE IF EXISTS `oc_customer_ip`;
-CREATE TABLE `oc_customer_ip` (
+DROP TABLE IF EXISTS `ms_customer_ip`;
+CREATE TABLE `ms_customer_ip` (
   `customer_ip_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -1107,11 +1107,11 @@ CREATE TABLE `oc_customer_ip` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_login`
+-- Table structure for table `ms_customer_login`
 --
 
-DROP TABLE IF EXISTS `oc_customer_login`;
-CREATE TABLE `oc_customer_login` (
+DROP TABLE IF EXISTS `ms_customer_login`;
+CREATE TABLE `ms_customer_login` (
   `customer_login_id` int(11) NOT NULL,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -1123,11 +1123,11 @@ CREATE TABLE `oc_customer_login` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_online`
+-- Table structure for table `ms_customer_online`
 --
 
-DROP TABLE IF EXISTS `oc_customer_online`;
-CREATE TABLE `oc_customer_online` (
+DROP TABLE IF EXISTS `ms_customer_online`;
+CREATE TABLE `ms_customer_online` (
   `ip` varchar(40) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `url` text NOT NULL,
@@ -1138,11 +1138,11 @@ CREATE TABLE `oc_customer_online` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_reward`
+-- Table structure for table `ms_customer_reward`
 --
 
-DROP TABLE IF EXISTS `oc_customer_reward`;
-CREATE TABLE `oc_customer_reward` (
+DROP TABLE IF EXISTS `ms_customer_reward`;
+CREATE TABLE `ms_customer_reward` (
   `customer_reward_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) NOT NULL DEFAULT 0,
@@ -1154,11 +1154,11 @@ CREATE TABLE `oc_customer_reward` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_search`
+-- Table structure for table `ms_customer_search`
 --
 
-DROP TABLE IF EXISTS `oc_customer_search`;
-CREATE TABLE `oc_customer_search` (
+DROP TABLE IF EXISTS `ms_customer_search`;
+CREATE TABLE `ms_customer_search` (
   `customer_search_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -1175,11 +1175,11 @@ CREATE TABLE `oc_customer_search` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_transaction`
+-- Table structure for table `ms_customer_transaction`
 --
 
-DROP TABLE IF EXISTS `oc_customer_transaction`;
-CREATE TABLE `oc_customer_transaction` (
+DROP TABLE IF EXISTS `ms_customer_transaction`;
+CREATE TABLE `ms_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1191,11 +1191,11 @@ CREATE TABLE `oc_customer_transaction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_wishlist`
+-- Table structure for table `ms_customer_wishlist`
 --
 
-DROP TABLE IF EXISTS `oc_customer_wishlist`;
-CREATE TABLE `oc_customer_wishlist` (
+DROP TABLE IF EXISTS `ms_customer_wishlist`;
+CREATE TABLE `ms_customer_wishlist` (
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL
@@ -1204,11 +1204,11 @@ CREATE TABLE `oc_customer_wishlist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_custom_field`
+-- Table structure for table `ms_custom_field`
 --
 
-DROP TABLE IF EXISTS `oc_custom_field`;
-CREATE TABLE `oc_custom_field` (
+DROP TABLE IF EXISTS `ms_custom_field`;
+CREATE TABLE `ms_custom_field` (
   `custom_field_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
@@ -1221,11 +1221,11 @@ CREATE TABLE `oc_custom_field` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_custom_field_customer_group`
+-- Table structure for table `ms_custom_field_customer_group`
 --
 
-DROP TABLE IF EXISTS `oc_custom_field_customer_group`;
-CREATE TABLE `oc_custom_field_customer_group` (
+DROP TABLE IF EXISTS `ms_custom_field_customer_group`;
+CREATE TABLE `ms_custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `required` tinyint(1) NOT NULL
@@ -1234,11 +1234,11 @@ CREATE TABLE `oc_custom_field_customer_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_custom_field_description`
+-- Table structure for table `ms_custom_field_description`
 --
 
-DROP TABLE IF EXISTS `oc_custom_field_description`;
-CREATE TABLE `oc_custom_field_description` (
+DROP TABLE IF EXISTS `ms_custom_field_description`;
+CREATE TABLE `ms_custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
@@ -1247,11 +1247,11 @@ CREATE TABLE `oc_custom_field_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_custom_field_value`
+-- Table structure for table `ms_custom_field_value`
 --
 
-DROP TABLE IF EXISTS `oc_custom_field_value`;
-CREATE TABLE `oc_custom_field_value` (
+DROP TABLE IF EXISTS `ms_custom_field_value`;
+CREATE TABLE `ms_custom_field_value` (
   `custom_field_value_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
@@ -1260,11 +1260,11 @@ CREATE TABLE `oc_custom_field_value` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_custom_field_value_description`
+-- Table structure for table `ms_custom_field_value_description`
 --
 
-DROP TABLE IF EXISTS `oc_custom_field_value_description`;
-CREATE TABLE `oc_custom_field_value_description` (
+DROP TABLE IF EXISTS `ms_custom_field_value_description`;
+CREATE TABLE `ms_custom_field_value_description` (
   `custom_field_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
@@ -1274,11 +1274,11 @@ CREATE TABLE `oc_custom_field_value_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_download`
+-- Table structure for table `ms_download`
 --
 
-DROP TABLE IF EXISTS `oc_download`;
-CREATE TABLE `oc_download` (
+DROP TABLE IF EXISTS `ms_download`;
+CREATE TABLE `ms_download` (
   `download_id` int(11) NOT NULL,
   `filename` varchar(160) NOT NULL,
   `mask` varchar(128) NOT NULL,
@@ -1288,11 +1288,11 @@ CREATE TABLE `oc_download` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_download_description`
+-- Table structure for table `ms_download_description`
 --
 
-DROP TABLE IF EXISTS `oc_download_description`;
-CREATE TABLE `oc_download_description` (
+DROP TABLE IF EXISTS `ms_download_description`;
+CREATE TABLE `ms_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
@@ -1301,11 +1301,11 @@ CREATE TABLE `oc_download_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_event`
+-- Table structure for table `ms_event`
 --
 
-DROP TABLE IF EXISTS `oc_event`;
-CREATE TABLE `oc_event` (
+DROP TABLE IF EXISTS `ms_event`;
+CREATE TABLE `ms_event` (
   `event_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `trigger` text NOT NULL,
@@ -1315,10 +1315,10 @@ CREATE TABLE `oc_event` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_event`
+-- Dumping data for table `ms_event`
 --
 
-INSERT INTO `oc_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort_order`) VALUES
+INSERT INTO `ms_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort_order`) VALUES
 (1, 'activity_customer_add', 'catalog/model/account/customer/addCustomer/after', 'event/activity/addCustomer', 1, 0),
 (2, 'activity_customer_edit', 'catalog/model/account/customer/editCustomer/after', 'event/activity/editCustomer', 1, 0),
 (3, 'activity_customer_password', 'catalog/model/account/customer/editPassword/after', 'event/activity/editPassword', 1, 0),
@@ -1368,21 +1368,21 @@ INSERT INTO `oc_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_extension`
+-- Table structure for table `ms_extension`
 --
 
-DROP TABLE IF EXISTS `oc_extension`;
-CREATE TABLE `oc_extension` (
+DROP TABLE IF EXISTS `ms_extension`;
+CREATE TABLE `ms_extension` (
   `extension_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_extension`
+-- Dumping data for table `ms_extension`
 --
 
-INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
+INSERT INTO `ms_extension` (`extension_id`, `type`, `code`) VALUES
 (1, 'payment', 'cod'),
 (2, 'total', 'shipping'),
 (3, 'total', 'sub_total'),
@@ -1428,11 +1428,11 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_extension_install`
+-- Table structure for table `ms_extension_install`
 --
 
-DROP TABLE IF EXISTS `oc_extension_install`;
-CREATE TABLE `oc_extension_install` (
+DROP TABLE IF EXISTS `ms_extension_install`;
+CREATE TABLE `ms_extension_install` (
   `extension_install_id` int(11) NOT NULL,
   `extension_download_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -1442,11 +1442,11 @@ CREATE TABLE `oc_extension_install` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_extension_path`
+-- Table structure for table `ms_extension_path`
 --
 
-DROP TABLE IF EXISTS `oc_extension_path`;
-CREATE TABLE `oc_extension_path` (
+DROP TABLE IF EXISTS `ms_extension_path`;
+CREATE TABLE `ms_extension_path` (
   `extension_path_id` int(11) NOT NULL,
   `extension_install_id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
@@ -1456,11 +1456,11 @@ CREATE TABLE `oc_extension_path` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_filter`
+-- Table structure for table `ms_filter`
 --
 
-DROP TABLE IF EXISTS `oc_filter`;
-CREATE TABLE `oc_filter` (
+DROP TABLE IF EXISTS `ms_filter`;
+CREATE TABLE `ms_filter` (
   `filter_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
@@ -1469,11 +1469,11 @@ CREATE TABLE `oc_filter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_filter_description`
+-- Table structure for table `ms_filter_description`
 --
 
-DROP TABLE IF EXISTS `oc_filter_description`;
-CREATE TABLE `oc_filter_description` (
+DROP TABLE IF EXISTS `ms_filter_description`;
+CREATE TABLE `ms_filter_description` (
   `filter_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
@@ -1483,11 +1483,11 @@ CREATE TABLE `oc_filter_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_filter_group`
+-- Table structure for table `ms_filter_group`
 --
 
-DROP TABLE IF EXISTS `oc_filter_group`;
-CREATE TABLE `oc_filter_group` (
+DROP TABLE IF EXISTS `ms_filter_group`;
+CREATE TABLE `ms_filter_group` (
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1495,11 +1495,11 @@ CREATE TABLE `oc_filter_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_filter_group_description`
+-- Table structure for table `ms_filter_group_description`
 --
 
-DROP TABLE IF EXISTS `oc_filter_group_description`;
-CREATE TABLE `oc_filter_group_description` (
+DROP TABLE IF EXISTS `ms_filter_group_description`;
+CREATE TABLE `ms_filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
@@ -1508,11 +1508,11 @@ CREATE TABLE `oc_filter_group_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_geo_zone`
+-- Table structure for table `ms_geo_zone`
 --
 
-DROP TABLE IF EXISTS `oc_geo_zone`;
-CREATE TABLE `oc_geo_zone` (
+DROP TABLE IF EXISTS `ms_geo_zone`;
+CREATE TABLE `ms_geo_zone` (
   `geo_zone_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -1521,21 +1521,21 @@ CREATE TABLE `oc_geo_zone` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_geo_zone`
+-- Dumping data for table `ms_geo_zone`
 --
 
-INSERT INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_geo_zone` (`geo_zone_id`, `name`, `description`, `date_added`, `date_modified`) VALUES
 (3, 'UK VAT Zone', 'UK VAT', '2009-01-06 23:26:25', '2010-02-26 22:33:24'),
 (4, 'UK Shipping', 'UK Shipping Zones', '2009-06-23 01:14:53', '2010-12-15 15:18:13');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_googleshopping_category`
+-- Table structure for table `ms_googleshopping_category`
 --
 
-DROP TABLE IF EXISTS `oc_googleshopping_category`;
-CREATE TABLE `oc_googleshopping_category` (
+DROP TABLE IF EXISTS `ms_googleshopping_category`;
+CREATE TABLE `ms_googleshopping_category` (
   `google_product_category` varchar(10) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL
@@ -1544,11 +1544,11 @@ CREATE TABLE `oc_googleshopping_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_googleshopping_product`
+-- Table structure for table `ms_googleshopping_product`
 --
 
-DROP TABLE IF EXISTS `oc_googleshopping_product`;
-CREATE TABLE `oc_googleshopping_product` (
+DROP TABLE IF EXISTS `ms_googleshopping_product`;
+CREATE TABLE `ms_googleshopping_product` (
   `product_advertise_google_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
@@ -1576,11 +1576,11 @@ CREATE TABLE `oc_googleshopping_product` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_googleshopping_product_status`
+-- Table structure for table `ms_googleshopping_product_status`
 --
 
-DROP TABLE IF EXISTS `oc_googleshopping_product_status`;
-CREATE TABLE `oc_googleshopping_product_status` (
+DROP TABLE IF EXISTS `ms_googleshopping_product_status`;
+CREATE TABLE `ms_googleshopping_product_status` (
   `product_id` int(11) NOT NULL DEFAULT 0,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `product_variation_id` varchar(64) NOT NULL DEFAULT '',
@@ -1593,11 +1593,11 @@ CREATE TABLE `oc_googleshopping_product_status` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_googleshopping_product_target`
+-- Table structure for table `ms_googleshopping_product_target`
 --
 
-DROP TABLE IF EXISTS `oc_googleshopping_product_target`;
-CREATE TABLE `oc_googleshopping_product_target` (
+DROP TABLE IF EXISTS `ms_googleshopping_product_target`;
+CREATE TABLE `ms_googleshopping_product_target` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `advertise_google_target_id` int(11) UNSIGNED NOT NULL
@@ -1606,11 +1606,11 @@ CREATE TABLE `oc_googleshopping_product_target` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_googleshopping_target`
+-- Table structure for table `ms_googleshopping_target`
 --
 
-DROP TABLE IF EXISTS `oc_googleshopping_target`;
-CREATE TABLE `oc_googleshopping_target` (
+DROP TABLE IF EXISTS `ms_googleshopping_target`;
+CREATE TABLE `ms_googleshopping_target` (
   `advertise_google_target_id` int(11) UNSIGNED NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `campaign_name` varchar(255) NOT NULL DEFAULT '',
@@ -1625,11 +1625,11 @@ CREATE TABLE `oc_googleshopping_target` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_information`
+-- Table structure for table `ms_information`
 --
 
-DROP TABLE IF EXISTS `oc_information`;
-CREATE TABLE `oc_information` (
+DROP TABLE IF EXISTS `ms_information`;
+CREATE TABLE `ms_information` (
   `information_id` int(11) NOT NULL,
   `bottom` int(1) NOT NULL DEFAULT 0,
   `sort_order` int(3) NOT NULL DEFAULT 0,
@@ -1637,10 +1637,10 @@ CREATE TABLE `oc_information` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_information`
+-- Dumping data for table `ms_information`
 --
 
-INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
+INSERT INTO `ms_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
 (3, 1, 3, 1),
 (4, 1, 1, 1),
 (5, 1, 4, 1),
@@ -1649,11 +1649,11 @@ INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_information_description`
+-- Table structure for table `ms_information_description`
 --
 
-DROP TABLE IF EXISTS `oc_information_description`;
-CREATE TABLE `oc_information_description` (
+DROP TABLE IF EXISTS `ms_information_description`;
+CREATE TABLE `ms_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
@@ -1664,10 +1664,10 @@ CREATE TABLE `oc_information_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_information_description`
+-- Dumping data for table `ms_information_description`
 --
 
-INSERT INTO `oc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+INSERT INTO `ms_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (4, 1, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
 (5, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
 (3, 1, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
@@ -1676,11 +1676,11 @@ INSERT INTO `oc_information_description` (`information_id`, `language_id`, `titl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_information_to_layout`
+-- Table structure for table `ms_information_to_layout`
 --
 
-DROP TABLE IF EXISTS `oc_information_to_layout`;
-CREATE TABLE `oc_information_to_layout` (
+DROP TABLE IF EXISTS `ms_information_to_layout`;
+CREATE TABLE `ms_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
@@ -1689,20 +1689,20 @@ CREATE TABLE `oc_information_to_layout` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_information_to_store`
+-- Table structure for table `ms_information_to_store`
 --
 
-DROP TABLE IF EXISTS `oc_information_to_store`;
-CREATE TABLE `oc_information_to_store` (
+DROP TABLE IF EXISTS `ms_information_to_store`;
+CREATE TABLE `ms_information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_information_to_store`
+-- Dumping data for table `ms_information_to_store`
 --
 
-INSERT INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
+INSERT INTO `ms_information_to_store` (`information_id`, `store_id`) VALUES
 (3, 0),
 (4, 0),
 (5, 0),
@@ -1711,11 +1711,11 @@ INSERT INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_language`
+-- Table structure for table `ms_language`
 --
 
-DROP TABLE IF EXISTS `oc_language`;
-CREATE TABLE `oc_language` (
+DROP TABLE IF EXISTS `ms_language`;
+CREATE TABLE `ms_language` (
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `code` varchar(5) NOT NULL,
@@ -1727,29 +1727,29 @@ CREATE TABLE `oc_language` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_language`
+-- Dumping data for table `ms_language`
 --
 
-INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
+INSERT INTO `ms_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
 (1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_layout`
+-- Table structure for table `ms_layout`
 --
 
-DROP TABLE IF EXISTS `oc_layout`;
-CREATE TABLE `oc_layout` (
+DROP TABLE IF EXISTS `ms_layout`;
+CREATE TABLE `ms_layout` (
   `layout_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_layout`
+-- Dumping data for table `ms_layout`
 --
 
-INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
+INSERT INTO `ms_layout` (`layout_id`, `name`) VALUES
 (1, 'Home'),
 (2, 'Product'),
 (3, 'Category'),
@@ -1767,11 +1767,11 @@ INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_layout_module`
+-- Table structure for table `ms_layout_module`
 --
 
-DROP TABLE IF EXISTS `oc_layout_module`;
-CREATE TABLE `oc_layout_module` (
+DROP TABLE IF EXISTS `ms_layout_module`;
+CREATE TABLE `ms_layout_module` (
   `layout_module_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
@@ -1780,10 +1780,10 @@ CREATE TABLE `oc_layout_module` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_layout_module`
+-- Dumping data for table `ms_layout_module`
 --
 
-INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
+INSERT INTO `ms_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
 (2, 4, '0', 'content_top', 0),
 (3, 4, '0', 'content_top', 1),
 (20, 5, '0', 'column_left', 2),
@@ -1798,11 +1798,11 @@ INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_layout_route`
+-- Table structure for table `ms_layout_route`
 --
 
-DROP TABLE IF EXISTS `oc_layout_route`;
-CREATE TABLE `oc_layout_route` (
+DROP TABLE IF EXISTS `ms_layout_route`;
+CREATE TABLE `ms_layout_route` (
   `layout_route_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1810,10 +1810,10 @@ CREATE TABLE `oc_layout_route` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_layout_route`
+-- Dumping data for table `ms_layout_route`
 --
 
-INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
+INSERT INTO `ms_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
 (38, 6, 0, 'account/%'),
 (17, 10, 0, 'affiliate/%'),
 (44, 3, 0, 'product/category'),
@@ -1831,20 +1831,20 @@ INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_length_class`
+-- Table structure for table `ms_length_class`
 --
 
-DROP TABLE IF EXISTS `oc_length_class`;
-CREATE TABLE `oc_length_class` (
+DROP TABLE IF EXISTS `ms_length_class`;
+CREATE TABLE `ms_length_class` (
   `length_class_id` int(11) NOT NULL,
   `value` decimal(15,8) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_length_class`
+-- Dumping data for table `ms_length_class`
 --
 
-INSERT INTO `oc_length_class` (`length_class_id`, `value`) VALUES
+INSERT INTO `ms_length_class` (`length_class_id`, `value`) VALUES
 (1, '1.00000000'),
 (2, '10.00000000'),
 (3, '0.39370000');
@@ -1852,11 +1852,11 @@ INSERT INTO `oc_length_class` (`length_class_id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_length_class_description`
+-- Table structure for table `ms_length_class_description`
 --
 
-DROP TABLE IF EXISTS `oc_length_class_description`;
-CREATE TABLE `oc_length_class_description` (
+DROP TABLE IF EXISTS `ms_length_class_description`;
+CREATE TABLE `ms_length_class_description` (
   `length_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
@@ -1864,10 +1864,10 @@ CREATE TABLE `oc_length_class_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_length_class_description`
+-- Dumping data for table `ms_length_class_description`
 --
 
-INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
+INSERT INTO `ms_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
 (1, 1, 'Centimeter', 'cm'),
 (2, 1, 'Millimeter', 'mm'),
 (3, 1, 'Inch', 'in');
@@ -1875,11 +1875,11 @@ INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `ti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_location`
+-- Table structure for table `ms_location`
 --
 
-DROP TABLE IF EXISTS `oc_location`;
-CREATE TABLE `oc_location` (
+DROP TABLE IF EXISTS `ms_location`;
+CREATE TABLE `ms_location` (
   `location_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
@@ -1894,11 +1894,11 @@ CREATE TABLE `oc_location` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_manufacturer`
+-- Table structure for table `ms_manufacturer`
 --
 
-DROP TABLE IF EXISTS `oc_manufacturer`;
-CREATE TABLE `oc_manufacturer` (
+DROP TABLE IF EXISTS `ms_manufacturer`;
+CREATE TABLE `ms_manufacturer` (
   `manufacturer_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -1906,10 +1906,10 @@ CREATE TABLE `oc_manufacturer` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_manufacturer`
+-- Dumping data for table `ms_manufacturer`
 --
 
-INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
+INSERT INTO `ms_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
 (5, 'HTC', 'catalog/demo/htc_logo.jpg', 0),
 (6, 'Palm', 'catalog/demo/palm_logo.jpg', 0),
 (7, 'Hewlett-Packard', 'catalog/demo/hp_logo.jpg', 0),
@@ -1920,20 +1920,20 @@ INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_manufacturer_to_store`
+-- Table structure for table `ms_manufacturer_to_store`
 --
 
-DROP TABLE IF EXISTS `oc_manufacturer_to_store`;
-CREATE TABLE `oc_manufacturer_to_store` (
+DROP TABLE IF EXISTS `ms_manufacturer_to_store`;
+CREATE TABLE `ms_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_manufacturer_to_store`
+-- Dumping data for table `ms_manufacturer_to_store`
 --
 
-INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
+INSERT INTO `ms_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 (5, 0),
 (6, 0),
 (7, 0),
@@ -1944,11 +1944,11 @@ INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_marketing`
+-- Table structure for table `ms_marketing`
 --
 
-DROP TABLE IF EXISTS `oc_marketing`;
-CREATE TABLE `oc_marketing` (
+DROP TABLE IF EXISTS `ms_marketing`;
+CREATE TABLE `ms_marketing` (
   `marketing_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
@@ -1960,11 +1960,11 @@ CREATE TABLE `oc_marketing` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_modification`
+-- Table structure for table `ms_modification`
 --
 
-DROP TABLE IF EXISTS `oc_modification`;
-CREATE TABLE `oc_modification` (
+DROP TABLE IF EXISTS `ms_modification`;
+CREATE TABLE `ms_modification` (
   `modification_id` int(11) NOT NULL,
   `extension_install_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -1980,11 +1980,11 @@ CREATE TABLE `oc_modification` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_module`
+-- Table structure for table `ms_module`
 --
 
-DROP TABLE IF EXISTS `oc_module`;
-CREATE TABLE `oc_module` (
+DROP TABLE IF EXISTS `ms_module`;
+CREATE TABLE `ms_module` (
   `module_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
@@ -1992,10 +1992,10 @@ CREATE TABLE `oc_module` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_module`
+-- Dumping data for table `ms_module`
 --
 
-INSERT INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
+INSERT INTO `ms_module` (`module_id`, `name`, `code`, `setting`) VALUES
 (30, 'Category', 'banner', '{\"name\":\"Category\",\"banner_id\":\"6\",\"width\":\"182\",\"height\":\"182\",\"status\":\"1\"}'),
 (29, 'Home Page', 'carousel', '{\"name\":\"Home Page\",\"banner_id\":\"8\",\"width\":\"130\",\"height\":\"100\",\"status\":\"1\"}'),
 (28, 'Home Page', 'featured', '{\"name\":\"Home Page\",\"product\":[\"43\",\"40\",\"42\",\"30\"],\"limit\":\"4\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}'),
@@ -2005,21 +2005,21 @@ INSERT INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_option`
+-- Table structure for table `ms_option`
 --
 
-DROP TABLE IF EXISTS `oc_option`;
-CREATE TABLE `oc_option` (
+DROP TABLE IF EXISTS `ms_option`;
+CREATE TABLE `ms_option` (
   `option_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option`
+-- Dumping data for table `ms_option`
 --
 
-INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
+INSERT INTO `ms_option` (`option_id`, `type`, `sort_order`) VALUES
 (1, 'radio', 1),
 (2, 'checkbox', 2),
 (4, 'text', 3),
@@ -2035,21 +2035,21 @@ INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_option_description`
+-- Table structure for table `ms_option_description`
 --
 
-DROP TABLE IF EXISTS `oc_option_description`;
-CREATE TABLE `oc_option_description` (
+DROP TABLE IF EXISTS `ms_option_description`;
+CREATE TABLE `ms_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_description`
+-- Dumping data for table `ms_option_description`
 --
 
-INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_option_description` (`option_id`, `language_id`, `name`) VALUES
 (1, 1, 'Radio'),
 (2, 1, 'Checkbox'),
 (4, 1, 'Text'),
@@ -2065,11 +2065,11 @@ INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_option_value`
+-- Table structure for table `ms_option_value`
 --
 
-DROP TABLE IF EXISTS `oc_option_value`;
-CREATE TABLE `oc_option_value` (
+DROP TABLE IF EXISTS `ms_option_value`;
+CREATE TABLE `ms_option_value` (
   `option_value_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -2077,10 +2077,10 @@ CREATE TABLE `oc_option_value` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_value`
+-- Dumping data for table `ms_option_value`
 --
 
-INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
+INSERT INTO `ms_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
 (43, 1, '', 3),
 (32, 1, '', 1),
 (45, 2, '', 4),
@@ -2099,11 +2099,11 @@ INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_or
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_option_value_description`
+-- Table structure for table `ms_option_value_description`
 --
 
-DROP TABLE IF EXISTS `oc_option_value_description`;
-CREATE TABLE `oc_option_value_description` (
+DROP TABLE IF EXISTS `ms_option_value_description`;
+CREATE TABLE `ms_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -2111,10 +2111,10 @@ CREATE TABLE `oc_option_value_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_value_description`
+-- Dumping data for table `ms_option_value_description`
 --
 
-INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
+INSERT INTO `ms_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
 (43, 1, 1, 'Large'),
 (32, 1, 1, 'Small'),
 (45, 1, 2, 'Checkbox 4'),
@@ -2133,11 +2133,11 @@ INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `op
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order`
+-- Table structure for table `ms_order`
 --
 
-DROP TABLE IF EXISTS `oc_order`;
-CREATE TABLE `oc_order` (
+DROP TABLE IF EXISTS `ms_order`;
+CREATE TABLE `ms_order` (
   `order_id` int(11) NOT NULL,
   `invoice_no` int(11) NOT NULL DEFAULT 0,
   `invoice_prefix` varchar(26) NOT NULL,
@@ -2204,11 +2204,11 @@ CREATE TABLE `oc_order` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_history`
+-- Table structure for table `ms_order_history`
 --
 
-DROP TABLE IF EXISTS `oc_order_history`;
-CREATE TABLE `oc_order_history` (
+DROP TABLE IF EXISTS `ms_order_history`;
+CREATE TABLE `ms_order_history` (
   `order_history_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
@@ -2220,11 +2220,11 @@ CREATE TABLE `oc_order_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_option`
+-- Table structure for table `ms_order_option`
 --
 
-DROP TABLE IF EXISTS `oc_order_option`;
-CREATE TABLE `oc_order_option` (
+DROP TABLE IF EXISTS `ms_order_option`;
+CREATE TABLE `ms_order_option` (
   `order_option_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
@@ -2238,11 +2238,11 @@ CREATE TABLE `oc_order_option` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_product`
+-- Table structure for table `ms_order_product`
 --
 
-DROP TABLE IF EXISTS `oc_order_product`;
-CREATE TABLE `oc_order_product` (
+DROP TABLE IF EXISTS `ms_order_product`;
+CREATE TABLE `ms_order_product` (
   `order_product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2258,11 +2258,11 @@ CREATE TABLE `oc_order_product` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_recurring`
+-- Table structure for table `ms_order_recurring`
 --
 
-DROP TABLE IF EXISTS `oc_order_recurring`;
-CREATE TABLE `oc_order_recurring` (
+DROP TABLE IF EXISTS `ms_order_recurring`;
+CREATE TABLE `ms_order_recurring` (
   `order_recurring_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -2288,11 +2288,11 @@ CREATE TABLE `oc_order_recurring` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_recurring_transaction`
+-- Table structure for table `ms_order_recurring_transaction`
 --
 
-DROP TABLE IF EXISTS `oc_order_recurring_transaction`;
-CREATE TABLE `oc_order_recurring_transaction` (
+DROP TABLE IF EXISTS `ms_order_recurring_transaction`;
+CREATE TABLE `ms_order_recurring_transaction` (
   `order_recurring_transaction_id` int(11) NOT NULL,
   `order_recurring_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -2304,11 +2304,11 @@ CREATE TABLE `oc_order_recurring_transaction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_shipment`
+-- Table structure for table `ms_order_shipment`
 --
 
-DROP TABLE IF EXISTS `oc_order_shipment`;
-CREATE TABLE `oc_order_shipment` (
+DROP TABLE IF EXISTS `ms_order_shipment`;
+CREATE TABLE `ms_order_shipment` (
   `order_shipment_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
@@ -2319,21 +2319,21 @@ CREATE TABLE `oc_order_shipment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_status`
+-- Table structure for table `ms_order_status`
 --
 
-DROP TABLE IF EXISTS `oc_order_status`;
-CREATE TABLE `oc_order_status` (
+DROP TABLE IF EXISTS `ms_order_status`;
+CREATE TABLE `ms_order_status` (
   `order_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_order_status`
+-- Dumping data for table `ms_order_status`
 --
 
-INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (2, 1, 'Processing'),
 (3, 1, 'Shipped'),
 (7, 1, 'Canceled'),
@@ -2352,11 +2352,11 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_total`
+-- Table structure for table `ms_order_total`
 --
 
-DROP TABLE IF EXISTS `oc_order_total`;
-CREATE TABLE `oc_order_total` (
+DROP TABLE IF EXISTS `ms_order_total`;
+CREATE TABLE `ms_order_total` (
   `order_total_id` int(10) NOT NULL,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
@@ -2368,11 +2368,11 @@ CREATE TABLE `oc_order_total` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_order_voucher`
+-- Table structure for table `ms_order_voucher`
 --
 
-DROP TABLE IF EXISTS `oc_order_voucher`;
-CREATE TABLE `oc_order_voucher` (
+DROP TABLE IF EXISTS `ms_order_voucher`;
+CREATE TABLE `ms_order_voucher` (
   `order_voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
@@ -2390,11 +2390,11 @@ CREATE TABLE `oc_order_voucher` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product`
+-- Table structure for table `ms_product`
 --
 
-DROP TABLE IF EXISTS `oc_product`;
-CREATE TABLE `oc_product` (
+DROP TABLE IF EXISTS `ms_product`;
+CREATE TABLE `ms_product` (
   `product_id` int(11) NOT NULL,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
@@ -2429,10 +2429,10 @@ CREATE TABLE `oc_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product`
+-- Dumping data for table `ms_product`
 --
 
-INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
 (28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
 (29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
 (30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
@@ -2456,11 +2456,11 @@ INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `is
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_attribute`
+-- Table structure for table `ms_product_attribute`
 --
 
-DROP TABLE IF EXISTS `oc_product_attribute`;
-CREATE TABLE `oc_product_attribute` (
+DROP TABLE IF EXISTS `ms_product_attribute`;
+CREATE TABLE `ms_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -2468,10 +2468,10 @@ CREATE TABLE `oc_product_attribute` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_attribute`
+-- Dumping data for table `ms_product_attribute`
 --
 
-INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
+INSERT INTO `ms_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
 (43, 2, 1, '1'),
 (47, 4, 1, '16GB'),
 (43, 4, 1, '8gb'),
@@ -2481,11 +2481,11 @@ INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_description`
+-- Table structure for table `ms_product_description`
 --
 
-DROP TABLE IF EXISTS `oc_product_description`;
-CREATE TABLE `oc_product_description` (
+DROP TABLE IF EXISTS `ms_product_description`;
+CREATE TABLE `ms_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2497,10 +2497,10 @@ CREATE TABLE `oc_product_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_description`
+-- Dumping data for table `ms_product_description`
 --
 
-INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+INSERT INTO `ms_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (35, 1, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', ''),
 (48, 1, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', ''),
 (40, 1, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', ''),
@@ -2524,11 +2524,11 @@ INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `desc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_discount`
+-- Table structure for table `ms_product_discount`
 --
 
-DROP TABLE IF EXISTS `oc_product_discount`;
-CREATE TABLE `oc_product_discount` (
+DROP TABLE IF EXISTS `ms_product_discount`;
+CREATE TABLE `ms_product_discount` (
   `product_discount_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2540,10 +2540,10 @@ CREATE TABLE `oc_product_discount` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_discount`
+-- Dumping data for table `ms_product_discount`
 --
 
-INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
+INSERT INTO `ms_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
 (440, 42, 1, 30, 1, '66.0000', '0000-00-00', '0000-00-00'),
 (439, 42, 1, 20, 1, '77.0000', '0000-00-00', '0000-00-00'),
 (438, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
@@ -2551,11 +2551,11 @@ INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `custome
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_filter`
+-- Table structure for table `ms_product_filter`
 --
 
-DROP TABLE IF EXISTS `oc_product_filter`;
-CREATE TABLE `oc_product_filter` (
+DROP TABLE IF EXISTS `ms_product_filter`;
+CREATE TABLE `ms_product_filter` (
   `product_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -2563,11 +2563,11 @@ CREATE TABLE `oc_product_filter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_image`
+-- Table structure for table `ms_product_image`
 --
 
-DROP TABLE IF EXISTS `oc_product_image`;
-CREATE TABLE `oc_product_image` (
+DROP TABLE IF EXISTS `ms_product_image`;
+CREATE TABLE `ms_product_image` (
   `product_image_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -2575,10 +2575,10 @@ CREATE TABLE `oc_product_image` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_image`
+-- Dumping data for table `ms_product_image`
 --
 
-INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
+INSERT INTO `ms_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
 (2345, 30, 'catalog/demo/canon_eos_5d_2.jpg', 0),
 (2321, 47, 'catalog/demo/hp_3.jpg', 0),
 (2035, 28, 'catalog/demo/htc_touch_hd_2.jpg', 0),
@@ -2644,11 +2644,11 @@ INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_option`
+-- Table structure for table `ms_product_option`
 --
 
-DROP TABLE IF EXISTS `oc_product_option`;
-CREATE TABLE `oc_product_option` (
+DROP TABLE IF EXISTS `ms_product_option`;
+CREATE TABLE `ms_product_option` (
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -2657,10 +2657,10 @@ CREATE TABLE `oc_product_option` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_option`
+-- Dumping data for table `ms_product_option`
 --
 
-INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
+INSERT INTO `ms_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
 (224, 35, 11, '', 1),
 (225, 47, 12, '2011-04-22', 1),
 (223, 42, 2, '', 1),
@@ -2677,11 +2677,11 @@ INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_option_value`
+-- Table structure for table `ms_product_option_value`
 --
 
-DROP TABLE IF EXISTS `oc_product_option_value`;
-CREATE TABLE `oc_product_option_value` (
+DROP TABLE IF EXISTS `ms_product_option_value`;
+CREATE TABLE `ms_product_option_value` (
   `product_option_value_id` int(11) NOT NULL,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2698,10 +2698,10 @@ CREATE TABLE `oc_product_option_value` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_option_value`
+-- Dumping data for table `ms_product_option_value`
 --
 
-INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
+INSERT INTO `ms_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
 (1, 217, 42, 5, 41, 100, 0, '1.0000', '+', 0, '+', '1.00000000', '+'),
 (6, 218, 42, 1, 31, 146, 1, '20.0000', '+', 2, '-', '20.00000000', '+'),
 (7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
@@ -2722,11 +2722,11 @@ INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_optio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_recurring`
+-- Table structure for table `ms_product_recurring`
 --
 
-DROP TABLE IF EXISTS `oc_product_recurring`;
-CREATE TABLE `oc_product_recurring` (
+DROP TABLE IF EXISTS `ms_product_recurring`;
+CREATE TABLE `ms_product_recurring` (
   `product_id` int(11) NOT NULL,
   `recurring_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL
@@ -2735,20 +2735,20 @@ CREATE TABLE `oc_product_recurring` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_related`
+-- Table structure for table `ms_product_related`
 --
 
-DROP TABLE IF EXISTS `oc_product_related`;
-CREATE TABLE `oc_product_related` (
+DROP TABLE IF EXISTS `ms_product_related`;
+CREATE TABLE `ms_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_related`
+-- Dumping data for table `ms_product_related`
 --
 
-INSERT INTO `oc_product_related` (`product_id`, `related_id`) VALUES
+INSERT INTO `ms_product_related` (`product_id`, `related_id`) VALUES
 (40, 42),
 (41, 42),
 (42, 40),
@@ -2757,11 +2757,11 @@ INSERT INTO `oc_product_related` (`product_id`, `related_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_reward`
+-- Table structure for table `ms_product_reward`
 --
 
-DROP TABLE IF EXISTS `oc_product_reward`;
-CREATE TABLE `oc_product_reward` (
+DROP TABLE IF EXISTS `ms_product_reward`;
+CREATE TABLE `ms_product_reward` (
   `product_reward_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL DEFAULT 0,
   `customer_group_id` int(11) NOT NULL DEFAULT 0,
@@ -2769,10 +2769,10 @@ CREATE TABLE `oc_product_reward` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_reward`
+-- Dumping data for table `ms_product_reward`
 --
 
-INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
+INSERT INTO `ms_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
 (515, 42, 1, 100),
 (519, 47, 1, 300),
 (379, 28, 1, 400),
@@ -2796,11 +2796,11 @@ INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_gr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_special`
+-- Table structure for table `ms_product_special`
 --
 
-DROP TABLE IF EXISTS `oc_product_special`;
-CREATE TABLE `oc_product_special` (
+DROP TABLE IF EXISTS `ms_product_special`;
+CREATE TABLE `ms_product_special` (
   `product_special_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2811,10 +2811,10 @@ CREATE TABLE `oc_product_special` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_special`
+-- Dumping data for table `ms_product_special`
 --
 
-INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
+INSERT INTO `ms_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
 (419, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
 (439, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
 (438, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
@@ -2822,20 +2822,20 @@ INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_to_category`
+-- Table structure for table `ms_product_to_category`
 --
 
-DROP TABLE IF EXISTS `oc_product_to_category`;
-CREATE TABLE `oc_product_to_category` (
+DROP TABLE IF EXISTS `ms_product_to_category`;
+CREATE TABLE `ms_product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_to_category`
+-- Dumping data for table `ms_product_to_category`
 --
 
-INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
+INSERT INTO `ms_product_to_category` (`product_id`, `category_id`) VALUES
 (28, 20),
 (28, 24),
 (29, 20),
@@ -2870,11 +2870,11 @@ INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_to_download`
+-- Table structure for table `ms_product_to_download`
 --
 
-DROP TABLE IF EXISTS `oc_product_to_download`;
-CREATE TABLE `oc_product_to_download` (
+DROP TABLE IF EXISTS `ms_product_to_download`;
+CREATE TABLE `ms_product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -2882,11 +2882,11 @@ CREATE TABLE `oc_product_to_download` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_to_layout`
+-- Table structure for table `ms_product_to_layout`
 --
 
-DROP TABLE IF EXISTS `oc_product_to_layout`;
-CREATE TABLE `oc_product_to_layout` (
+DROP TABLE IF EXISTS `ms_product_to_layout`;
+CREATE TABLE `ms_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
@@ -2895,20 +2895,20 @@ CREATE TABLE `oc_product_to_layout` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_product_to_store`
+-- Table structure for table `ms_product_to_store`
 --
 
-DROP TABLE IF EXISTS `oc_product_to_store`;
-CREATE TABLE `oc_product_to_store` (
+DROP TABLE IF EXISTS `ms_product_to_store`;
+CREATE TABLE `ms_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_to_store`
+-- Dumping data for table `ms_product_to_store`
 --
 
-INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
+INSERT INTO `ms_product_to_store` (`product_id`, `store_id`) VALUES
 (28, 0),
 (29, 0),
 (30, 0),
@@ -2932,11 +2932,11 @@ INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_recurring`
+-- Table structure for table `ms_recurring`
 --
 
-DROP TABLE IF EXISTS `oc_recurring`;
-CREATE TABLE `oc_recurring` (
+DROP TABLE IF EXISTS `ms_recurring`;
+CREATE TABLE `ms_recurring` (
   `recurring_id` int(11) NOT NULL,
   `price` decimal(10,4) NOT NULL,
   `frequency` enum('day','week','semi_month','month','year') NOT NULL,
@@ -2954,11 +2954,11 @@ CREATE TABLE `oc_recurring` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_recurring_description`
+-- Table structure for table `ms_recurring_description`
 --
 
-DROP TABLE IF EXISTS `oc_recurring_description`;
-CREATE TABLE `oc_recurring_description` (
+DROP TABLE IF EXISTS `ms_recurring_description`;
+CREATE TABLE `ms_recurring_description` (
   `recurring_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
@@ -2967,11 +2967,11 @@ CREATE TABLE `oc_recurring_description` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_return`
+-- Table structure for table `ms_return`
 --
 
-DROP TABLE IF EXISTS `oc_return`;
-CREATE TABLE `oc_return` (
+DROP TABLE IF EXISTS `ms_return`;
+CREATE TABLE `ms_return` (
   `return_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2996,21 +2996,21 @@ CREATE TABLE `oc_return` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_return_action`
+-- Table structure for table `ms_return_action`
 --
 
-DROP TABLE IF EXISTS `oc_return_action`;
-CREATE TABLE `oc_return_action` (
+DROP TABLE IF EXISTS `ms_return_action`;
+CREATE TABLE `ms_return_action` (
   `return_action_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_return_action`
+-- Dumping data for table `ms_return_action`
 --
 
-INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_return_action` (`return_action_id`, `language_id`, `name`) VALUES
 (1, 1, 'Refunded'),
 (2, 1, 'Credit Issued'),
 (3, 1, 'Replacement Sent');
@@ -3018,11 +3018,11 @@ INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_return_history`
+-- Table structure for table `ms_return_history`
 --
 
-DROP TABLE IF EXISTS `oc_return_history`;
-CREATE TABLE `oc_return_history` (
+DROP TABLE IF EXISTS `ms_return_history`;
+CREATE TABLE `ms_return_history` (
   `return_history_id` int(11) NOT NULL,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
@@ -3034,21 +3034,21 @@ CREATE TABLE `oc_return_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_return_reason`
+-- Table structure for table `ms_return_reason`
 --
 
-DROP TABLE IF EXISTS `oc_return_reason`;
-CREATE TABLE `oc_return_reason` (
+DROP TABLE IF EXISTS `ms_return_reason`;
+CREATE TABLE `ms_return_reason` (
   `return_reason_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_return_reason`
+-- Dumping data for table `ms_return_reason`
 --
 
-INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
 (1, 1, 'Dead On Arrival'),
 (2, 1, 'Received Wrong Item'),
 (3, 1, 'Order Error'),
@@ -3058,21 +3058,21 @@ INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_return_status`
+-- Table structure for table `ms_return_status`
 --
 
-DROP TABLE IF EXISTS `oc_return_status`;
-CREATE TABLE `oc_return_status` (
+DROP TABLE IF EXISTS `ms_return_status`;
+CREATE TABLE `ms_return_status` (
   `return_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_return_status`
+-- Dumping data for table `ms_return_status`
 --
 
-INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_return_status` (`return_status_id`, `language_id`, `name`) VALUES
 (1, 1, 'Pending'),
 (3, 1, 'Complete'),
 (2, 1, 'Awaiting Products');
@@ -3080,11 +3080,11 @@ INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_review`
+-- Table structure for table `ms_review`
 --
 
-DROP TABLE IF EXISTS `oc_review`;
-CREATE TABLE `oc_review` (
+DROP TABLE IF EXISTS `ms_review`;
+CREATE TABLE `ms_review` (
   `review_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -3099,11 +3099,11 @@ CREATE TABLE `oc_review` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_seo_url`
+-- Table structure for table `ms_seo_url`
 --
 
-DROP TABLE IF EXISTS `oc_seo_url`;
-CREATE TABLE `oc_seo_url` (
+DROP TABLE IF EXISTS `ms_seo_url`;
+CREATE TABLE `ms_seo_url` (
   `seo_url_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -3112,10 +3112,10 @@ CREATE TABLE `oc_seo_url` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_seo_url`
+-- Dumping data for table `ms_seo_url`
 --
 
-INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
+INSERT INTO `ms_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
 (824, 0, 1, 'product_id=48', 'ipod-classic'),
 (836, 0, 1, 'category_id=20', 'desktops'),
 (834, 0, 1, 'category_id=26', 'pc'),
@@ -3187,11 +3187,11 @@ INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `key
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_session`
+-- Table structure for table `ms_session`
 --
 
-DROP TABLE IF EXISTS `oc_session`;
-CREATE TABLE `oc_session` (
+DROP TABLE IF EXISTS `ms_session`;
+CREATE TABLE `ms_session` (
   `session_id` varchar(32) NOT NULL,
   `data` text NOT NULL,
   `expire` datetime NOT NULL
@@ -3200,11 +3200,11 @@ CREATE TABLE `oc_session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_setting`
+-- Table structure for table `ms_setting`
 --
 
-DROP TABLE IF EXISTS `oc_setting`;
-CREATE TABLE `oc_setting` (
+DROP TABLE IF EXISTS `ms_setting`;
+CREATE TABLE `ms_setting` (
   `setting_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `code` varchar(128) NOT NULL,
@@ -3214,10 +3214,10 @@ CREATE TABLE `oc_setting` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_setting`
+-- Dumping data for table `ms_setting`
 --
 
-INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
+INSERT INTO `ms_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
 (1, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
 (2, 0, 'config', 'config_shared', '0', 0),
 (3, 0, 'config', 'config_secure', '0', 0),
@@ -3275,14 +3275,14 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (55, 0, 'config', 'config_affiliate_id', '4', 0),
 (56, 0, 'config', 'config_return_id', '0', 0),
 (57, 0, 'config', 'config_return_status_id', '2', 0),
-(58, 0, 'config', 'config_logo', 'catalog/opencart-logo.png', 0),
+(58, 0, 'config', 'config_logo', 'catalog/mystore-logo.png', 0),
 (59, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
 (60, 0, 'config', 'config_comment', '', 0),
 (61, 0, 'config', 'config_open', '', 0),
 (62, 0, 'config', 'config_image', '', 0),
 (63, 0, 'config', 'config_fax', '', 0),
 (64, 0, 'config', 'config_telephone', '123456789', 0),
-(65, 0, 'config', 'config_email', 'demo@opencart.com', 0),
+(65, 0, 'config', 'config_email', 'demo@mystore.com', 0),
 (66, 0, 'config', 'config_geocode', '', 0),
 (67, 0, 'config', 'config_owner', 'Your Name', 0),
 (68, 0, 'config', 'config_address', 'Address 1', 0),
@@ -3423,21 +3423,21 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_shipping_courier`
+-- Table structure for table `ms_shipping_courier`
 --
 
-DROP TABLE IF EXISTS `oc_shipping_courier`;
-CREATE TABLE `oc_shipping_courier` (
+DROP TABLE IF EXISTS `ms_shipping_courier`;
+CREATE TABLE `ms_shipping_courier` (
   `shipping_courier_id` int(11) NOT NULL,
   `shipping_courier_code` varchar(255) NOT NULL DEFAULT '',
   `shipping_courier_name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_shipping_courier`
+-- Dumping data for table `ms_shipping_courier`
 --
 
-INSERT INTO `oc_shipping_courier` (`shipping_courier_id`, `shipping_courier_code`, `shipping_courier_name`) VALUES
+INSERT INTO `ms_shipping_courier` (`shipping_courier_id`, `shipping_courier_code`, `shipping_courier_name`) VALUES
 (1, 'dhl', 'DHL'),
 (2, 'fedex', 'Fedex'),
 (3, 'ups', 'UPS'),
@@ -3448,21 +3448,21 @@ INSERT INTO `oc_shipping_courier` (`shipping_courier_id`, `shipping_courier_code
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_statistics`
+-- Table structure for table `ms_statistics`
 --
 
-DROP TABLE IF EXISTS `oc_statistics`;
-CREATE TABLE `oc_statistics` (
+DROP TABLE IF EXISTS `ms_statistics`;
+CREATE TABLE `ms_statistics` (
   `statistics_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `value` decimal(15,4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_statistics`
+-- Dumping data for table `ms_statistics`
 --
 
-INSERT INTO `oc_statistics` (`statistics_id`, `code`, `value`) VALUES
+INSERT INTO `ms_statistics` (`statistics_id`, `code`, `value`) VALUES
 (1, 'order_sale', '0.0000'),
 (2, 'order_processing', '0.0000'),
 (3, 'order_complete', '0.0000'),
@@ -3474,21 +3474,21 @@ INSERT INTO `oc_statistics` (`statistics_id`, `code`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_stock_status`
+-- Table structure for table `ms_stock_status`
 --
 
-DROP TABLE IF EXISTS `oc_stock_status`;
-CREATE TABLE `oc_stock_status` (
+DROP TABLE IF EXISTS `ms_stock_status`;
+CREATE TABLE `ms_stock_status` (
   `stock_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_stock_status`
+-- Dumping data for table `ms_stock_status`
 --
 
-INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 (7, 1, 'In Stock'),
 (8, 1, 'Pre-Order'),
 (5, 1, 'Out Of Stock'),
@@ -3497,11 +3497,11 @@ INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_store`
+-- Table structure for table `ms_store`
 --
 
-DROP TABLE IF EXISTS `oc_store`;
-CREATE TABLE `oc_store` (
+DROP TABLE IF EXISTS `ms_store`;
+CREATE TABLE `ms_store` (
   `store_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -3511,11 +3511,11 @@ CREATE TABLE `oc_store` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_tax_class`
+-- Table structure for table `ms_tax_class`
 --
 
-DROP TABLE IF EXISTS `oc_tax_class`;
-CREATE TABLE `oc_tax_class` (
+DROP TABLE IF EXISTS `ms_tax_class`;
+CREATE TABLE `ms_tax_class` (
   `tax_class_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -3524,21 +3524,21 @@ CREATE TABLE `oc_tax_class` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_tax_class`
+-- Dumping data for table `ms_tax_class`
 --
 
-INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
 (9, 'Taxable Goods', 'Taxed goods', '2009-01-06 23:21:53', '2011-09-23 14:07:50'),
 (10, 'Downloadable Products', 'Downloadable', '2011-09-21 22:19:39', '2011-09-22 10:27:36');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_tax_rate`
+-- Table structure for table `ms_tax_rate`
 --
 
-DROP TABLE IF EXISTS `oc_tax_rate`;
-CREATE TABLE `oc_tax_rate` (
+DROP TABLE IF EXISTS `ms_tax_rate`;
+CREATE TABLE `ms_tax_rate` (
   `tax_rate_id` int(11) NOT NULL,
   `geo_zone_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(32) NOT NULL,
@@ -3549,41 +3549,41 @@ CREATE TABLE `oc_tax_rate` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_tax_rate`
+-- Dumping data for table `ms_tax_rate`
 --
 
-INSERT INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
 (86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
 (87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_tax_rate_to_customer_group`
+-- Table structure for table `ms_tax_rate_to_customer_group`
 --
 
-DROP TABLE IF EXISTS `oc_tax_rate_to_customer_group`;
-CREATE TABLE `oc_tax_rate_to_customer_group` (
+DROP TABLE IF EXISTS `ms_tax_rate_to_customer_group`;
+CREATE TABLE `ms_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_tax_rate_to_customer_group`
+-- Dumping data for table `ms_tax_rate_to_customer_group`
 --
 
-INSERT INTO `oc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
+INSERT INTO `ms_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
 (86, 1),
 (87, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_tax_rule`
+-- Table structure for table `ms_tax_rule`
 --
 
-DROP TABLE IF EXISTS `oc_tax_rule`;
-CREATE TABLE `oc_tax_rule` (
+DROP TABLE IF EXISTS `ms_tax_rule`;
+CREATE TABLE `ms_tax_rule` (
   `tax_rule_id` int(11) NOT NULL,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
@@ -3592,10 +3592,10 @@ CREATE TABLE `oc_tax_rule` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_tax_rule`
+-- Dumping data for table `ms_tax_rule`
 --
 
-INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
+INSERT INTO `ms_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
 (121, 10, 86, 'payment', 1),
 (120, 10, 87, 'store', 0),
 (128, 9, 86, 'shipping', 1),
@@ -3604,11 +3604,11 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_theme`
+-- Table structure for table `ms_theme`
 --
 
-DROP TABLE IF EXISTS `oc_theme`;
-CREATE TABLE `oc_theme` (
+DROP TABLE IF EXISTS `ms_theme`;
+CREATE TABLE `ms_theme` (
   `theme_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `theme` varchar(64) NOT NULL,
@@ -3620,11 +3620,11 @@ CREATE TABLE `oc_theme` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_translation`
+-- Table structure for table `ms_translation`
 --
 
-DROP TABLE IF EXISTS `oc_translation`;
-CREATE TABLE `oc_translation` (
+DROP TABLE IF EXISTS `ms_translation`;
+CREATE TABLE `ms_translation` (
   `translation_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -3637,11 +3637,11 @@ CREATE TABLE `oc_translation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_upload`
+-- Table structure for table `ms_upload`
 --
 
-DROP TABLE IF EXISTS `oc_upload`;
-CREATE TABLE `oc_upload` (
+DROP TABLE IF EXISTS `ms_upload`;
+CREATE TABLE `ms_upload` (
   `upload_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -3652,11 +3652,11 @@ CREATE TABLE `oc_upload` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_user`
+-- Table structure for table `ms_user`
 --
 
-DROP TABLE IF EXISTS `oc_user`;
-CREATE TABLE `oc_user` (
+DROP TABLE IF EXISTS `ms_user`;
+CREATE TABLE `ms_user` (
   `user_id` int(11) NOT NULL,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -3675,32 +3675,32 @@ CREATE TABLE `oc_user` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_user_group`
+-- Table structure for table `ms_user_group`
 --
 
-DROP TABLE IF EXISTS `oc_user_group`;
-CREATE TABLE `oc_user_group` (
+DROP TABLE IF EXISTS `ms_user_group`;
+CREATE TABLE `ms_user_group` (
   `user_group_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `permission` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_user_group`
+-- Dumping data for table `ms_user_group`
 --
 
-INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
+INSERT INTO `ms_user_group` (`user_group_id`, `name`, `permission`) VALUES
 (1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/event\",\"marketplace\\/api\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}'),
 (10, 'Demonstration', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_voucher`
+-- Table structure for table `ms_voucher`
 --
 
-DROP TABLE IF EXISTS `oc_voucher`;
-CREATE TABLE `oc_voucher` (
+DROP TABLE IF EXISTS `ms_voucher`;
+CREATE TABLE `ms_voucher` (
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -3718,11 +3718,11 @@ CREATE TABLE `oc_voucher` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_voucher_history`
+-- Table structure for table `ms_voucher_history`
 --
 
-DROP TABLE IF EXISTS `oc_voucher_history`;
-CREATE TABLE `oc_voucher_history` (
+DROP TABLE IF EXISTS `ms_voucher_history`;
+CREATE TABLE `ms_voucher_history` (
   `voucher_history_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -3733,20 +3733,20 @@ CREATE TABLE `oc_voucher_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_voucher_theme`
+-- Table structure for table `ms_voucher_theme`
 --
 
-DROP TABLE IF EXISTS `oc_voucher_theme`;
-CREATE TABLE `oc_voucher_theme` (
+DROP TABLE IF EXISTS `ms_voucher_theme`;
+CREATE TABLE `ms_voucher_theme` (
   `voucher_theme_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_voucher_theme`
+-- Dumping data for table `ms_voucher_theme`
 --
 
-INSERT INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
+INSERT INTO `ms_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 (8, 'catalog/demo/canon_eos_5d_2.jpg'),
 (7, 'catalog/demo/gift-voucher-birthday.jpg'),
 (6, 'catalog/demo/apple_logo.jpg');
@@ -3754,21 +3754,21 @@ INSERT INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_voucher_theme_description`
+-- Table structure for table `ms_voucher_theme_description`
 --
 
-DROP TABLE IF EXISTS `oc_voucher_theme_description`;
-CREATE TABLE `oc_voucher_theme_description` (
+DROP TABLE IF EXISTS `ms_voucher_theme_description`;
+CREATE TABLE `ms_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_voucher_theme_description`
+-- Dumping data for table `ms_voucher_theme_description`
 --
 
-INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
+INSERT INTO `ms_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
 (6, 1, 'Christmas'),
 (7, 1, 'Birthday'),
 (8, 1, 'General');
@@ -3776,20 +3776,20 @@ INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_weight_class`
+-- Table structure for table `ms_weight_class`
 --
 
-DROP TABLE IF EXISTS `oc_weight_class`;
-CREATE TABLE `oc_weight_class` (
+DROP TABLE IF EXISTS `ms_weight_class`;
+CREATE TABLE `ms_weight_class` (
   `weight_class_id` int(11) NOT NULL,
   `value` decimal(15,8) NOT NULL DEFAULT 0.00000000
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_weight_class`
+-- Dumping data for table `ms_weight_class`
 --
 
-INSERT INTO `oc_weight_class` (`weight_class_id`, `value`) VALUES
+INSERT INTO `ms_weight_class` (`weight_class_id`, `value`) VALUES
 (1, '1.00000000'),
 (2, '1000.00000000'),
 (5, '2.20460000'),
@@ -3798,11 +3798,11 @@ INSERT INTO `oc_weight_class` (`weight_class_id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_weight_class_description`
+-- Table structure for table `ms_weight_class_description`
 --
 
-DROP TABLE IF EXISTS `oc_weight_class_description`;
-CREATE TABLE `oc_weight_class_description` (
+DROP TABLE IF EXISTS `ms_weight_class_description`;
+CREATE TABLE `ms_weight_class_description` (
   `weight_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
@@ -3810,10 +3810,10 @@ CREATE TABLE `oc_weight_class_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_weight_class_description`
+-- Dumping data for table `ms_weight_class_description`
 --
 
-INSERT INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
+INSERT INTO `ms_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
 (1, 1, 'Kilogram', 'kg'),
 (2, 1, 'Gram', 'g'),
 (5, 1, 'Pound ', 'lb'),
@@ -3822,11 +3822,11 @@ INSERT INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `ti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_zone`
+-- Table structure for table `ms_zone`
 --
 
-DROP TABLE IF EXISTS `oc_zone`;
-CREATE TABLE `oc_zone` (
+DROP TABLE IF EXISTS `ms_zone`;
+CREATE TABLE `ms_zone` (
   `zone_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -3835,10 +3835,10 @@ CREATE TABLE `oc_zone` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_zone`
+-- Dumping data for table `ms_zone`
 --
 
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT INTO `ms_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1, 1, 'Badakhshan', 'BDS', 1),
 (2, 1, 'Badghis', 'BDG', 1),
 (3, 1, 'Baghlan', 'BGL', 1),
@@ -5374,7 +5374,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1595, 103, 'Kilkenny', 'KL', 1),
 (1596, 103, 'Laois', 'LA', 1),
 (1597, 103, 'Leitrim', 'LE', 1);
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT INTO `ms_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1598, 103, 'Limerick', 'LI', 1),
 (1599, 103, 'Longford', 'LO', 1),
 (1600, 103, 'Louth', 'LU', 1),
@@ -6878,7 +6878,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3134, 205, 'Tartus', 'TA', 1),
 (3135, 206, 'Chang-hua', 'CH', 1),
 (3136, 206, 'Chia-i', 'CI', 1);
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT INTO `ms_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3137, 206, 'Hsin-chu', 'HS', 1),
 (3138, 206, 'Hua-lien', 'HL', 1),
 (3139, 206, 'I-lan', 'IL', 1),
@@ -7953,11 +7953,11 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_zone_to_geo_zone`
+-- Table structure for table `ms_zone_to_geo_zone`
 --
 
-DROP TABLE IF EXISTS `oc_zone_to_geo_zone`;
-CREATE TABLE `oc_zone_to_geo_zone` (
+DROP TABLE IF EXISTS `ms_zone_to_geo_zone`;
+CREATE TABLE `ms_zone_to_geo_zone` (
   `zone_to_geo_zone_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT 0,
@@ -7967,10 +7967,10 @@ CREATE TABLE `oc_zone_to_geo_zone` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_zone_to_geo_zone`
+-- Dumping data for table `ms_zone_to_geo_zone`
 --
 
-INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
+INSERT INTO `ms_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
 (1, 222, 0, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 222, 3513, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 222, 3514, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -8086,841 +8086,841 @@ INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id
 --
 
 --
--- Indexes for table `oc_address`
+-- Indexes for table `ms_address`
 --
-ALTER TABLE `oc_address`
+ALTER TABLE `ms_address`
   ADD PRIMARY KEY (`address_id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexes for table `oc_api`
+-- Indexes for table `ms_api`
 --
-ALTER TABLE `oc_api`
+ALTER TABLE `ms_api`
   ADD PRIMARY KEY (`api_id`);
 
 --
--- Indexes for table `oc_api_ip`
+-- Indexes for table `ms_api_ip`
 --
-ALTER TABLE `oc_api_ip`
+ALTER TABLE `ms_api_ip`
   ADD PRIMARY KEY (`api_ip_id`);
 
 --
--- Indexes for table `oc_api_session`
+-- Indexes for table `ms_api_session`
 --
-ALTER TABLE `oc_api_session`
+ALTER TABLE `ms_api_session`
   ADD PRIMARY KEY (`api_session_id`);
 
 --
--- Indexes for table `oc_attribute`
+-- Indexes for table `ms_attribute`
 --
-ALTER TABLE `oc_attribute`
+ALTER TABLE `ms_attribute`
   ADD PRIMARY KEY (`attribute_id`);
 
 --
--- Indexes for table `oc_attribute_description`
+-- Indexes for table `ms_attribute_description`
 --
-ALTER TABLE `oc_attribute_description`
+ALTER TABLE `ms_attribute_description`
   ADD PRIMARY KEY (`attribute_id`,`language_id`);
 
 --
--- Indexes for table `oc_attribute_group`
+-- Indexes for table `ms_attribute_group`
 --
-ALTER TABLE `oc_attribute_group`
+ALTER TABLE `ms_attribute_group`
   ADD PRIMARY KEY (`attribute_group_id`);
 
 --
--- Indexes for table `oc_attribute_group_description`
+-- Indexes for table `ms_attribute_group_description`
 --
-ALTER TABLE `oc_attribute_group_description`
+ALTER TABLE `ms_attribute_group_description`
   ADD PRIMARY KEY (`attribute_group_id`,`language_id`);
 
 --
--- Indexes for table `oc_banner`
+-- Indexes for table `ms_banner`
 --
-ALTER TABLE `oc_banner`
+ALTER TABLE `ms_banner`
   ADD PRIMARY KEY (`banner_id`);
 
 --
--- Indexes for table `oc_banner_image`
+-- Indexes for table `ms_banner_image`
 --
-ALTER TABLE `oc_banner_image`
+ALTER TABLE `ms_banner_image`
   ADD PRIMARY KEY (`banner_image_id`);
 
 --
--- Indexes for table `oc_cart`
+-- Indexes for table `ms_cart`
 --
-ALTER TABLE `oc_cart`
+ALTER TABLE `ms_cart`
   ADD PRIMARY KEY (`cart_id`),
   ADD KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`);
 
 --
--- Indexes for table `oc_category`
+-- Indexes for table `ms_category`
 --
-ALTER TABLE `oc_category`
+ALTER TABLE `ms_category`
   ADD PRIMARY KEY (`category_id`),
   ADD KEY `parent_id` (`parent_id`);
 
 --
--- Indexes for table `oc_category_description`
+-- Indexes for table `ms_category_description`
 --
-ALTER TABLE `oc_category_description`
+ALTER TABLE `ms_category_description`
   ADD PRIMARY KEY (`category_id`,`language_id`),
   ADD KEY `name` (`name`);
 
 --
--- Indexes for table `oc_category_filter`
+-- Indexes for table `ms_category_filter`
 --
-ALTER TABLE `oc_category_filter`
+ALTER TABLE `ms_category_filter`
   ADD PRIMARY KEY (`category_id`,`filter_id`);
 
 --
--- Indexes for table `oc_category_path`
+-- Indexes for table `ms_category_path`
 --
-ALTER TABLE `oc_category_path`
+ALTER TABLE `ms_category_path`
   ADD PRIMARY KEY (`category_id`,`path_id`);
 
 --
--- Indexes for table `oc_category_to_layout`
+-- Indexes for table `ms_category_to_layout`
 --
-ALTER TABLE `oc_category_to_layout`
+ALTER TABLE `ms_category_to_layout`
   ADD PRIMARY KEY (`category_id`,`store_id`);
 
 --
--- Indexes for table `oc_category_to_store`
+-- Indexes for table `ms_category_to_store`
 --
-ALTER TABLE `oc_category_to_store`
+ALTER TABLE `ms_category_to_store`
   ADD PRIMARY KEY (`category_id`,`store_id`);
 
 --
--- Indexes for table `oc_country`
+-- Indexes for table `ms_country`
 --
-ALTER TABLE `oc_country`
+ALTER TABLE `ms_country`
   ADD PRIMARY KEY (`country_id`);
 
 --
--- Indexes for table `oc_coupon`
+-- Indexes for table `ms_coupon`
 --
-ALTER TABLE `oc_coupon`
+ALTER TABLE `ms_coupon`
   ADD PRIMARY KEY (`coupon_id`);
 
 --
--- Indexes for table `oc_coupon_category`
+-- Indexes for table `ms_coupon_category`
 --
-ALTER TABLE `oc_coupon_category`
+ALTER TABLE `ms_coupon_category`
   ADD PRIMARY KEY (`coupon_id`,`category_id`);
 
 --
--- Indexes for table `oc_coupon_history`
+-- Indexes for table `ms_coupon_history`
 --
-ALTER TABLE `oc_coupon_history`
+ALTER TABLE `ms_coupon_history`
   ADD PRIMARY KEY (`coupon_history_id`);
 
 --
--- Indexes for table `oc_coupon_product`
+-- Indexes for table `ms_coupon_product`
 --
-ALTER TABLE `oc_coupon_product`
+ALTER TABLE `ms_coupon_product`
   ADD PRIMARY KEY (`coupon_product_id`);
 
 --
--- Indexes for table `oc_currency`
+-- Indexes for table `ms_currency`
 --
-ALTER TABLE `oc_currency`
+ALTER TABLE `ms_currency`
   ADD PRIMARY KEY (`currency_id`);
 
 --
--- Indexes for table `oc_customer`
+-- Indexes for table `ms_customer`
 --
-ALTER TABLE `oc_customer`
+ALTER TABLE `ms_customer`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indexes for table `oc_customer_activity`
+-- Indexes for table `ms_customer_activity`
 --
-ALTER TABLE `oc_customer_activity`
+ALTER TABLE `ms_customer_activity`
   ADD PRIMARY KEY (`customer_activity_id`);
 
 --
--- Indexes for table `oc_customer_affiliate`
+-- Indexes for table `ms_customer_affiliate`
 --
-ALTER TABLE `oc_customer_affiliate`
+ALTER TABLE `ms_customer_affiliate`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indexes for table `oc_customer_approval`
+-- Indexes for table `ms_customer_approval`
 --
-ALTER TABLE `oc_customer_approval`
+ALTER TABLE `ms_customer_approval`
   ADD PRIMARY KEY (`customer_approval_id`);
 
 --
--- Indexes for table `oc_customer_group`
+-- Indexes for table `ms_customer_group`
 --
-ALTER TABLE `oc_customer_group`
+ALTER TABLE `ms_customer_group`
   ADD PRIMARY KEY (`customer_group_id`);
 
 --
--- Indexes for table `oc_customer_group_description`
+-- Indexes for table `ms_customer_group_description`
 --
-ALTER TABLE `oc_customer_group_description`
+ALTER TABLE `ms_customer_group_description`
   ADD PRIMARY KEY (`customer_group_id`,`language_id`);
 
 --
--- Indexes for table `oc_customer_history`
+-- Indexes for table `ms_customer_history`
 --
-ALTER TABLE `oc_customer_history`
+ALTER TABLE `ms_customer_history`
   ADD PRIMARY KEY (`customer_history_id`);
 
 --
--- Indexes for table `oc_customer_ip`
+-- Indexes for table `ms_customer_ip`
 --
-ALTER TABLE `oc_customer_ip`
+ALTER TABLE `ms_customer_ip`
   ADD PRIMARY KEY (`customer_ip_id`),
   ADD KEY `ip` (`ip`);
 
 --
--- Indexes for table `oc_customer_login`
+-- Indexes for table `ms_customer_login`
 --
-ALTER TABLE `oc_customer_login`
+ALTER TABLE `ms_customer_login`
   ADD PRIMARY KEY (`customer_login_id`),
   ADD KEY `email` (`email`),
   ADD KEY `ip` (`ip`);
 
 --
--- Indexes for table `oc_customer_online`
+-- Indexes for table `ms_customer_online`
 --
-ALTER TABLE `oc_customer_online`
+ALTER TABLE `ms_customer_online`
   ADD PRIMARY KEY (`ip`);
 
 --
--- Indexes for table `oc_customer_reward`
+-- Indexes for table `ms_customer_reward`
 --
-ALTER TABLE `oc_customer_reward`
+ALTER TABLE `ms_customer_reward`
   ADD PRIMARY KEY (`customer_reward_id`);
 
 --
--- Indexes for table `oc_customer_search`
+-- Indexes for table `ms_customer_search`
 --
-ALTER TABLE `oc_customer_search`
+ALTER TABLE `ms_customer_search`
   ADD PRIMARY KEY (`customer_search_id`);
 
 --
--- Indexes for table `oc_customer_transaction`
+-- Indexes for table `ms_customer_transaction`
 --
-ALTER TABLE `oc_customer_transaction`
+ALTER TABLE `ms_customer_transaction`
   ADD PRIMARY KEY (`customer_transaction_id`);
 
 --
--- Indexes for table `oc_customer_wishlist`
+-- Indexes for table `ms_customer_wishlist`
 --
-ALTER TABLE `oc_customer_wishlist`
+ALTER TABLE `ms_customer_wishlist`
   ADD PRIMARY KEY (`customer_id`,`product_id`);
 
 --
--- Indexes for table `oc_custom_field`
+-- Indexes for table `ms_custom_field`
 --
-ALTER TABLE `oc_custom_field`
+ALTER TABLE `ms_custom_field`
   ADD PRIMARY KEY (`custom_field_id`);
 
 --
--- Indexes for table `oc_custom_field_customer_group`
+-- Indexes for table `ms_custom_field_customer_group`
 --
-ALTER TABLE `oc_custom_field_customer_group`
+ALTER TABLE `ms_custom_field_customer_group`
   ADD PRIMARY KEY (`custom_field_id`,`customer_group_id`);
 
 --
--- Indexes for table `oc_custom_field_description`
+-- Indexes for table `ms_custom_field_description`
 --
-ALTER TABLE `oc_custom_field_description`
+ALTER TABLE `ms_custom_field_description`
   ADD PRIMARY KEY (`custom_field_id`,`language_id`);
 
 --
--- Indexes for table `oc_custom_field_value`
+-- Indexes for table `ms_custom_field_value`
 --
-ALTER TABLE `oc_custom_field_value`
+ALTER TABLE `ms_custom_field_value`
   ADD PRIMARY KEY (`custom_field_value_id`);
 
 --
--- Indexes for table `oc_custom_field_value_description`
+-- Indexes for table `ms_custom_field_value_description`
 --
-ALTER TABLE `oc_custom_field_value_description`
+ALTER TABLE `ms_custom_field_value_description`
   ADD PRIMARY KEY (`custom_field_value_id`,`language_id`);
 
 --
--- Indexes for table `oc_download`
+-- Indexes for table `ms_download`
 --
-ALTER TABLE `oc_download`
+ALTER TABLE `ms_download`
   ADD PRIMARY KEY (`download_id`);
 
 --
--- Indexes for table `oc_download_description`
+-- Indexes for table `ms_download_description`
 --
-ALTER TABLE `oc_download_description`
+ALTER TABLE `ms_download_description`
   ADD PRIMARY KEY (`download_id`,`language_id`);
 
 --
--- Indexes for table `oc_event`
+-- Indexes for table `ms_event`
 --
-ALTER TABLE `oc_event`
+ALTER TABLE `ms_event`
   ADD PRIMARY KEY (`event_id`);
 
 --
--- Indexes for table `oc_extension`
+-- Indexes for table `ms_extension`
 --
-ALTER TABLE `oc_extension`
+ALTER TABLE `ms_extension`
   ADD PRIMARY KEY (`extension_id`);
 
 --
--- Indexes for table `oc_extension_install`
+-- Indexes for table `ms_extension_install`
 --
-ALTER TABLE `oc_extension_install`
+ALTER TABLE `ms_extension_install`
   ADD PRIMARY KEY (`extension_install_id`);
 
 --
--- Indexes for table `oc_extension_path`
+-- Indexes for table `ms_extension_path`
 --
-ALTER TABLE `oc_extension_path`
+ALTER TABLE `ms_extension_path`
   ADD PRIMARY KEY (`extension_path_id`);
 
 --
--- Indexes for table `oc_filter`
+-- Indexes for table `ms_filter`
 --
-ALTER TABLE `oc_filter`
+ALTER TABLE `ms_filter`
   ADD PRIMARY KEY (`filter_id`);
 
 --
--- Indexes for table `oc_filter_description`
+-- Indexes for table `ms_filter_description`
 --
-ALTER TABLE `oc_filter_description`
+ALTER TABLE `ms_filter_description`
   ADD PRIMARY KEY (`filter_id`,`language_id`);
 
 --
--- Indexes for table `oc_filter_group`
+-- Indexes for table `ms_filter_group`
 --
-ALTER TABLE `oc_filter_group`
+ALTER TABLE `ms_filter_group`
   ADD PRIMARY KEY (`filter_group_id`);
 
 --
--- Indexes for table `oc_filter_group_description`
+-- Indexes for table `ms_filter_group_description`
 --
-ALTER TABLE `oc_filter_group_description`
+ALTER TABLE `ms_filter_group_description`
   ADD PRIMARY KEY (`filter_group_id`,`language_id`);
 
 --
--- Indexes for table `oc_geo_zone`
+-- Indexes for table `ms_geo_zone`
 --
-ALTER TABLE `oc_geo_zone`
+ALTER TABLE `ms_geo_zone`
   ADD PRIMARY KEY (`geo_zone_id`);
 
 --
--- Indexes for table `oc_googleshopping_category`
+-- Indexes for table `ms_googleshopping_category`
 --
-ALTER TABLE `oc_googleshopping_category`
+ALTER TABLE `ms_googleshopping_category`
   ADD PRIMARY KEY (`google_product_category`,`store_id`),
   ADD KEY `category_id_store_id` (`category_id`,`store_id`);
 
 --
--- Indexes for table `oc_googleshopping_product`
+-- Indexes for table `ms_googleshopping_product`
 --
-ALTER TABLE `oc_googleshopping_product`
+ALTER TABLE `ms_googleshopping_product`
   ADD PRIMARY KEY (`product_advertise_google_id`),
   ADD UNIQUE KEY `product_id_store_id` (`product_id`,`store_id`);
 
 --
--- Indexes for table `oc_googleshopping_product_status`
+-- Indexes for table `ms_googleshopping_product_status`
 --
-ALTER TABLE `oc_googleshopping_product_status`
+ALTER TABLE `ms_googleshopping_product_status`
   ADD PRIMARY KEY (`product_id`,`store_id`,`product_variation_id`);
 
 --
--- Indexes for table `oc_googleshopping_product_target`
+-- Indexes for table `ms_googleshopping_product_target`
 --
-ALTER TABLE `oc_googleshopping_product_target`
+ALTER TABLE `ms_googleshopping_product_target`
   ADD PRIMARY KEY (`product_id`,`advertise_google_target_id`);
 
 --
--- Indexes for table `oc_googleshopping_target`
+-- Indexes for table `ms_googleshopping_target`
 --
-ALTER TABLE `oc_googleshopping_target`
+ALTER TABLE `ms_googleshopping_target`
   ADD PRIMARY KEY (`advertise_google_target_id`),
   ADD KEY `store_id` (`store_id`);
 
 --
--- Indexes for table `oc_information`
+-- Indexes for table `ms_information`
 --
-ALTER TABLE `oc_information`
+ALTER TABLE `ms_information`
   ADD PRIMARY KEY (`information_id`);
 
 --
--- Indexes for table `oc_information_description`
+-- Indexes for table `ms_information_description`
 --
-ALTER TABLE `oc_information_description`
+ALTER TABLE `ms_information_description`
   ADD PRIMARY KEY (`information_id`,`language_id`);
 
 --
--- Indexes for table `oc_information_to_layout`
+-- Indexes for table `ms_information_to_layout`
 --
-ALTER TABLE `oc_information_to_layout`
+ALTER TABLE `ms_information_to_layout`
   ADD PRIMARY KEY (`information_id`,`store_id`);
 
 --
--- Indexes for table `oc_information_to_store`
+-- Indexes for table `ms_information_to_store`
 --
-ALTER TABLE `oc_information_to_store`
+ALTER TABLE `ms_information_to_store`
   ADD PRIMARY KEY (`information_id`,`store_id`);
 
 --
--- Indexes for table `oc_language`
+-- Indexes for table `ms_language`
 --
-ALTER TABLE `oc_language`
+ALTER TABLE `ms_language`
   ADD PRIMARY KEY (`language_id`),
   ADD KEY `name` (`name`);
 
 --
--- Indexes for table `oc_layout`
+-- Indexes for table `ms_layout`
 --
-ALTER TABLE `oc_layout`
+ALTER TABLE `ms_layout`
   ADD PRIMARY KEY (`layout_id`);
 
 --
--- Indexes for table `oc_layout_module`
+-- Indexes for table `ms_layout_module`
 --
-ALTER TABLE `oc_layout_module`
+ALTER TABLE `ms_layout_module`
   ADD PRIMARY KEY (`layout_module_id`);
 
 --
--- Indexes for table `oc_layout_route`
+-- Indexes for table `ms_layout_route`
 --
-ALTER TABLE `oc_layout_route`
+ALTER TABLE `ms_layout_route`
   ADD PRIMARY KEY (`layout_route_id`);
 
 --
--- Indexes for table `oc_length_class`
+-- Indexes for table `ms_length_class`
 --
-ALTER TABLE `oc_length_class`
+ALTER TABLE `ms_length_class`
   ADD PRIMARY KEY (`length_class_id`);
 
 --
--- Indexes for table `oc_length_class_description`
+-- Indexes for table `ms_length_class_description`
 --
-ALTER TABLE `oc_length_class_description`
+ALTER TABLE `ms_length_class_description`
   ADD PRIMARY KEY (`length_class_id`,`language_id`);
 
 --
--- Indexes for table `oc_location`
+-- Indexes for table `ms_location`
 --
-ALTER TABLE `oc_location`
+ALTER TABLE `ms_location`
   ADD PRIMARY KEY (`location_id`),
   ADD KEY `name` (`name`);
 
 --
--- Indexes for table `oc_manufacturer`
+-- Indexes for table `ms_manufacturer`
 --
-ALTER TABLE `oc_manufacturer`
+ALTER TABLE `ms_manufacturer`
   ADD PRIMARY KEY (`manufacturer_id`);
 
 --
--- Indexes for table `oc_manufacturer_to_store`
+-- Indexes for table `ms_manufacturer_to_store`
 --
-ALTER TABLE `oc_manufacturer_to_store`
+ALTER TABLE `ms_manufacturer_to_store`
   ADD PRIMARY KEY (`manufacturer_id`,`store_id`);
 
 --
--- Indexes for table `oc_marketing`
+-- Indexes for table `ms_marketing`
 --
-ALTER TABLE `oc_marketing`
+ALTER TABLE `ms_marketing`
   ADD PRIMARY KEY (`marketing_id`);
 
 --
--- Indexes for table `oc_modification`
+-- Indexes for table `ms_modification`
 --
-ALTER TABLE `oc_modification`
+ALTER TABLE `ms_modification`
   ADD PRIMARY KEY (`modification_id`);
 
 --
--- Indexes for table `oc_module`
+-- Indexes for table `ms_module`
 --
-ALTER TABLE `oc_module`
+ALTER TABLE `ms_module`
   ADD PRIMARY KEY (`module_id`);
 
 --
--- Indexes for table `oc_option`
+-- Indexes for table `ms_option`
 --
-ALTER TABLE `oc_option`
+ALTER TABLE `ms_option`
   ADD PRIMARY KEY (`option_id`);
 
 --
--- Indexes for table `oc_option_description`
+-- Indexes for table `ms_option_description`
 --
-ALTER TABLE `oc_option_description`
+ALTER TABLE `ms_option_description`
   ADD PRIMARY KEY (`option_id`,`language_id`);
 
 --
--- Indexes for table `oc_option_value`
+-- Indexes for table `ms_option_value`
 --
-ALTER TABLE `oc_option_value`
+ALTER TABLE `ms_option_value`
   ADD PRIMARY KEY (`option_value_id`);
 
 --
--- Indexes for table `oc_option_value_description`
+-- Indexes for table `ms_option_value_description`
 --
-ALTER TABLE `oc_option_value_description`
+ALTER TABLE `ms_option_value_description`
   ADD PRIMARY KEY (`option_value_id`,`language_id`);
 
 --
--- Indexes for table `oc_order`
+-- Indexes for table `ms_order`
 --
-ALTER TABLE `oc_order`
+ALTER TABLE `ms_order`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- Indexes for table `oc_order_history`
+-- Indexes for table `ms_order_history`
 --
-ALTER TABLE `oc_order_history`
+ALTER TABLE `ms_order_history`
   ADD PRIMARY KEY (`order_history_id`);
 
 --
--- Indexes for table `oc_order_option`
+-- Indexes for table `ms_order_option`
 --
-ALTER TABLE `oc_order_option`
+ALTER TABLE `ms_order_option`
   ADD PRIMARY KEY (`order_option_id`);
 
 --
--- Indexes for table `oc_order_product`
+-- Indexes for table `ms_order_product`
 --
-ALTER TABLE `oc_order_product`
+ALTER TABLE `ms_order_product`
   ADD PRIMARY KEY (`order_product_id`),
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `oc_order_recurring`
+-- Indexes for table `ms_order_recurring`
 --
-ALTER TABLE `oc_order_recurring`
+ALTER TABLE `ms_order_recurring`
   ADD PRIMARY KEY (`order_recurring_id`);
 
 --
--- Indexes for table `oc_order_recurring_transaction`
+-- Indexes for table `ms_order_recurring_transaction`
 --
-ALTER TABLE `oc_order_recurring_transaction`
+ALTER TABLE `ms_order_recurring_transaction`
   ADD PRIMARY KEY (`order_recurring_transaction_id`);
 
 --
--- Indexes for table `oc_order_shipment`
+-- Indexes for table `ms_order_shipment`
 --
-ALTER TABLE `oc_order_shipment`
+ALTER TABLE `ms_order_shipment`
   ADD PRIMARY KEY (`order_shipment_id`);
 
 --
--- Indexes for table `oc_order_status`
+-- Indexes for table `ms_order_status`
 --
-ALTER TABLE `oc_order_status`
+ALTER TABLE `ms_order_status`
   ADD PRIMARY KEY (`order_status_id`,`language_id`);
 
 --
--- Indexes for table `oc_order_total`
+-- Indexes for table `ms_order_total`
 --
-ALTER TABLE `oc_order_total`
+ALTER TABLE `ms_order_total`
   ADD PRIMARY KEY (`order_total_id`),
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `oc_order_voucher`
+-- Indexes for table `ms_order_voucher`
 --
-ALTER TABLE `oc_order_voucher`
+ALTER TABLE `ms_order_voucher`
   ADD PRIMARY KEY (`order_voucher_id`);
 
 --
--- Indexes for table `oc_product`
+-- Indexes for table `ms_product`
 --
-ALTER TABLE `oc_product`
+ALTER TABLE `ms_product`
   ADD PRIMARY KEY (`product_id`);
 
 --
--- Indexes for table `oc_product_attribute`
+-- Indexes for table `ms_product_attribute`
 --
-ALTER TABLE `oc_product_attribute`
+ALTER TABLE `ms_product_attribute`
   ADD PRIMARY KEY (`product_id`,`attribute_id`,`language_id`);
 
 --
--- Indexes for table `oc_product_description`
+-- Indexes for table `ms_product_description`
 --
-ALTER TABLE `oc_product_description`
+ALTER TABLE `ms_product_description`
   ADD PRIMARY KEY (`product_id`,`language_id`),
   ADD KEY `name` (`name`);
 
 --
--- Indexes for table `oc_product_discount`
+-- Indexes for table `ms_product_discount`
 --
-ALTER TABLE `oc_product_discount`
+ALTER TABLE `ms_product_discount`
   ADD PRIMARY KEY (`product_discount_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `oc_product_filter`
+-- Indexes for table `ms_product_filter`
 --
-ALTER TABLE `oc_product_filter`
+ALTER TABLE `ms_product_filter`
   ADD PRIMARY KEY (`product_id`,`filter_id`);
 
 --
--- Indexes for table `oc_product_image`
+-- Indexes for table `ms_product_image`
 --
-ALTER TABLE `oc_product_image`
+ALTER TABLE `ms_product_image`
   ADD PRIMARY KEY (`product_image_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `oc_product_option`
+-- Indexes for table `ms_product_option`
 --
-ALTER TABLE `oc_product_option`
+ALTER TABLE `ms_product_option`
   ADD PRIMARY KEY (`product_option_id`);
 
 --
--- Indexes for table `oc_product_option_value`
+-- Indexes for table `ms_product_option_value`
 --
-ALTER TABLE `oc_product_option_value`
+ALTER TABLE `ms_product_option_value`
   ADD PRIMARY KEY (`product_option_value_id`);
 
 --
--- Indexes for table `oc_product_recurring`
+-- Indexes for table `ms_product_recurring`
 --
-ALTER TABLE `oc_product_recurring`
+ALTER TABLE `ms_product_recurring`
   ADD PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`);
 
 --
--- Indexes for table `oc_product_related`
+-- Indexes for table `ms_product_related`
 --
-ALTER TABLE `oc_product_related`
+ALTER TABLE `ms_product_related`
   ADD PRIMARY KEY (`product_id`,`related_id`);
 
 --
--- Indexes for table `oc_product_reward`
+-- Indexes for table `ms_product_reward`
 --
-ALTER TABLE `oc_product_reward`
+ALTER TABLE `ms_product_reward`
   ADD PRIMARY KEY (`product_reward_id`);
 
 --
--- Indexes for table `oc_product_special`
+-- Indexes for table `ms_product_special`
 --
-ALTER TABLE `oc_product_special`
+ALTER TABLE `ms_product_special`
   ADD PRIMARY KEY (`product_special_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `oc_product_to_category`
+-- Indexes for table `ms_product_to_category`
 --
-ALTER TABLE `oc_product_to_category`
+ALTER TABLE `ms_product_to_category`
   ADD PRIMARY KEY (`product_id`,`category_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `oc_product_to_download`
+-- Indexes for table `ms_product_to_download`
 --
-ALTER TABLE `oc_product_to_download`
+ALTER TABLE `ms_product_to_download`
   ADD PRIMARY KEY (`product_id`,`download_id`);
 
 --
--- Indexes for table `oc_product_to_layout`
+-- Indexes for table `ms_product_to_layout`
 --
-ALTER TABLE `oc_product_to_layout`
+ALTER TABLE `ms_product_to_layout`
   ADD PRIMARY KEY (`product_id`,`store_id`);
 
 --
--- Indexes for table `oc_product_to_store`
+-- Indexes for table `ms_product_to_store`
 --
-ALTER TABLE `oc_product_to_store`
+ALTER TABLE `ms_product_to_store`
   ADD PRIMARY KEY (`product_id`,`store_id`);
 
 --
--- Indexes for table `oc_recurring`
+-- Indexes for table `ms_recurring`
 --
-ALTER TABLE `oc_recurring`
+ALTER TABLE `ms_recurring`
   ADD PRIMARY KEY (`recurring_id`);
 
 --
--- Indexes for table `oc_recurring_description`
+-- Indexes for table `ms_recurring_description`
 --
-ALTER TABLE `oc_recurring_description`
+ALTER TABLE `ms_recurring_description`
   ADD PRIMARY KEY (`recurring_id`,`language_id`);
 
 --
--- Indexes for table `oc_return`
+-- Indexes for table `ms_return`
 --
-ALTER TABLE `oc_return`
+ALTER TABLE `ms_return`
   ADD PRIMARY KEY (`return_id`);
 
 --
--- Indexes for table `oc_return_action`
+-- Indexes for table `ms_return_action`
 --
-ALTER TABLE `oc_return_action`
+ALTER TABLE `ms_return_action`
   ADD PRIMARY KEY (`return_action_id`,`language_id`);
 
 --
--- Indexes for table `oc_return_history`
+-- Indexes for table `ms_return_history`
 --
-ALTER TABLE `oc_return_history`
+ALTER TABLE `ms_return_history`
   ADD PRIMARY KEY (`return_history_id`);
 
 --
--- Indexes for table `oc_return_reason`
+-- Indexes for table `ms_return_reason`
 --
-ALTER TABLE `oc_return_reason`
+ALTER TABLE `ms_return_reason`
   ADD PRIMARY KEY (`return_reason_id`,`language_id`);
 
 --
--- Indexes for table `oc_return_status`
+-- Indexes for table `ms_return_status`
 --
-ALTER TABLE `oc_return_status`
+ALTER TABLE `ms_return_status`
   ADD PRIMARY KEY (`return_status_id`,`language_id`);
 
 --
--- Indexes for table `oc_review`
+-- Indexes for table `ms_review`
 --
-ALTER TABLE `oc_review`
+ALTER TABLE `ms_review`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `oc_seo_url`
+-- Indexes for table `ms_seo_url`
 --
-ALTER TABLE `oc_seo_url`
+ALTER TABLE `ms_seo_url`
   ADD PRIMARY KEY (`seo_url_id`),
   ADD KEY `query` (`query`),
   ADD KEY `keyword` (`keyword`);
 
 --
--- Indexes for table `oc_session`
+-- Indexes for table `ms_session`
 --
-ALTER TABLE `oc_session`
+ALTER TABLE `ms_session`
   ADD PRIMARY KEY (`session_id`);
 
 --
--- Indexes for table `oc_setting`
+-- Indexes for table `ms_setting`
 --
-ALTER TABLE `oc_setting`
+ALTER TABLE `ms_setting`
   ADD PRIMARY KEY (`setting_id`);
 
 --
--- Indexes for table `oc_shipping_courier`
+-- Indexes for table `ms_shipping_courier`
 --
-ALTER TABLE `oc_shipping_courier`
+ALTER TABLE `ms_shipping_courier`
   ADD PRIMARY KEY (`shipping_courier_id`);
 
 --
--- Indexes for table `oc_statistics`
+-- Indexes for table `ms_statistics`
 --
-ALTER TABLE `oc_statistics`
+ALTER TABLE `ms_statistics`
   ADD PRIMARY KEY (`statistics_id`);
 
 --
--- Indexes for table `oc_stock_status`
+-- Indexes for table `ms_stock_status`
 --
-ALTER TABLE `oc_stock_status`
+ALTER TABLE `ms_stock_status`
   ADD PRIMARY KEY (`stock_status_id`,`language_id`);
 
 --
--- Indexes for table `oc_store`
+-- Indexes for table `ms_store`
 --
-ALTER TABLE `oc_store`
+ALTER TABLE `ms_store`
   ADD PRIMARY KEY (`store_id`);
 
 --
--- Indexes for table `oc_tax_class`
+-- Indexes for table `ms_tax_class`
 --
-ALTER TABLE `oc_tax_class`
+ALTER TABLE `ms_tax_class`
   ADD PRIMARY KEY (`tax_class_id`);
 
 --
--- Indexes for table `oc_tax_rate`
+-- Indexes for table `ms_tax_rate`
 --
-ALTER TABLE `oc_tax_rate`
+ALTER TABLE `ms_tax_rate`
   ADD PRIMARY KEY (`tax_rate_id`);
 
 --
--- Indexes for table `oc_tax_rate_to_customer_group`
+-- Indexes for table `ms_tax_rate_to_customer_group`
 --
-ALTER TABLE `oc_tax_rate_to_customer_group`
+ALTER TABLE `ms_tax_rate_to_customer_group`
   ADD PRIMARY KEY (`tax_rate_id`,`customer_group_id`);
 
 --
--- Indexes for table `oc_tax_rule`
+-- Indexes for table `ms_tax_rule`
 --
-ALTER TABLE `oc_tax_rule`
+ALTER TABLE `ms_tax_rule`
   ADD PRIMARY KEY (`tax_rule_id`);
 
 --
--- Indexes for table `oc_theme`
+-- Indexes for table `ms_theme`
 --
-ALTER TABLE `oc_theme`
+ALTER TABLE `ms_theme`
   ADD PRIMARY KEY (`theme_id`);
 
 --
--- Indexes for table `oc_translation`
+-- Indexes for table `ms_translation`
 --
-ALTER TABLE `oc_translation`
+ALTER TABLE `ms_translation`
   ADD PRIMARY KEY (`translation_id`);
 
 --
--- Indexes for table `oc_upload`
+-- Indexes for table `ms_upload`
 --
-ALTER TABLE `oc_upload`
+ALTER TABLE `ms_upload`
   ADD PRIMARY KEY (`upload_id`);
 
 --
--- Indexes for table `oc_user`
+-- Indexes for table `ms_user`
 --
-ALTER TABLE `oc_user`
+ALTER TABLE `ms_user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `oc_user_group`
+-- Indexes for table `ms_user_group`
 --
-ALTER TABLE `oc_user_group`
+ALTER TABLE `ms_user_group`
   ADD PRIMARY KEY (`user_group_id`);
 
 --
--- Indexes for table `oc_voucher`
+-- Indexes for table `ms_voucher`
 --
-ALTER TABLE `oc_voucher`
+ALTER TABLE `ms_voucher`
   ADD PRIMARY KEY (`voucher_id`);
 
 --
--- Indexes for table `oc_voucher_history`
+-- Indexes for table `ms_voucher_history`
 --
-ALTER TABLE `oc_voucher_history`
+ALTER TABLE `ms_voucher_history`
   ADD PRIMARY KEY (`voucher_history_id`);
 
 --
--- Indexes for table `oc_voucher_theme`
+-- Indexes for table `ms_voucher_theme`
 --
-ALTER TABLE `oc_voucher_theme`
+ALTER TABLE `ms_voucher_theme`
   ADD PRIMARY KEY (`voucher_theme_id`);
 
 --
--- Indexes for table `oc_voucher_theme_description`
+-- Indexes for table `ms_voucher_theme_description`
 --
-ALTER TABLE `oc_voucher_theme_description`
+ALTER TABLE `ms_voucher_theme_description`
   ADD PRIMARY KEY (`voucher_theme_id`,`language_id`);
 
 --
--- Indexes for table `oc_weight_class`
+-- Indexes for table `ms_weight_class`
 --
-ALTER TABLE `oc_weight_class`
+ALTER TABLE `ms_weight_class`
   ADD PRIMARY KEY (`weight_class_id`);
 
 --
--- Indexes for table `oc_weight_class_description`
+-- Indexes for table `ms_weight_class_description`
 --
-ALTER TABLE `oc_weight_class_description`
+ALTER TABLE `ms_weight_class_description`
   ADD PRIMARY KEY (`weight_class_id`,`language_id`);
 
 --
--- Indexes for table `oc_zone`
+-- Indexes for table `ms_zone`
 --
-ALTER TABLE `oc_zone`
+ALTER TABLE `ms_zone`
   ADD PRIMARY KEY (`zone_id`);
 
 --
--- Indexes for table `oc_zone_to_geo_zone`
+-- Indexes for table `ms_zone_to_geo_zone`
 --
-ALTER TABLE `oc_zone_to_geo_zone`
+ALTER TABLE `ms_zone_to_geo_zone`
   ADD PRIMARY KEY (`zone_to_geo_zone_id`);
 
 --
@@ -8928,555 +8928,555 @@ ALTER TABLE `oc_zone_to_geo_zone`
 --
 
 --
--- AUTO_INCREMENT for table `oc_address`
+-- AUTO_INCREMENT for table `ms_address`
 --
-ALTER TABLE `oc_address`
+ALTER TABLE `ms_address`
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_api`
+-- AUTO_INCREMENT for table `ms_api`
 --
-ALTER TABLE `oc_api`
+ALTER TABLE `ms_api`
   MODIFY `api_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_api_ip`
+-- AUTO_INCREMENT for table `ms_api_ip`
 --
-ALTER TABLE `oc_api_ip`
+ALTER TABLE `ms_api_ip`
   MODIFY `api_ip_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_api_session`
+-- AUTO_INCREMENT for table `ms_api_session`
 --
-ALTER TABLE `oc_api_session`
+ALTER TABLE `ms_api_session`
   MODIFY `api_session_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_attribute`
+-- AUTO_INCREMENT for table `ms_attribute`
 --
-ALTER TABLE `oc_attribute`
+ALTER TABLE `ms_attribute`
   MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `oc_attribute_group`
+-- AUTO_INCREMENT for table `ms_attribute_group`
 --
-ALTER TABLE `oc_attribute_group`
+ALTER TABLE `ms_attribute_group`
   MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `oc_banner`
+-- AUTO_INCREMENT for table `ms_banner`
 --
-ALTER TABLE `oc_banner`
+ALTER TABLE `ms_banner`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `oc_banner_image`
+-- AUTO_INCREMENT for table `ms_banner_image`
 --
-ALTER TABLE `oc_banner_image`
+ALTER TABLE `ms_banner_image`
   MODIFY `banner_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
--- AUTO_INCREMENT for table `oc_cart`
+-- AUTO_INCREMENT for table `ms_cart`
 --
-ALTER TABLE `oc_cart`
+ALTER TABLE `ms_cart`
   MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_category`
+-- AUTO_INCREMENT for table `ms_category`
 --
-ALTER TABLE `oc_category`
+ALTER TABLE `ms_category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT for table `oc_country`
+-- AUTO_INCREMENT for table `ms_country`
 --
-ALTER TABLE `oc_country`
+ALTER TABLE `ms_country`
   MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
--- AUTO_INCREMENT for table `oc_coupon`
+-- AUTO_INCREMENT for table `ms_coupon`
 --
-ALTER TABLE `oc_coupon`
+ALTER TABLE `ms_coupon`
   MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `oc_coupon_history`
+-- AUTO_INCREMENT for table `ms_coupon_history`
 --
-ALTER TABLE `oc_coupon_history`
+ALTER TABLE `ms_coupon_history`
   MODIFY `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_coupon_product`
+-- AUTO_INCREMENT for table `ms_coupon_product`
 --
-ALTER TABLE `oc_coupon_product`
+ALTER TABLE `ms_coupon_product`
   MODIFY `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_currency`
+-- AUTO_INCREMENT for table `ms_currency`
 --
-ALTER TABLE `oc_currency`
+ALTER TABLE `ms_currency`
   MODIFY `currency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `oc_customer`
+-- AUTO_INCREMENT for table `ms_customer`
 --
-ALTER TABLE `oc_customer`
+ALTER TABLE `ms_customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_activity`
+-- AUTO_INCREMENT for table `ms_customer_activity`
 --
-ALTER TABLE `oc_customer_activity`
+ALTER TABLE `ms_customer_activity`
   MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_approval`
+-- AUTO_INCREMENT for table `ms_customer_approval`
 --
-ALTER TABLE `oc_customer_approval`
+ALTER TABLE `ms_customer_approval`
   MODIFY `customer_approval_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_group`
+-- AUTO_INCREMENT for table `ms_customer_group`
 --
-ALTER TABLE `oc_customer_group`
+ALTER TABLE `ms_customer_group`
   MODIFY `customer_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `oc_customer_history`
+-- AUTO_INCREMENT for table `ms_customer_history`
 --
-ALTER TABLE `oc_customer_history`
+ALTER TABLE `ms_customer_history`
   MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_ip`
+-- AUTO_INCREMENT for table `ms_customer_ip`
 --
-ALTER TABLE `oc_customer_ip`
+ALTER TABLE `ms_customer_ip`
   MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_login`
+-- AUTO_INCREMENT for table `ms_customer_login`
 --
-ALTER TABLE `oc_customer_login`
+ALTER TABLE `ms_customer_login`
   MODIFY `customer_login_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_reward`
+-- AUTO_INCREMENT for table `ms_customer_reward`
 --
-ALTER TABLE `oc_customer_reward`
+ALTER TABLE `ms_customer_reward`
   MODIFY `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_search`
+-- AUTO_INCREMENT for table `ms_customer_search`
 --
-ALTER TABLE `oc_customer_search`
+ALTER TABLE `ms_customer_search`
   MODIFY `customer_search_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_customer_transaction`
+-- AUTO_INCREMENT for table `ms_customer_transaction`
 --
-ALTER TABLE `oc_customer_transaction`
+ALTER TABLE `ms_customer_transaction`
   MODIFY `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_custom_field`
+-- AUTO_INCREMENT for table `ms_custom_field`
 --
-ALTER TABLE `oc_custom_field`
+ALTER TABLE `ms_custom_field`
   MODIFY `custom_field_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_custom_field_value`
+-- AUTO_INCREMENT for table `ms_custom_field_value`
 --
-ALTER TABLE `oc_custom_field_value`
+ALTER TABLE `ms_custom_field_value`
   MODIFY `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_download`
+-- AUTO_INCREMENT for table `ms_download`
 --
-ALTER TABLE `oc_download`
+ALTER TABLE `ms_download`
   MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_event`
+-- AUTO_INCREMENT for table `ms_event`
 --
-ALTER TABLE `oc_event`
+ALTER TABLE `ms_event`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `oc_extension`
+-- AUTO_INCREMENT for table `ms_extension`
 --
-ALTER TABLE `oc_extension`
+ALTER TABLE `ms_extension`
   MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `oc_extension_install`
+-- AUTO_INCREMENT for table `ms_extension_install`
 --
-ALTER TABLE `oc_extension_install`
+ALTER TABLE `ms_extension_install`
   MODIFY `extension_install_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_extension_path`
+-- AUTO_INCREMENT for table `ms_extension_path`
 --
-ALTER TABLE `oc_extension_path`
+ALTER TABLE `ms_extension_path`
   MODIFY `extension_path_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_filter`
+-- AUTO_INCREMENT for table `ms_filter`
 --
-ALTER TABLE `oc_filter`
+ALTER TABLE `ms_filter`
   MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_filter_group`
+-- AUTO_INCREMENT for table `ms_filter_group`
 --
-ALTER TABLE `oc_filter_group`
+ALTER TABLE `ms_filter_group`
   MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_geo_zone`
+-- AUTO_INCREMENT for table `ms_geo_zone`
 --
-ALTER TABLE `oc_geo_zone`
+ALTER TABLE `ms_geo_zone`
   MODIFY `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `oc_googleshopping_product`
+-- AUTO_INCREMENT for table `ms_googleshopping_product`
 --
-ALTER TABLE `oc_googleshopping_product`
+ALTER TABLE `ms_googleshopping_product`
   MODIFY `product_advertise_google_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_information`
+-- AUTO_INCREMENT for table `ms_information`
 --
-ALTER TABLE `oc_information`
+ALTER TABLE `ms_information`
   MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `oc_language`
+-- AUTO_INCREMENT for table `ms_language`
 --
-ALTER TABLE `oc_language`
+ALTER TABLE `ms_language`
   MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `oc_layout`
+-- AUTO_INCREMENT for table `ms_layout`
 --
-ALTER TABLE `oc_layout`
+ALTER TABLE `ms_layout`
   MODIFY `layout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `oc_layout_module`
+-- AUTO_INCREMENT for table `ms_layout_module`
 --
-ALTER TABLE `oc_layout_module`
+ALTER TABLE `ms_layout_module`
   MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
--- AUTO_INCREMENT for table `oc_layout_route`
+-- AUTO_INCREMENT for table `ms_layout_route`
 --
-ALTER TABLE `oc_layout_route`
+ALTER TABLE `ms_layout_route`
   MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT for table `oc_length_class`
+-- AUTO_INCREMENT for table `ms_length_class`
 --
-ALTER TABLE `oc_length_class`
+ALTER TABLE `ms_length_class`
   MODIFY `length_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `oc_location`
+-- AUTO_INCREMENT for table `ms_location`
 --
-ALTER TABLE `oc_location`
+ALTER TABLE `ms_location`
   MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_manufacturer`
+-- AUTO_INCREMENT for table `ms_manufacturer`
 --
-ALTER TABLE `oc_manufacturer`
+ALTER TABLE `ms_manufacturer`
   MODIFY `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `oc_marketing`
+-- AUTO_INCREMENT for table `ms_marketing`
 --
-ALTER TABLE `oc_marketing`
+ALTER TABLE `ms_marketing`
   MODIFY `marketing_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_modification`
+-- AUTO_INCREMENT for table `ms_modification`
 --
-ALTER TABLE `oc_modification`
+ALTER TABLE `ms_modification`
   MODIFY `modification_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_module`
+-- AUTO_INCREMENT for table `ms_module`
 --
-ALTER TABLE `oc_module`
+ALTER TABLE `ms_module`
   MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `oc_option`
+-- AUTO_INCREMENT for table `ms_option`
 --
-ALTER TABLE `oc_option`
+ALTER TABLE `ms_option`
   MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `oc_option_value`
+-- AUTO_INCREMENT for table `ms_option_value`
 --
-ALTER TABLE `oc_option_value`
+ALTER TABLE `ms_option_value`
   MODIFY `option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `oc_order`
+-- AUTO_INCREMENT for table `ms_order`
 --
-ALTER TABLE `oc_order`
+ALTER TABLE `ms_order`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_history`
+-- AUTO_INCREMENT for table `ms_order_history`
 --
-ALTER TABLE `oc_order_history`
+ALTER TABLE `ms_order_history`
   MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_option`
+-- AUTO_INCREMENT for table `ms_order_option`
 --
-ALTER TABLE `oc_order_option`
+ALTER TABLE `ms_order_option`
   MODIFY `order_option_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_product`
+-- AUTO_INCREMENT for table `ms_order_product`
 --
-ALTER TABLE `oc_order_product`
+ALTER TABLE `ms_order_product`
   MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_recurring`
+-- AUTO_INCREMENT for table `ms_order_recurring`
 --
-ALTER TABLE `oc_order_recurring`
+ALTER TABLE `ms_order_recurring`
   MODIFY `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_recurring_transaction`
+-- AUTO_INCREMENT for table `ms_order_recurring_transaction`
 --
-ALTER TABLE `oc_order_recurring_transaction`
+ALTER TABLE `ms_order_recurring_transaction`
   MODIFY `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_shipment`
+-- AUTO_INCREMENT for table `ms_order_shipment`
 --
-ALTER TABLE `oc_order_shipment`
+ALTER TABLE `ms_order_shipment`
   MODIFY `order_shipment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_status`
+-- AUTO_INCREMENT for table `ms_order_status`
 --
-ALTER TABLE `oc_order_status`
+ALTER TABLE `ms_order_status`
   MODIFY `order_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `oc_order_total`
+-- AUTO_INCREMENT for table `ms_order_total`
 --
-ALTER TABLE `oc_order_total`
+ALTER TABLE `ms_order_total`
   MODIFY `order_total_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_order_voucher`
+-- AUTO_INCREMENT for table `ms_order_voucher`
 --
-ALTER TABLE `oc_order_voucher`
+ALTER TABLE `ms_order_voucher`
   MODIFY `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_product`
+-- AUTO_INCREMENT for table `ms_product`
 --
-ALTER TABLE `oc_product`
+ALTER TABLE `ms_product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT for table `oc_product_discount`
+-- AUTO_INCREMENT for table `ms_product_discount`
 --
-ALTER TABLE `oc_product_discount`
+ALTER TABLE `ms_product_discount`
   MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
 
 --
--- AUTO_INCREMENT for table `oc_product_image`
+-- AUTO_INCREMENT for table `ms_product_image`
 --
-ALTER TABLE `oc_product_image`
+ALTER TABLE `ms_product_image`
   MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2352;
 
 --
--- AUTO_INCREMENT for table `oc_product_option`
+-- AUTO_INCREMENT for table `ms_product_option`
 --
-ALTER TABLE `oc_product_option`
+ALTER TABLE `ms_product_option`
   MODIFY `product_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
--- AUTO_INCREMENT for table `oc_product_option_value`
+-- AUTO_INCREMENT for table `ms_product_option_value`
 --
-ALTER TABLE `oc_product_option_value`
+ALTER TABLE `ms_product_option_value`
   MODIFY `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `oc_product_reward`
+-- AUTO_INCREMENT for table `ms_product_reward`
 --
-ALTER TABLE `oc_product_reward`
+ALTER TABLE `ms_product_reward`
   MODIFY `product_reward_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
 
 --
--- AUTO_INCREMENT for table `oc_product_special`
+-- AUTO_INCREMENT for table `ms_product_special`
 --
-ALTER TABLE `oc_product_special`
+ALTER TABLE `ms_product_special`
   MODIFY `product_special_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440;
 
 --
--- AUTO_INCREMENT for table `oc_recurring`
+-- AUTO_INCREMENT for table `ms_recurring`
 --
-ALTER TABLE `oc_recurring`
+ALTER TABLE `ms_recurring`
   MODIFY `recurring_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_return`
+-- AUTO_INCREMENT for table `ms_return`
 --
-ALTER TABLE `oc_return`
+ALTER TABLE `ms_return`
   MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_return_action`
+-- AUTO_INCREMENT for table `ms_return_action`
 --
-ALTER TABLE `oc_return_action`
+ALTER TABLE `ms_return_action`
   MODIFY `return_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `oc_return_history`
+-- AUTO_INCREMENT for table `ms_return_history`
 --
-ALTER TABLE `oc_return_history`
+ALTER TABLE `ms_return_history`
   MODIFY `return_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_return_reason`
+-- AUTO_INCREMENT for table `ms_return_reason`
 --
-ALTER TABLE `oc_return_reason`
+ALTER TABLE `ms_return_reason`
   MODIFY `return_reason_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `oc_return_status`
+-- AUTO_INCREMENT for table `ms_return_status`
 --
-ALTER TABLE `oc_return_status`
+ALTER TABLE `ms_return_status`
   MODIFY `return_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `oc_review`
+-- AUTO_INCREMENT for table `ms_review`
 --
-ALTER TABLE `oc_review`
+ALTER TABLE `ms_review`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_seo_url`
+-- AUTO_INCREMENT for table `ms_seo_url`
 --
-ALTER TABLE `oc_seo_url`
+ALTER TABLE `ms_seo_url`
   MODIFY `seo_url_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
 
 --
--- AUTO_INCREMENT for table `oc_setting`
+-- AUTO_INCREMENT for table `ms_setting`
 --
-ALTER TABLE `oc_setting`
+ALTER TABLE `ms_setting`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
--- AUTO_INCREMENT for table `oc_statistics`
+-- AUTO_INCREMENT for table `ms_statistics`
 --
-ALTER TABLE `oc_statistics`
+ALTER TABLE `ms_statistics`
   MODIFY `statistics_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `oc_stock_status`
+-- AUTO_INCREMENT for table `ms_stock_status`
 --
-ALTER TABLE `oc_stock_status`
+ALTER TABLE `ms_stock_status`
   MODIFY `stock_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `oc_store`
+-- AUTO_INCREMENT for table `ms_store`
 --
-ALTER TABLE `oc_store`
+ALTER TABLE `ms_store`
   MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_tax_class`
+-- AUTO_INCREMENT for table `ms_tax_class`
 --
-ALTER TABLE `oc_tax_class`
+ALTER TABLE `ms_tax_class`
   MODIFY `tax_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `oc_tax_rate`
+-- AUTO_INCREMENT for table `ms_tax_rate`
 --
-ALTER TABLE `oc_tax_rate`
+ALTER TABLE `ms_tax_rate`
   MODIFY `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
--- AUTO_INCREMENT for table `oc_tax_rule`
+-- AUTO_INCREMENT for table `ms_tax_rule`
 --
-ALTER TABLE `oc_tax_rule`
+ALTER TABLE `ms_tax_rule`
   MODIFY `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
--- AUTO_INCREMENT for table `oc_theme`
+-- AUTO_INCREMENT for table `ms_theme`
 --
-ALTER TABLE `oc_theme`
+ALTER TABLE `ms_theme`
   MODIFY `theme_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_translation`
+-- AUTO_INCREMENT for table `ms_translation`
 --
-ALTER TABLE `oc_translation`
+ALTER TABLE `ms_translation`
   MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_upload`
+-- AUTO_INCREMENT for table `ms_upload`
 --
-ALTER TABLE `oc_upload`
+ALTER TABLE `ms_upload`
   MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_user`
+-- AUTO_INCREMENT for table `ms_user`
 --
-ALTER TABLE `oc_user`
+ALTER TABLE `ms_user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_user_group`
+-- AUTO_INCREMENT for table `ms_user_group`
 --
-ALTER TABLE `oc_user_group`
+ALTER TABLE `ms_user_group`
   MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `oc_voucher`
+-- AUTO_INCREMENT for table `ms_voucher`
 --
-ALTER TABLE `oc_voucher`
+ALTER TABLE `ms_voucher`
   MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_voucher_history`
+-- AUTO_INCREMENT for table `ms_voucher_history`
 --
-ALTER TABLE `oc_voucher_history`
+ALTER TABLE `ms_voucher_history`
   MODIFY `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `oc_voucher_theme`
+-- AUTO_INCREMENT for table `ms_voucher_theme`
 --
-ALTER TABLE `oc_voucher_theme`
+ALTER TABLE `ms_voucher_theme`
   MODIFY `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `oc_weight_class`
+-- AUTO_INCREMENT for table `ms_weight_class`
 --
-ALTER TABLE `oc_weight_class`
+ALTER TABLE `ms_weight_class`
   MODIFY `weight_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `oc_zone`
+-- AUTO_INCREMENT for table `ms_zone`
 --
-ALTER TABLE `oc_zone`
+ALTER TABLE `ms_zone`
   MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4239;
 
 --
--- AUTO_INCREMENT for table `oc_zone_to_geo_zone`
+-- AUTO_INCREMENT for table `ms_zone_to_geo_zone`
 --
-ALTER TABLE `oc_zone_to_geo_zone`
+ALTER TABLE `ms_zone_to_geo_zone`
   MODIFY `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 COMMIT;
 
