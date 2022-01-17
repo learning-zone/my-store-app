@@ -35,3 +35,7 @@ a:hover {
 .MiniDrawer-ListItemIcon-21 {
   min-width: 30px !important;
 }
+
+.MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+}
