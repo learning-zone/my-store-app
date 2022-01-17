@@ -262,6 +262,31 @@ const menuItems = [
         url: '/settings',
       },
       {
+        key: 'user',
+        label: 'Users',
+        icon: DoubleArrow,
+        items: [
+          {
+            key: 'users',
+            label: 'Customers',
+            icon: DoubleArrow,
+            url: '/users',
+          },
+          {
+            key: 'user-groups',
+            label: 'Users Groups',
+            icon: DoubleArrow,
+            url: '/user-groups',
+          },
+          {
+            key: 'api',
+            label: 'API',
+            icon: DoubleArrow,
+            url: '/api',
+          },
+        ],
+      },
+      {
         key: 'localization',
         label: 'Localization',
         icon: DoubleArrow,
