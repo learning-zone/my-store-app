@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2022 at 07:29 AM
+-- Generation Time: Jan 20, 2022 at 03:27 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -3657,20 +3657,28 @@ CREATE TABLE `ms_upload` (
 
 DROP TABLE IF EXISTS `ms_user`;
 CREATE TABLE `ms_user` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` text NOT NULL,
   `salt` varchar(9) NOT NULL,
-  `firstname` varchar(32) NOT NULL,
-  `lastname` varchar(32) NOT NULL,
+  `first_name` varchar(32) NOT NULL,
+  `last_name` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
   `image` varchar(255) NOT NULL,
   `code` varchar(40) NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ms_user`
+--
+
+INSERT INTO `ms_user` (`id`, `user_group_id`, `username`, `password`, `salt`, `first_name`, `last_name`, `email`, `image`, `code`, `ip`, `status`, `created_at`, `updated_at`) VALUES
+(1, 0, '', '$2b$10$xp0bW.UyybLL/vBw0SfNTeLHx4dMBWnvD.dXf.1/G8A6hUeeiciXi', '', 'Pradeep', 'Kumar', 'pradeep.vwa@gmail.com', '', '', '', 1, '2022-01-20 19:55:41', '2022-01-20 19:55:41');
 
 -- --------------------------------------------------------
 
@@ -8867,7 +8875,7 @@ ALTER TABLE `ms_upload`
 -- Indexes for table `ms_user`
 --
 ALTER TABLE `ms_user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ms_user_group`
@@ -9435,7 +9443,7 @@ ALTER TABLE `ms_upload`
 -- AUTO_INCREMENT for table `ms_user`
 --
 ALTER TABLE `ms_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ms_user_group`
