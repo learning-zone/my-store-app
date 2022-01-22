@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import md5 from 'md5';
 import HttpStatus from 'http-status-codes';
 import User from '../models/user.model';
 
@@ -61,7 +61,7 @@ export function findById(req, res) {
  */
 export function store(req, res) {
     const {first_name, last_name, email} = req.body;
-    const password = bcrypt.hashSync(req.body.password, 10);
+    const password = md5(req.body.password);
 
     User.forge({
         first_name, last_name, email, password
