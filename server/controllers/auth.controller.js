@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import md5 from 'md5';
 import User from '../models/user.model';
 import logger from '../config/winston';
 
@@ -17,7 +17,7 @@ export function login(req, res) {
         where: {email: email},
     }).fetch().then(user => {
         if (user) {
-            if (bcrypt.compareSync(password, user.get('password'))) {
+            if (md5(password) === user.get('password')) {
 
                 const token = jwt.sign({
                     id: user.get('id'),
