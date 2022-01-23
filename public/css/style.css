@@ -39,3 +39,7 @@ a:hover {
 .MuiSvgIcon-root {
   font-size: 1.3rem !important;
 }
+
+hr {
+  width: 100%;
+}

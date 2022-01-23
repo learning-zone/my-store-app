@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { PowerSettingsNew } from '@material-ui/icons';
-
+import { Tooltip } from '@material-ui/core';
 
 import * as authService from '../../../services/authService';
 
@@ -66,10 +66,14 @@ class Header extends Component {
                 navDrawerOpen && classes.menuButtonShift
               )}
             >
-              <MenuIcon style={{color: "#FFF", fontWeight: "bold"}}/>
+              <MenuIcon style={{ color: '#FFF', fontWeight: 'bold' }} />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}></Typography>
-            <Button onClick={this.logOut.bind(this)} title="Sign Out"><PowerSettingsNew style={{color: "#FFF", fontWeight: "bold"}} /></Button>
+            <Tooltip title="Sign Out">
+              <Button onClick={this.logOut.bind(this)}>
+                <PowerSettingsNew style={{ color: '#FFF', fontWeight: 'bold' }} />
+              </Button>
+            </Tooltip>
           </Toolbar>
         </AppBar>
       </div>
