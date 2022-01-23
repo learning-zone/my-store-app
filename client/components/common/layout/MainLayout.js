@@ -262,6 +262,18 @@ const menuItems = [
         url: '/api',
       },
       {
+        key: 'user-groups',
+        label: 'User Groups',
+        icon: DoubleArrow,
+        url: '/user-groups',
+      },
+      {
+        key: 'users',
+        label: 'Users',
+        icon: DoubleArrow,
+        url: '/users',
+      },
+      {
         key: 'stores',
         label: 'Stores',
         icon: DoubleArrow,

@@ -57,6 +57,8 @@ const AsyncEmail = loadable(() => import('../containers/marketing/emailContainer
 
 /** Settings Module **/
 const AsyncAPI = loadable(() => import('../containers/settings/apiContainer'));
+const AsyncUserGroups = loadable(() => import('../containers/settings/userGroupsContainer'));
+const AsyncUsers = loadable(() => import('../containers/settings/usersContainer'));
 const AsyncStores = loadable(() => import('../containers/settings/storesContainer'));
 const AsyncLocalization = loadable(() => import('../containers/settings/localizationContainer'));
 const AsyncMaintenance = loadable(() => import('../containers/settings/maintenanceContainer'));
@@ -119,6 +121,8 @@ const Router = () => (
       
       {/** Settings Module **/}
       <PrivateRoute exact path='/api' layout={MainLayout} component={AsyncAPI} />
+      <PrivateRoute exact path='/user-groups' layout={MainLayout} component={AsyncUserGroups} />
+      <PrivateRoute exact path='/users' layout={MainLayout} component={AsyncUsers} />
       <PrivateRoute exact path='/stores' layout={MainLayout} component={AsyncStores} />
       <PrivateRoute exact path='/localization' layout={MainLayout} component={AsyncLocalization} />
       <PrivateRoute exact path='/maintenance' layout={MainLayout} component={AsyncMaintenance} />
