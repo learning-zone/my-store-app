@@ -62,9 +62,10 @@ export function findById(req, res) {
 export function store(req, res) {
     const {first_name, last_name, email} = req.body;
     const password = md5(req.body.password);
-
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+    
     User.forge({
-        first_name, last_name, email, password
+        first_name, last_name, email, password, ip
     }).save()
         .then(user => res.json({
                 success: true,
