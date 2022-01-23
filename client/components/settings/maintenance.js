@@ -4,7 +4,7 @@ export default class Maintenance extends Component {
     render() {
         return (
             <div>
-                <h1>Maintenance Page</h1>
+                <h1>Maintenance</h1>
             </div>
         )
     }
