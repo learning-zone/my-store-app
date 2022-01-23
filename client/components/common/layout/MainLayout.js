@@ -251,40 +251,21 @@ const menuItems = [
     ],
   },
   {
-    key: 'system',
-    label: 'System',
+    key: 'settings',
+    label: 'Settings',
     icon: Settings,
     items: [
       {
-        key: 'settings',
-        label: 'Settings',
+        key: 'api',
+        label: 'API',
         icon: DoubleArrow,
-        url: '/settings',
+        url: '/api',
       },
       {
-        key: 'user',
-        label: 'Users',
+        key: 'stores',
+        label: 'Stores',
         icon: DoubleArrow,
-        items: [
-          {
-            key: 'users',
-            label: 'Customers',
-            icon: DoubleArrow,
-            url: '/users',
-          },
-          {
-            key: 'user-groups',
-            label: 'Users Groups',
-            icon: DoubleArrow,
-            url: '/user-groups',
-          },
-          {
-            key: 'api',
-            label: 'API',
-            icon: DoubleArrow,
-            url: '/api',
-          },
-        ],
+        url: '/stores',
       },
       {
         key: 'localization',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Localization from '../../components/system/localization';
+import Localization from '../../components/settings/localization';
 
 class LocalizationContainer extends Component {
   constructor(props) {

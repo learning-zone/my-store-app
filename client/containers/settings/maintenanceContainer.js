@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Maintenance from '../../components/system/maintenance';
+import Maintenance from '../../components/settings/maintenance';
 
 class MaintenanceContainer extends Component {
   constructor(props) {
