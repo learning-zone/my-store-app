@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardContent, Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { grey } from '@material-ui/core/colors';
+import { Card, CardContent, Grid } from '@mui/material';
+import { withStyles } from '@mui/styles';
+import { grey } from '@mui/material/colors';
 
 const styles = () => ({
   root: {

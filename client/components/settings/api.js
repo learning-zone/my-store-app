@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { AddBox, Delete } from '@material-ui/icons';
-import Button from '@material-ui/core/Button';
-import { Tooltip } from '@material-ui/core';
+import { withStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
+import { Tooltip } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const styles = () => ({
   pageHeader: {
@@ -45,12 +46,12 @@ class API extends Component {
           <header className={classes.pageHeader}>APIs</header>
           <Tooltip title="Delete" placement="top">
             <Button onClick={this.delete.bind(this)} className={classes.actionButton}>
-              <Delete color="secondary" className={classes.actionIcon} />
+              <DeleteOutlineIcon color="secondary" className={classes.actionIcon} />
             </Button>
           </Tooltip>
           <Tooltip title="Add" placement="top">
             <Button onClick={this.add.bind(this)} className={classes.actionButton}>
-              <AddBox color="primary" className={classes.actionIcon} />
+              <AddBoxIcon color="primary" className={classes.actionIcon} />
             </Button>
           </Tooltip>
         </span>

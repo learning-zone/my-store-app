@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
 // Import custom components
 import Header from '../header/Header';
 import MiniDrawer from '../drawer/MiniDrawer';
-import Footer from '../footer/Footer';
 
 import {
-  Home,
   DoubleArrow,
   LocalOffer,
   Extension,
@@ -18,7 +16,7 @@ import {
   Share,
   Settings,
   InsertChart,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 
 
 const menuItems = [
@@ -40,7 +38,7 @@ const menuItems = [
         url: '/products',
       },
       {
-        key: 'recuring-profiles',
+        key: 'recuring_profiles',
         label: 'Recuring Profiles',
         icon: DoubleArrow,
         url: '/recuring-profiles',
@@ -58,7 +56,7 @@ const menuItems = [
         url: '/attribues',
       },
       {
-        key: 'Options',
+        key: 'options',
         label: 'Options',
         icon: DoubleArrow,
         url: '/options',
@@ -138,13 +136,13 @@ const menuItems = [
         url: '/layouts',
       },
       {
-        key: 'theme-editor',
+        key: 'theme_editor',
         label: 'Theme Editor',
         icon: DoubleArrow,
         url: '/theme-editor',
       },
       {
-        key: 'language-editor',
+        key: 'language_editor',
         label: 'Language Editor',
         icon: DoubleArrow,
         url: '/language-editor',
@@ -156,7 +154,7 @@ const menuItems = [
         url: '/banners',
       },
       {
-        key: 'seo-url',
+        key: 'seo_url',
         label: 'SEO URL',
         icon: DoubleArrow,
         url: '/seo-url',
@@ -175,7 +173,7 @@ const menuItems = [
         url: '/orders',
       },
       {
-        key: 'recurring-profiles',
+        key: 'recurring_profiles',
         label: 'Recurring Profiles',
         icon: DoubleArrow,
         url: '/recurring-profiles',
@@ -187,7 +185,7 @@ const menuItems = [
         url: '/returns',
       },
       {
-        key: 'gift-vouchers',
+        key: 'gift_vouchers',
         label: 'Gift Vouchers',
         icon: DoubleArrow,
         url: '/gift-vouchers',
@@ -206,19 +204,19 @@ const menuItems = [
         url: '/customers',
       },
       {
-        key: 'customers-groups',
+        key: 'customers_groups',
         label: 'Customers Groups',
         icon: DoubleArrow,
         url: '/customers-groups',
       },
       {
-        key: 'customers-approvals',
+        key: 'customers_approvals',
         label: 'Customers Approvals',
         icon: DoubleArrow,
         url: '/customers-approvals',
       },
       {
-        key: 'custom-fields',
+        key: 'custom_fields',
         label: 'Custom Fields',
         icon: DoubleArrow,
         url: '/custom-fields',
@@ -231,7 +229,7 @@ const menuItems = [
     icon: Share,
     items: [
       {
-        key: 'Marketings',
+        key: 'marketings',
         label: 'Marketing',
         icon: DoubleArrow,
         url: '/marketing',
@@ -262,7 +260,7 @@ const menuItems = [
         url: '/api',
       },
       {
-        key: 'user-groups',
+        key: 'user_groups',
         label: 'User Groups',
         icon: DoubleArrow,
         url: '/user-groups',
@@ -306,7 +304,7 @@ const menuItems = [
         url: '/reports',
       },
       {
-        key: 'online-users',
+        key: 'online_users',
         label: "Who's Online",
         icon: DoubleArrow,
         url: '/online-users',
@@ -361,7 +359,6 @@ const MainLayout = (props) => {
         <MiniDrawer navDrawerOpen={open} menuItems={menuItems} />
         <main className={classes.content}>{children}</main>
       </div>
-      {/**<Footer />**/}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 
 const renderText = ({ input, label, type, meta: { touched, error, invalid } }) => (
   <TextField

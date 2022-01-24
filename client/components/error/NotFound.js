@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReportProblem } from '@material-ui/icons';
+import { ReportProblem } from '@mui/icons-material';
 
 const NotFound = () => {
   return (

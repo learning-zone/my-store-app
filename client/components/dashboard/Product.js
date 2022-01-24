@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { cyan } from '@material-ui/core/colors';
+import { withStyles } from '@mui/styles';
+import { cyan } from '@mui/material/colors';
 import {
   Card,
   CardHeader,
@@ -14,9 +14,10 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@material-ui/core';
-import Wallpaper from '@material-ui/icons/Wallpaper';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+} from '@mui/material';
+import WallpaperIcon from '@mui/icons-material/Wallpaper';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
 
 const styles = () => ({
   root: {
@@ -46,7 +47,7 @@ const Product = (props) => {
             <ListItem divider={i < products.length - 1} key={item.id}>
               <ListItemIcon>
                 <Avatar>
-                  <Wallpaper />
+                  <WallpaperIcon />
                 </Avatar>
               </ListItemIcon>
               <ListItemText primary={item.title} secondary={item.text} />

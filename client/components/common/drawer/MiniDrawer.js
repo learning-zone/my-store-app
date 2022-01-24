@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { withStyles } from '@mui/styles';
+import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import { Home } from '@material-ui/icons';
-import { Collapse } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
-import { ExpandLess } from '@material-ui/icons';
-import { Tooltip } from '@material-ui/core';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
+import Avatar from '@mui/material/Avatar';
+import HomeIcon from '@mui/icons-material/Home';
+import Collapse from '@mui/material/Collapse';
+import { Tooltip } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const drawerWidth = 250;
 
@@ -119,7 +119,7 @@ class MiniDrawer extends React.Component {
             <Tooltip title="Dashboard">
               <ListItem button>
                 <ListItemIcon className={classes.ListItemIcon}>
-                  <Home />
+                  <HomeIcon />
                 </ListItemIcon>
                 <Link
                   to="/dashboard"
@@ -140,7 +140,7 @@ class MiniDrawer extends React.Component {
                         <Icon />
                       </ListItemIcon>
                       <ListItemText inset primary={label} className={classes.ListItemText} />
-                      {open ? <ExpandLess /> : <ExpandMore />}
+                      {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </ListItem>
                   </Tooltip>
                   <Collapse in={open} timeout="auto" unmountOnExit>

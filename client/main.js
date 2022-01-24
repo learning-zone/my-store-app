@@ -2,8 +2,8 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
+import { ThemeProvider, createTheme } from '@mui/material';
+import { blue } from '@mui/material/colors';
 
 import store, { history } from './store/configureStore';
 import { verifyToken } from './services/tokenService';
@@ -25,13 +25,13 @@ store.dispatch(verifyToken());
 
 ReactDOM.render(
   <Suspense fallback={<div>Error! Please refresh the page</div>}>
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <App />
         </ConnectedRouter>
       </Provider>
-    </MuiThemeProvider>
+    </ThemeProvider>
   </Suspense>,
   mountNode
 );
