@@ -147,8 +147,8 @@ class MiniDrawer extends React.Component {
                     <List component="div" disablePadding>
                       {items.map(
                         ({ key: childKey, label: childLabel, icon: ChildIcon, url: ChildUrl }) => (
-                          <Tooltip title={childLabel}>
-                            <ListItem key={childKey} button className={classes.nested}>
+                          <Tooltip key={childKey} title={childLabel}>
+                            <ListItem button className={classes.nested}>
                               <ListItemIcon className={classes.ListItemIcon}>
                                 <ChildIcon />
                               </ListItemIcon>
