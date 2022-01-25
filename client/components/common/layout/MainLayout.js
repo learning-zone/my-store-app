@@ -88,7 +88,7 @@ const menuItems = [
     ],
   },
   {
-    key: 'extension',
+    key: 'extensions',
     label: 'Extensions',
     icon: Extension,
     items: [
@@ -105,7 +105,7 @@ const menuItems = [
         url: '/installer',
       },
       {
-        key: 'extensions',
+        key: 'extension',
         label: 'Extensions',
         icon: DoubleArrow,
         url: '/extensions',
@@ -224,12 +224,12 @@ const menuItems = [
     ],
   },
   {
-    key: 'marketing',
+    key: 'marketings',
     label: 'Marketing',
     icon: Share,
     items: [
       {
-        key: 'marketings',
+        key: 'marketing',
         label: 'Marketing',
         icon: DoubleArrow,
         url: '/marketing',
@@ -291,7 +291,6 @@ const menuItems = [
       },
     ],
   },
-
   {
     key: 'reports',
     label: 'Reports',
