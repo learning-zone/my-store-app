@@ -43,3 +43,7 @@ a:hover {
 hr {
   width: 100%;
 }
+
+.css-cveggr-MuiListItemIcon-root {
+  min-width: 35px !important;
+}
