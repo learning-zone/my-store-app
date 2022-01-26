@@ -42,8 +42,8 @@ class API extends Component {
     const { classes } = this.props;
     return (
       <>
-        <span>
-          <header className={classes.pageHeader}>APIs</header>
+        <header>
+          <span className={classes.pageHeader}>APIs</span>
           <Tooltip title="Delete" placement="top">
             <Button onClick={this.delete.bind(this)} className={classes.actionButton}>
               <DeleteOutlineIcon color="secondary" className={classes.actionIcon} />
@@ -54,7 +54,7 @@ class API extends Component {
               <AddBoxIcon color="primary" className={classes.actionIcon} />
             </Button>
           </Tooltip>
-        </span>
+        </header>
         <hr />
       </>
     );
