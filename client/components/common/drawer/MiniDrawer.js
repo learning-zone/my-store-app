@@ -24,18 +24,18 @@ const styles = (theme) => ({
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
-    }),
+    }) + '!important',
   },
   drawerPaperClose: {
-    width: 60,
+    width: 45,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
+    }) + '!important',
   },
   drawerInner: {
     // Make the items inside not wrap when transitioning:
-    width: drawerWidth,
+    width: drawerWidth + '!important',
   },
   drawerHeader: {
     display: 'flex',
