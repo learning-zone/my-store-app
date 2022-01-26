@@ -30,18 +30,18 @@ export function login(req, res) {
                     email:  user.get('email')
                 });
             } else {
-                logger.log('error', 'Authentication failed. Invalid password.');
+                logger.log('error', ' Invalid email or password.');
 
                 res.status(HttpStatus.UNAUTHORIZED).json({
                     success: false,
-                    message: 'Authentication failed. Invalid password.'
+                    message: ' Invalid email or password.'
                 });
             }
         } else {
-            logger.log('error', 'Invalid username or password.');
+            logger.log('error', 'Invalid email or password.');
 
             res.status(HttpStatus.UNAUTHORIZED).json({
-                success: false, message: 'Invalid username or password.'
+                success: false, message: 'Invalid email or password.'
             });
         }
     });
