@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
+import classNames from 'classnames';
 
 // Import custom components
 import Header from '../header/Header';
@@ -333,6 +334,7 @@ const styles = (theme) => ({
     height: '100%',
   },
   content: {
+    marginLeft: '45px',
     width: '100%',
     flexGrow: 1,
     padding: 24,
@@ -343,6 +345,9 @@ const styles = (theme) => ({
       marginTop: 64,
     },
   },
+  contentShift: {
+    marginLeft: '250px',
+  }
 });
 
 const MainLayout = (props) => {
@@ -356,7 +361,7 @@ const MainLayout = (props) => {
       <div className={classes.appFrame}>
         <Header navDrawerOpen={open} handleToggleDrawer={handleToggle} />
         <MiniDrawer navDrawerOpen={open} menuItems={menuItems} />
-        <main className={classes.content}>{children}</main>
+        <main className={classNames(classes.content, open && classes.contentShift)}>{children}</main>
       </div>
     </div>
   );
