@@ -21,17 +21,19 @@ const styles = (theme) => ({
     height: 'auto',
     width: drawerWidth,
     overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }) + '!important',
+    transition:
+      theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }) + '!important',
   },
   drawerPaperClose: {
     width: 50,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }) + '!important',
+    transition:
+      theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }) + '!important',
   },
   drawerInner: {
     // Make the items inside not wrap when transitioning:
@@ -116,55 +118,51 @@ class MiniDrawer extends React.Component {
           />
           <Divider />
           <List>
-            <Tooltip title="Dashboard">
-              <ListItem button>
-                <ListItemIcon className={classes.ListItemIcon}>
-                  <HomeIcon />
-                </ListItemIcon>
-                <Link
-                  to="/dashboard"
-                  className={classes.links}
-                  onClick={this.updateTitle('Dashboard')}
-                >
-                  <ListItemText inset primary="Dashboard" className={classes.ListItemText} />
-                </Link>
-              </ListItem>
-            </Tooltip>
+            <ListItem button>
+              <ListItemIcon className={classes.ListItemIcon}>
+                <HomeIcon />
+              </ListItemIcon>
+              <Link
+                to="/dashboard"
+                className={classes.links}
+                onClick={this.updateTitle('Dashboard')}
+              >
+                <ListItemText inset primary="Dashboard" className={classes.ListItemText} />
+              </Link>
+            </ListItem>
+
             {menuItems.map(({ key, label, icon: Icon, items }) => {
               const open = this.state[key] || false;
               return (
                 <div key={key}>
-                  <Tooltip title={label}>
-                    <ListItem button onClick={this.handleClick(key, label)}>
-                      <ListItemIcon className={classes.ListItemIcon}>
-                        <Icon />
-                      </ListItemIcon>
-                      <ListItemText inset primary={label} className={classes.ListItemText} />
-                      {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                    </ListItem>
-                  </Tooltip>
+                  <ListItem button onClick={this.handleClick(key, label)}>
+                    <ListItemIcon className={classes.ListItemIcon}>
+                      <Icon />
+                    </ListItemIcon>
+                    <ListItemText inset primary={label} className={classes.ListItemText} />
+                    {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                  </ListItem>
+
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {items.map(
                         ({ key: childKey, label: childLabel, icon: ChildIcon, url: ChildUrl }) => (
-                          <Tooltip key={childKey} title={childLabel}>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon className={classes.ListItemIcon}>
-                                <ChildIcon />
-                              </ListItemIcon>
-                              <Link
-                                to={ChildUrl}
-                                className={classes.links}
-                                onClick={this.updateTitle(childLabel)}
-                              >
-                                <ListItemText
-                                  inset
-                                  primary={childLabel}
-                                  classes={{ primary: classes.ListItemText }}
-                                />
-                              </Link>
-                            </ListItem>
-                          </Tooltip>
+                          <ListItem key={childKey} button className={classes.nested}>
+                            <ListItemIcon className={classes.ListItemIcon}>
+                              <ChildIcon />
+                            </ListItemIcon>
+                            <Link
+                              to={ChildUrl}
+                              className={classes.links}
+                              onClick={this.updateTitle(childLabel)}
+                            >
+                              <ListItemText
+                                inset
+                                primary={childLabel}
+                                classes={{ primary: classes.ListItemText }}
+                              />
+                            </Link>
+                          </ListItem>
                         )
                       )}
                     </List>
