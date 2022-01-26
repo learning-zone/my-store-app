@@ -28,14 +28,17 @@ const theme = createTheme({
 store.dispatch(verifyToken());
 
 ReactDOM.render(
-  <Suspense fallback={<div>Error! Please refresh the page</div>}>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
-    </ThemeProvider>
-  </Suspense>,
+  <React.StrictMode>
+    <Suspense fallback={<div>Error! Please refresh the page</div>}>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </Provider>
+      </ThemeProvider>
+    </Suspense>
+    ,
+  </React.StrictMode>,
   mountNode
 );
