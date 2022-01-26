@@ -19,7 +19,7 @@ const drawerWidth = 250;
 
 const styles = (theme) => ({
   appBar: {
-    position: 'absolute !important',
+    position: 'absolute',
     zIndex: theme.zIndex.navDrawer + 1 + '!important',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
