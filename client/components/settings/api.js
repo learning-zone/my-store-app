@@ -13,7 +13,7 @@ const styles = () => ({
     fontSize: '30px',
     color: 'rgba(0, 0, 0, 0.54)',
     display: 'inline-block',
-    marginBottom: '15px',
+    marginTop: '15px',
     textShadow: '0 1px #fff',
   },
   actionButton: {
