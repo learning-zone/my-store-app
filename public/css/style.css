@@ -1,11 +1,7 @@
 body {
   font-size: 15px;
   margin: 0;
-  line-height: 24px;
-}
-
-body {
-  margin: 0;
+  line-height: 20px;
   background-color: #f2f2f2;
 }
 
@@ -46,4 +42,9 @@ hr {
 
 .css-cveggr-MuiListItemIcon-root {
   min-width: 35px !important;
+}
+
+.css-2xinfk-MuiButtonBase-root-MuiButton-root {
+  min-width: 32px !important;
+  padding: 4px !important;
 }
