@@ -30,12 +30,12 @@ const styles = () => ({
 class API extends Component {
   delete(e) {
     e.preventDefault();
-    console.log('Delete Item');
+    console.log('Delete');
     //this.props.actions.logout();
   }
   add(e) {
     e.preventDefault();
-    console.log('Add Item');
+    console.log('Add');
     //this.props.actions.logout();
   }
   render() {
