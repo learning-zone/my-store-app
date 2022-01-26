@@ -12,6 +12,10 @@ import App from './containers/app/AppContainer';
 const mountNode = document.getElementById('root');
 
 const theme = createTheme({
+  zIndex: {
+    appBar: 1251,
+    navDrawer: 1250,
+  },
   typography: {
     useNextVariants: true,
   },
