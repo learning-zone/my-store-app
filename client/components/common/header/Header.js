@@ -19,20 +19,20 @@ const drawerWidth = 250;
 
 const styles = (theme) => ({
   appBar: {
-    position: 'absolute',
-    zIndex: theme.zIndex.navDrawer + 1,
+    position: 'absolute !important',
+    zIndex: theme.zIndex.navDrawer + 1 + '!important',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
+    }) + '!important',
   },
   appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth + '!important',
+    width: `calc(100% - ${drawerWidth}px) !important`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
-    }),
+    }) + '!important',
   },
   menuButton: {
     marginLeft: 45,
