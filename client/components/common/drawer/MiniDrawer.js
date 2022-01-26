@@ -27,7 +27,7 @@ const styles = (theme) => ({
     }) + '!important',
   },
   drawerPaperClose: {
-    width: 45,
+    width: 50,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
