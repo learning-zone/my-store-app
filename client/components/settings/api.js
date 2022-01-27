@@ -335,9 +335,11 @@ export default function API() {
                       <TableCell align="right">{row.date_added}</TableCell>
                       <TableCell align="right">{row.date_modified}</TableCell>
                       <TableCell align="right">
-                        <Button onClick={(event) => handleEdit(event, labelId)}>
-                          <EditOutlinedIcon />
-                        </Button>
+                        <Tooltip title="Edit">
+                          <Button onClick={(event) => handleEdit(event, labelId)}>
+                            <EditOutlinedIcon />
+                          </Button>
+                        </Tooltip>
                       </TableCell>
                     </TableRow>
                   );
