@@ -6,7 +6,7 @@
   "private": true,
   "main": "./server/server.js",
   "scripts": {
-    "start": "babel-node server/app.js",
+    "start": "babel-node server/server.js",
     "clean": "rimraf node_modules && rimraf dist && npm install",
     "webpack:dev": "cross-env NODE_ENV=development webpack --config ./webpack/webpack.config.dev.js",
     "webpack:prod": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
