@@ -1,44 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
-import { API_URL } from '../../config/config'; 
-import { useDemoData } from '@mui/x-data-grid-generator';
+import { API_URL } from '../../config/config';
 
-const VISIBLE_FIELDS = ['name', 'rating', 'country', 'dateCreated', 'isAdmin'];
+const columns = [
+  { field: 'api_id', headerName: 'ID', width: 90 },
+  {
+    field: 'username',
+    headerName: 'User Name',
+    width: 250,
+    editable: true,
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'date_added',
+    headerName: 'Date Added',
+    type: 'date',
+    width: 250,
+    editable: true,
+  },
+  {
+    field: 'date_modified',
+    headerName: 'Date Modified',
+    type: 'date',
+    width: 250,
+    editable: true,
+  },
+];
+
+const rows = [
+  { id: 1, username: 'Snow', status: 'Jon', date_added: 35, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 2, username: 'Lannister', status: 'Cersei', date_added: 42, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 3, username: 'Lannister', status: 'Jaime', date_added: 45, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 4, username: 'Stark', status: 'Arya', date_added: 16, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 5, username: 'Targaryen', status: 'Daenerys', date_added: null, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 6, username: 'Melisandre', status: null, date_added: 150, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 7, username: 'Clifford', status: 'Ferrara', date_added: 44, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 8, username: 'Frances', status: 'Rossini', date_added: 36, date_modified: '2022-01-19T14:31:47.000Z' },
+  { id: 9, username: 'Roxie', status: 'Harvey', date_added: 65, date_modified: '2022-01-19T14:31:47.000Z' },
+];
 
 export default function API() {
-  let [users, setUsers] = useState([]);
+  let [data, setData] = useState([]);
 
-  // The useEffect() hook fires any time that the component is rendered.
-  // An empty array is passed as the second argument so that the effect only fires once.
   useEffect(() => {
     axios
       .get(API_URL + 'ip')
-      .then((response) => setUsers(response.data))
+      .then((response) => setData(response.data))
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  const { data } = useDemoData({
-    dataSet: 'Employee',
-    visibleFields: VISIBLE_FIELDS,
-    rowLength: 5000,
-  });
-
-  const columns = React.useMemo(
-    () => data.columns.map((col) => (col.field === 'rating' ? { ...col, sortable: false } : col)),
-    [data.columns]
-  );
-
   return (
     <>
-      <div className="App">
-        <h2>The JSON below is loaded from an external API!</h2>
-        <code>{JSON.stringify(users)}</code>
-      </div>
       <div style={{ height: 580, width: '100%', backgroundColor: '#fff' }}>
-        <DataGrid {...data} columns={columns} />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+        />
       </div>
     </>
   );
