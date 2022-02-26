@@ -20,7 +20,7 @@ export default function API() {
     axios
       .get(API_URL + 'ip')
       .then((response) => {
-        // update status
+        // Update status and Date Format
         _.map(response.data.data, function (data) {
           data.status = data.status == 1 ? 'Enabled' : 'Disabled';
           data.date_added = moment(data.date_added).format('DD/MM/YYYY');
