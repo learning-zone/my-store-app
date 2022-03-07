@@ -2,12 +2,77 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import * as moment from 'moment';
-
-import { DataGrid } from '@mui/x-data-grid';
 import { API_URL } from '../../config/config';
-
+import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-import { FormControlLabel, IconButton } from '@mui/material';
+import { FormControl, FormControlLabel, IconButton } from '@mui/material';
+
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { makeStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
+import { useForm, Controller } from 'react-hook-form';
+import {
+  Box,
+  TextField,
+  TextareaAutosize,
+  Select,
+  MenuItem,
+  InputLabel,
+  Button,
+} from '@mui/material';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '300px',
+    },
+    '& .MuiButtonBase-root': {
+      margin: theme.spacing(2),
+    },
+  },
+}));
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const MatEdit = ({ index }) => {
   const handleEditClick = () => {
@@ -28,10 +93,10 @@ const MatEdit = ({ index }) => {
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
-  { field: 'username', headerName: 'User Name', width: 250, editable: true },
-  { field: 'status', headerName: 'Status', width: 150, editable: true },
-  { field: 'date_added', headerName: 'Date Added', type: 'date', width: 250, editable: true },
-  { field: 'date_modified', headerName: 'Date Modified', type: 'date', width: 250, editable: true },
+  { field: 'username', headerName: 'User Name', width: 250 },
+  { field: 'status', headerName: 'Status', width: 150 },
+  { field: 'date_added', headerName: 'Date Added', type: 'date', width: 250 },
+  { field: 'date_modified', headerName: 'Date Modified', type: 'date', width: 250 },
   {
     field: 'actions',
     type: 'actions',
@@ -51,8 +116,27 @@ const columns = [
 ];
 
 export default function API() {
+  const classes = useStyles();
   let [rows, setRows] = useState([]);
+  const [value, setValue] = React.useState(0);
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleClose = () => {
+    console.log('handleClose');
+  };
+
+  const { handleSubmit, control } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  /**
+   * GET Details from API
+   */
   useEffect(() => {
     axios
       .get(API_URL + 'ip')
@@ -83,6 +167,70 @@ export default function API() {
           disableSelectionOnClick
         />
       </div>
+      <Box sx={{ width: '100%', backgroundColor: '#fff' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={value} onChange={handleChange} aria-label="Edit API">
+            <Tab label="General" {...a11yProps(0)} />
+            <Tab label="IP Addresses" {...a11yProps(1)} />
+            <Tab label="Session" {...a11yProps(2)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          {/** General Section */}
+          <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  label="Email"
+                  variant="filled"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                  type="email"
+                />
+              )}
+              rules={{ required: 'Email required' }}
+            />
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  label="Password"
+                  variant="filled"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                  type="password"
+                />
+              )}
+              rules={{ required: 'Password required' }}
+            />
+            <div>
+              <Button variant="contained" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Signup
+              </Button>
+            </div>
+          </form>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          {/** IP Addresses Section */}
+          IP Addresses
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          {/** Session Section */}
+          Session
+        </TabPanel>
+      </Box>
     </>
   );
 }
