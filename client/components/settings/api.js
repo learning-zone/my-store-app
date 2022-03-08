@@ -122,8 +122,8 @@ export default function API() {
     setValue(newValue);
   };
 
-  const handleClose = () => {
-    console.log('handleClose');
+  const generateKey = () => {
+    console.log('generateKey');
   };
 
   const { handleSubmit, control } = useForm();
@@ -215,7 +215,7 @@ export default function API() {
               rules={{ required: 'API Key required' }}
             />
             <div>
-              <Button variant="contained" onClick={handleClose}>
+              <Button variant="contained" onClick={generateKey}>
                 Generate
               </Button>
             </div>
