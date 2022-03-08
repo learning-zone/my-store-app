@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { API_URL } from '../../config/config';
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-import { FormControl, FormControlLabel, IconButton } from '@mui/material';
+import { FormControlLabel, IconButton } from '@mui/material';
 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -13,15 +13,7 @@ import Tab from '@mui/material/Tab';
 import { makeStyles } from '@mui/styles';
 import Typography from '@mui/material/Typography';
 import { useForm, Controller } from 'react-hook-form';
-import {
-  Box,
-  TextField,
-  TextareaAutosize,
-  Select,
-  MenuItem,
-  InputLabel,
-  Button,
-} from '@mui/material';
+import { Box, TextField, TextareaAutosize, MenuItem, Button } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,13 +25,18 @@ const useStyles = makeStyles((theme) => ({
 
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '300px',
+      width: '90%',
     },
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
     },
   },
 }));
+
+const api_status = [
+  { value: '0', label: 'Disabled' },
+  { value: '1', label: 'Enabled' },
+];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -117,8 +114,9 @@ const columns = [
 
 export default function API() {
   const classes = useStyles();
-  let [rows, setRows] = useState([]);
+  const [rows, setRows] = useState([]);
   const [value, setValue] = React.useState(0);
+  const [status, setStatus] = React.useState('0');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -132,6 +130,10 @@ export default function API() {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleStatus = (event) => {
+    setStatus(event.target.value);
   };
 
   /**
@@ -179,47 +181,60 @@ export default function API() {
           {/** General Section */}
           <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="email"
+              name="user"
               control={control}
               defaultValue=""
               render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <TextField
-                  label="Email"
-                  variant="filled"
+                  label="API Username"
                   value={value}
                   onChange={onChange}
                   error={!!error}
                   helperText={error ? error.message : null}
-                  type="email"
+                  type="text"
                 />
               )}
-              rules={{ required: 'Email required' }}
+              rules={{ required: 'API Username required' }}
             />
             <Controller
-              name="password"
+              name="API_Key"
               control={control}
               defaultValue=""
               render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <TextField
-                  label="Password"
-                  variant="filled"
+                <TextareaAutosize
+                  minRows={5}
+                  label="API Key"
                   value={value}
                   onChange={onChange}
                   error={!!error}
                   helperText={error ? error.message : null}
-                  type="password"
+                  type="text"
+                  style={{ width: '90%' }}
                 />
               )}
-              rules={{ required: 'Password required' }}
+              rules={{ required: 'API Key required' }}
             />
             <div>
               <Button variant="contained" onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button type="submit" variant="contained" color="primary">
-                Signup
+                Generate
               </Button>
             </div>
+            {/***  Select Status  ***/}
+            <Controller
+              name="API_Key"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField select label="Select" value={status} onChange={handleStatus}>
+                  {api_status.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )}
+              rules={{ required: '' }}
+            />
           </form>
         </TabPanel>
         <TabPanel value={value} index={1}>
