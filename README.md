@@ -62,7 +62,6 @@ Password: P@ssw0rd
 |[Joi](https://www.npmjs.com/package/joi) | Object schema validation|
 |[swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc)| API documentation |
 |[swagger-ui](https://www.npmjs.com/package/swagger-ui)| API documentation |
-|[JSDoc](https://jsdoc.app/)| Soruce code documentation generator |
 |[React](https://facebook.github.io/react/) | JavaScript library for building user interfaces |
 |[Redux](http://redux.js.org/) | Predictable state container |
 |[Material-UI](https://material-ui-1dab0.firebaseapp.com/)| CSS framework|
