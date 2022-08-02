@@ -56,18 +56,20 @@ Password: P@ssw0rd
 |------------|----------------------------------------------|
 |[Express](http://expressjs.com/)| Web framework for Node.js|
 |[Bookshelf](http://bookshelfjs.org/)| JavaScript ORM  for Node.js |
-|[Knex](http://knexjs.org/) |SQL Query Builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, and Oracle|
+|[Knex](http://knexjs.org/) |SQL Query Builder|
 |[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)|JSON Web Tokens ( jwt )|
 |[Winston](https://www.npmjs.com/package/winston)|Logging Library|
 |[Joi](https://www.npmjs.com/package/joi) | Object schema validation|
 |[swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc)| API documentation |
 |[swagger-ui](https://www.npmjs.com/package/swagger-ui)| API documentation |
+|[JSDoc](https://jsdoc.app/)| Soruce code documentation generator |
 |[React](https://facebook.github.io/react/) | JavaScript library for building user interfaces |
 |[Redux](http://redux.js.org/) | Predictable state container |
-|[Material-UI](https://material-ui-1dab0.firebaseapp.com/)| A React component library implementing Google's Material Design|
+|[Material-UI](https://material-ui-1dab0.firebaseapp.com/)| CSS framework|
 |[Redux Form](http://redux-form.com/8.3.0/)| Redux Form |
 |[React-Router](https://reacttraining.com/react-router/)| Declarative routing for React |
 |[Axios](https://github.com/mzabriskie/axios) | Promise based HTTP client |
 |[dotenv](https://www.npmjs.com/package/dotenv)| Environment configuration |
 |[ESLint](http://eslint.org/) | Code linting tool|
 |[Prettier](https://www.npmjs.com/package/prettier) | Code formatter|
+|[Grunt](https://gruntjs.com/)|JavaScript Task Runner|
