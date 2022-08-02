@@ -20,8 +20,8 @@ $ npm install
 $ npm run migrate
 ```
 
- Finally, start and build the application:
- 
+Finally, start and build the application:
+
 ```cmd
 $ npm run build (For development)
 $ npm run build:prod (For production)
@@ -30,8 +30,9 @@ $ npm run build:prod (For production)
 List of NPM Commands:
 
 ```cmd
-$ npm run lint       # linting
-$ npm run clean      # remove dist and node_modules folder and install dependencies
+$ npm run lint       # Linting
+$ npm run clean      # Remove dist and node_modules folder and install dependencies
+$ npm ls <package-name> # List dependent package
 ```
 
 ### 3. Usage
@@ -39,6 +40,13 @@ $ npm run clean      # remove dist and node_modules folder and install dependenc
 URL : http://localhost:3000/
 
 Navigate to http://localhost:3000/swagger/ for the API documentation.
+
+### 4. App Credential
+
+```js
+Username: pradeep.vwa@gmail.com
+Password: P@ssw0rd
+```
 
 ### 4. Useful Link
 

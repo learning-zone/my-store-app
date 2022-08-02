@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 03:27 PM
+-- Generation Time: Aug 02, 2022 at 09:39 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -30,8 +30,8 @@ USE `mystore`;
 --
 
 DROP TABLE IF EXISTS `ms_address`;
-CREATE TABLE `ms_address` (
-  `address_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_address` (
+  `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
@@ -42,7 +42,9 @@ CREATE TABLE `ms_address` (
   `postcode` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT 0,
   `zone_id` int(11) NOT NULL DEFAULT 0,
-  `custom_field` text NOT NULL
+  `custom_field` text NOT NULL,
+  PRIMARY KEY (`address_id`),
+  KEY `customer_id` (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -52,14 +54,23 @@ CREATE TABLE `ms_address` (
 --
 
 DROP TABLE IF EXISTS `ms_api`;
-CREATE TABLE `ms_api` (
-  `api_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_api` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL,
   `key` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ms_api`
+--
+
+INSERT INTO `ms_api` (`id`, `username`, `key`, `status`, `date_added`, `date_modified`) VALUES
+(1, 'Default', 'Y1Bib43XHOLjtooF7I5qkdAZzGqBCffCkjD2QElDHVuXvhJiZrnJkfU9n9JxvyxUL6TpZ3MC59pmydbNezmq1z0xTEUJFAC1H7W9Tsua7b8WqAQla5tRlbA8VDOu1j8UcNXS3ye7ac20mEjG0BPv1CPA8xrE96c6qwrkfdZMIsxUtFfalw9pBBusDMVJ0g2yfrEfRDpOwWAoqjBtdNrk1asAxNZjXmbn8z6Az9YIHlykNl56TSTldck8cQ6kOKOd', 1, '2022-01-19 20:01:47', '2022-01-19 20:01:47'),
+(2, 'pradeep.vwa@gmail.com', 'tW1ViIsRAJhHpmqh5Ud0ynLcRfNx6GstawYNI4Zu2N3Uk1GtZ27S0563ctpaLWfhZDa2sV00ba6zj52ZiO2Jv0aUk4Ep1koLqz0oGcfzvOgrf6bSin2vF7QkVbEXgvxP2NbbtCeUIZY76adE3drBR6lfZKfjMfTNku58nZvNNP7JGDkOnqdUBkeCOWIF1qffFYHA3NG43D4wvDLNVY4pTz66of7iLqTMPce1cZNNREcUCiJeSRLtNnhG7v4J0BRG', 1, '2022-01-23 10:30:30', '2022-01-23 10:30:30');
 
 -- --------------------------------------------------------
 
@@ -68,11 +79,19 @@ CREATE TABLE `ms_api` (
 --
 
 DROP TABLE IF EXISTS `ms_api_ip`;
-CREATE TABLE `ms_api_ip` (
-  `api_ip_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_api_ip` (
+  `api_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `api_id` int(11) NOT NULL,
-  `ip` varchar(40) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ip` varchar(40) NOT NULL,
+  PRIMARY KEY (`api_ip_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ms_api_ip`
+--
+
+INSERT INTO `ms_api_ip` (`api_ip_id`, `api_id`, `ip`) VALUES
+(1, 2, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -81,13 +100,14 @@ CREATE TABLE `ms_api_ip` (
 --
 
 DROP TABLE IF EXISTS `ms_api_session`;
-CREATE TABLE `ms_api_session` (
-  `api_session_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_api_session` (
+  `api_session_id` int(11) NOT NULL AUTO_INCREMENT,
   `api_id` int(11) NOT NULL,
   `session_id` varchar(32) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`api_session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -97,11 +117,12 @@ CREATE TABLE `ms_api_session` (
 --
 
 DROP TABLE IF EXISTS `ms_attribute`;
-CREATE TABLE `ms_attribute` (
-  `attribute_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_attribute` (
+  `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`attribute_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_attribute`
@@ -127,10 +148,11 @@ INSERT INTO `ms_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 --
 
 DROP TABLE IF EXISTS `ms_attribute_description`;
-CREATE TABLE `ms_attribute_description` (
+CREATE TABLE IF NOT EXISTS `ms_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`attribute_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -157,10 +179,11 @@ INSERT INTO `ms_attribute_description` (`attribute_id`, `language_id`, `name`) V
 --
 
 DROP TABLE IF EXISTS `ms_attribute_group`;
-CREATE TABLE `ms_attribute_group` (
-  `attribute_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ms_attribute_group` (
+  `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`attribute_group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_attribute_group`
@@ -179,10 +202,11 @@ INSERT INTO `ms_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_attribute_group_description`;
-CREATE TABLE `ms_attribute_group_description` (
+CREATE TABLE IF NOT EXISTS `ms_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`attribute_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -202,11 +226,12 @@ INSERT INTO `ms_attribute_group_description` (`attribute_group_id`, `language_id
 --
 
 DROP TABLE IF EXISTS `ms_banner`;
-CREATE TABLE `ms_banner` (
-  `banner_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_banner` (
+  `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`banner_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_banner`
@@ -224,15 +249,16 @@ INSERT INTO `ms_banner` (`banner_id`, `name`, `status`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_banner_image`;
-CREATE TABLE `ms_banner_image` (
-  `banner_image_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_banner_image` (
+  `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
   `link` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`banner_image_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_banner_image`
@@ -261,8 +287,8 @@ INSERT INTO `ms_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `t
 --
 
 DROP TABLE IF EXISTS `ms_cart`;
-CREATE TABLE `ms_cart` (
-  `cart_id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_cart` (
+  `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `api_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `session_id` varchar(32) NOT NULL,
@@ -270,7 +296,9 @@ CREATE TABLE `ms_cart` (
   `recurring_id` int(11) NOT NULL,
   `option` text NOT NULL,
   `quantity` int(5) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -280,8 +308,8 @@ CREATE TABLE `ms_cart` (
 --
 
 DROP TABLE IF EXISTS `ms_category`;
-CREATE TABLE `ms_category` (
-  `category_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT 0,
   `top` tinyint(1) NOT NULL,
@@ -289,8 +317,10 @@ CREATE TABLE `ms_category` (
   `sort_order` int(3) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`category_id`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_category`
@@ -343,14 +373,16 @@ INSERT INTO `ms_category` (`category_id`, `image`, `parent_id`, `top`, `column`,
 --
 
 DROP TABLE IF EXISTS `ms_category_description`;
-CREATE TABLE `ms_category_description` (
+CREATE TABLE IF NOT EXISTS `ms_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL
+  `meta_keyword` varchar(255) NOT NULL,
+  PRIMARY KEY (`category_id`,`language_id`),
+  KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -404,9 +436,10 @@ INSERT INTO `ms_category_description` (`category_id`, `language_id`, `name`, `de
 --
 
 DROP TABLE IF EXISTS `ms_category_filter`;
-CREATE TABLE `ms_category_filter` (
+CREATE TABLE IF NOT EXISTS `ms_category_filter` (
   `category_id` int(11) NOT NULL,
-  `filter_id` int(11) NOT NULL
+  `filter_id` int(11) NOT NULL,
+  PRIMARY KEY (`category_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -416,10 +449,11 @@ CREATE TABLE `ms_category_filter` (
 --
 
 DROP TABLE IF EXISTS `ms_category_path`;
-CREATE TABLE `ms_category_path` (
+CREATE TABLE IF NOT EXISTS `ms_category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
-  `level` int(11) NOT NULL
+  `level` int(11) NOT NULL,
+  PRIMARY KEY (`category_id`,`path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -506,10 +540,11 @@ INSERT INTO `ms_category_path` (`category_id`, `path_id`, `level`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_category_to_layout`;
-CREATE TABLE `ms_category_to_layout` (
+CREATE TABLE IF NOT EXISTS `ms_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -519,9 +554,10 @@ CREATE TABLE `ms_category_to_layout` (
 --
 
 DROP TABLE IF EXISTS `ms_category_to_store`;
-CREATE TABLE `ms_category_to_store` (
+CREATE TABLE IF NOT EXISTS `ms_category_to_store` (
   `category_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -575,15 +611,16 @@ INSERT INTO `ms_category_to_store` (`category_id`, `store_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_country`;
-CREATE TABLE `ms_country` (
-  `country_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_country` (
+  `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `iso_code_2` varchar(2) NOT NULL,
   `iso_code_3` varchar(3) NOT NULL,
   `address_format` text NOT NULL,
   `postcode_required` tinyint(1) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`country_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=258 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_country`
@@ -851,8 +888,8 @@ INSERT INTO `ms_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 --
 
 DROP TABLE IF EXISTS `ms_coupon`;
-CREATE TABLE `ms_coupon` (
-  `coupon_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_coupon` (
+  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `code` varchar(20) NOT NULL,
   `type` char(1) NOT NULL,
@@ -865,8 +902,9 @@ CREATE TABLE `ms_coupon` (
   `uses_total` int(11) NOT NULL,
   `uses_customer` varchar(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`coupon_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_coupon`
@@ -884,9 +922,10 @@ INSERT INTO `ms_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logge
 --
 
 DROP TABLE IF EXISTS `ms_coupon_category`;
-CREATE TABLE `ms_coupon_category` (
+CREATE TABLE IF NOT EXISTS `ms_coupon_category` (
   `coupon_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`coupon_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -896,13 +935,14 @@ CREATE TABLE `ms_coupon_category` (
 --
 
 DROP TABLE IF EXISTS `ms_coupon_history`;
-CREATE TABLE `ms_coupon_history` (
-  `coupon_history_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_coupon_history` (
+  `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`coupon_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -912,10 +952,11 @@ CREATE TABLE `ms_coupon_history` (
 --
 
 DROP TABLE IF EXISTS `ms_coupon_product`;
-CREATE TABLE `ms_coupon_product` (
-  `coupon_product_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_coupon_product` (
+  `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`coupon_product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -925,8 +966,8 @@ CREATE TABLE `ms_coupon_product` (
 --
 
 DROP TABLE IF EXISTS `ms_currency`;
-CREATE TABLE `ms_currency` (
-  `currency_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_currency` (
+  `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `code` varchar(3) NOT NULL,
   `symbol_left` varchar(12) NOT NULL,
@@ -934,8 +975,9 @@ CREATE TABLE `ms_currency` (
   `decimal_place` char(1) NOT NULL,
   `value` double(15,8) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`currency_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_currency`
@@ -953,8 +995,8 @@ INSERT INTO `ms_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 --
 
 DROP TABLE IF EXISTS `ms_customer`;
-CREATE TABLE `ms_customer` (
-  `customer_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_group_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `language_id` int(11) NOT NULL,
@@ -975,7 +1017,8 @@ CREATE TABLE `ms_customer` (
   `safe` tinyint(1) NOT NULL,
   `token` text NOT NULL,
   `code` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -985,13 +1028,14 @@ CREATE TABLE `ms_customer` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_activity`;
-CREATE TABLE `ms_customer_activity` (
-  `customer_activity_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_activity` (
+  `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
   `data` text NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_activity_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1001,7 +1045,7 @@ CREATE TABLE `ms_customer_activity` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_affiliate`;
-CREATE TABLE `ms_customer_affiliate` (
+CREATE TABLE IF NOT EXISTS `ms_customer_affiliate` (
   `customer_id` int(11) NOT NULL,
   `company` varchar(40) NOT NULL,
   `website` varchar(255) NOT NULL,
@@ -1018,7 +1062,8 @@ CREATE TABLE `ms_customer_affiliate` (
   `bank_account_number` varchar(64) NOT NULL,
   `custom_field` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1028,11 +1073,12 @@ CREATE TABLE `ms_customer_affiliate` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_approval`;
-CREATE TABLE `ms_customer_approval` (
-  `customer_approval_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_approval` (
+  `customer_approval_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `type` varchar(9) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_approval_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1042,11 +1088,12 @@ CREATE TABLE `ms_customer_approval` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_group`;
-CREATE TABLE `ms_customer_group` (
-  `customer_group_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_group` (
+  `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `approval` int(1) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`customer_group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_customer_group`
@@ -1062,11 +1109,12 @@ INSERT INTO `ms_customer_group` (`customer_group_id`, `approval`, `sort_order`) 
 --
 
 DROP TABLE IF EXISTS `ms_customer_group_description`;
-CREATE TABLE `ms_customer_group_description` (
+CREATE TABLE IF NOT EXISTS `ms_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  PRIMARY KEY (`customer_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1083,11 +1131,12 @@ INSERT INTO `ms_customer_group_description` (`customer_group_id`, `language_id`,
 --
 
 DROP TABLE IF EXISTS `ms_customer_history`;
-CREATE TABLE `ms_customer_history` (
-  `customer_history_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_history` (
+  `customer_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1097,11 +1146,13 @@ CREATE TABLE `ms_customer_history` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_ip`;
-CREATE TABLE `ms_customer_ip` (
-  `customer_ip_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_ip` (
+  `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_ip_id`),
+  KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1111,13 +1162,16 @@ CREATE TABLE `ms_customer_ip` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_login`;
-CREATE TABLE `ms_customer_login` (
-  `customer_login_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_login` (
+  `customer_login_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `total` int(4) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`customer_login_id`),
+  KEY `email` (`email`),
+  KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1127,12 +1181,13 @@ CREATE TABLE `ms_customer_login` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_online`;
-CREATE TABLE `ms_customer_online` (
+CREATE TABLE IF NOT EXISTS `ms_customer_online` (
   `ip` varchar(40) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `url` text NOT NULL,
   `referer` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1142,13 +1197,14 @@ CREATE TABLE `ms_customer_online` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_reward`;
-CREATE TABLE `ms_customer_reward` (
-  `customer_reward_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_reward` (
+  `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) NOT NULL DEFAULT 0,
   `description` text NOT NULL,
   `points` int(8) NOT NULL DEFAULT 0,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_reward_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1158,8 +1214,8 @@ CREATE TABLE `ms_customer_reward` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_search`;
-CREATE TABLE `ms_customer_search` (
-  `customer_search_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_search` (
+  `customer_search_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -1169,7 +1225,8 @@ CREATE TABLE `ms_customer_search` (
   `description` tinyint(1) NOT NULL,
   `products` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_search_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1179,13 +1236,14 @@ CREATE TABLE `ms_customer_search` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_transaction`;
-CREATE TABLE `ms_customer_transaction` (
-  `customer_transaction_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_customer_transaction` (
+  `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `description` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1195,10 +1253,11 @@ CREATE TABLE `ms_customer_transaction` (
 --
 
 DROP TABLE IF EXISTS `ms_customer_wishlist`;
-CREATE TABLE `ms_customer_wishlist` (
+CREATE TABLE IF NOT EXISTS `ms_customer_wishlist` (
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`,`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1208,14 +1267,15 @@ CREATE TABLE `ms_customer_wishlist` (
 --
 
 DROP TABLE IF EXISTS `ms_custom_field`;
-CREATE TABLE `ms_custom_field` (
-  `custom_field_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_custom_field` (
+  `custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
   `validation` varchar(255) NOT NULL,
   `location` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `sort_order` int(3) NOT NULL
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`custom_field_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1225,10 +1285,11 @@ CREATE TABLE `ms_custom_field` (
 --
 
 DROP TABLE IF EXISTS `ms_custom_field_customer_group`;
-CREATE TABLE `ms_custom_field_customer_group` (
+CREATE TABLE IF NOT EXISTS `ms_custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
-  `required` tinyint(1) NOT NULL
+  `required` tinyint(1) NOT NULL,
+  PRIMARY KEY (`custom_field_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1238,10 +1299,11 @@ CREATE TABLE `ms_custom_field_customer_group` (
 --
 
 DROP TABLE IF EXISTS `ms_custom_field_description`;
-CREATE TABLE `ms_custom_field_description` (
+CREATE TABLE IF NOT EXISTS `ms_custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`custom_field_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1251,10 +1313,11 @@ CREATE TABLE `ms_custom_field_description` (
 --
 
 DROP TABLE IF EXISTS `ms_custom_field_value`;
-CREATE TABLE `ms_custom_field_value` (
-  `custom_field_value_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_custom_field_value` (
+  `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `custom_field_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`custom_field_value_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1264,11 +1327,12 @@ CREATE TABLE `ms_custom_field_value` (
 --
 
 DROP TABLE IF EXISTS `ms_custom_field_value_description`;
-CREATE TABLE `ms_custom_field_value_description` (
+CREATE TABLE IF NOT EXISTS `ms_custom_field_value_description` (
   `custom_field_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`custom_field_value_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1278,11 +1342,12 @@ CREATE TABLE `ms_custom_field_value_description` (
 --
 
 DROP TABLE IF EXISTS `ms_download`;
-CREATE TABLE `ms_download` (
-  `download_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_download` (
+  `download_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(160) NOT NULL,
   `mask` varchar(128) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1292,10 +1357,11 @@ CREATE TABLE `ms_download` (
 --
 
 DROP TABLE IF EXISTS `ms_download_description`;
-CREATE TABLE `ms_download_description` (
+CREATE TABLE IF NOT EXISTS `ms_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`download_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1305,14 +1371,15 @@ CREATE TABLE `ms_download_description` (
 --
 
 DROP TABLE IF EXISTS `ms_event`;
-CREATE TABLE `ms_event` (
-  `event_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_event` (
+  `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(64) NOT NULL,
   `trigger` text NOT NULL,
   `action` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`event_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_event`
@@ -1372,11 +1439,12 @@ INSERT INTO `ms_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort
 --
 
 DROP TABLE IF EXISTS `ms_extension`;
-CREATE TABLE `ms_extension` (
-  `extension_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_extension` (
+  `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
-  `code` varchar(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `code` varchar(32) NOT NULL,
+  PRIMARY KEY (`extension_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_extension`
@@ -1432,11 +1500,12 @@ INSERT INTO `ms_extension` (`extension_id`, `type`, `code`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_extension_install`;
-CREATE TABLE `ms_extension_install` (
-  `extension_install_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_extension_install` (
+  `extension_install_id` int(11) NOT NULL AUTO_INCREMENT,
   `extension_download_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`extension_install_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1446,11 +1515,12 @@ CREATE TABLE `ms_extension_install` (
 --
 
 DROP TABLE IF EXISTS `ms_extension_path`;
-CREATE TABLE `ms_extension_path` (
-  `extension_path_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_extension_path` (
+  `extension_path_id` int(11) NOT NULL AUTO_INCREMENT,
   `extension_install_id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`extension_path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1460,10 +1530,11 @@ CREATE TABLE `ms_extension_path` (
 --
 
 DROP TABLE IF EXISTS `ms_filter`;
-CREATE TABLE `ms_filter` (
-  `filter_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_filter` (
+  `filter_id` int(11) NOT NULL AUTO_INCREMENT,
   `filter_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1473,11 +1544,12 @@ CREATE TABLE `ms_filter` (
 --
 
 DROP TABLE IF EXISTS `ms_filter_description`;
-CREATE TABLE `ms_filter_description` (
+CREATE TABLE IF NOT EXISTS `ms_filter_description` (
   `filter_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`filter_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1487,9 +1559,10 @@ CREATE TABLE `ms_filter_description` (
 --
 
 DROP TABLE IF EXISTS `ms_filter_group`;
-CREATE TABLE `ms_filter_group` (
-  `filter_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL
+CREATE TABLE IF NOT EXISTS `ms_filter_group` (
+  `filter_group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`filter_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1499,10 +1572,11 @@ CREATE TABLE `ms_filter_group` (
 --
 
 DROP TABLE IF EXISTS `ms_filter_group_description`;
-CREATE TABLE `ms_filter_group_description` (
+CREATE TABLE IF NOT EXISTS `ms_filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`filter_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1512,13 +1586,14 @@ CREATE TABLE `ms_filter_group_description` (
 --
 
 DROP TABLE IF EXISTS `ms_geo_zone`;
-CREATE TABLE `ms_geo_zone` (
-  `geo_zone_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_geo_zone` (
+  `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`geo_zone_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_geo_zone`
@@ -1535,10 +1610,12 @@ INSERT INTO `ms_geo_zone` (`geo_zone_id`, `name`, `description`, `date_added`, `
 --
 
 DROP TABLE IF EXISTS `ms_googleshopping_category`;
-CREATE TABLE `ms_googleshopping_category` (
+CREATE TABLE IF NOT EXISTS `ms_googleshopping_category` (
   `google_product_category` varchar(10) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`google_product_category`,`store_id`),
+  KEY `category_id_store_id` (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1548,8 +1625,8 @@ CREATE TABLE `ms_googleshopping_category` (
 --
 
 DROP TABLE IF EXISTS `ms_googleshopping_product`;
-CREATE TABLE `ms_googleshopping_product` (
-  `product_advertise_google_id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_googleshopping_product` (
+  `product_advertise_google_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `has_issues` tinyint(1) DEFAULT NULL,
@@ -1570,7 +1647,9 @@ CREATE TABLE `ms_googleshopping_product` (
   `size_type` enum('regular','petite','plus','big and tall','maternity') DEFAULT NULL,
   `size_system` enum('AU','BR','CN','DE','EU','FR','IT','JP','MEX','UK','US') DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
-  `is_modified` tinyint(1) NOT NULL DEFAULT 0
+  `is_modified` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_advertise_google_id`),
+  UNIQUE KEY `product_id_store_id` (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1580,14 +1659,15 @@ CREATE TABLE `ms_googleshopping_product` (
 --
 
 DROP TABLE IF EXISTS `ms_googleshopping_product_status`;
-CREATE TABLE `ms_googleshopping_product_status` (
+CREATE TABLE IF NOT EXISTS `ms_googleshopping_product_status` (
   `product_id` int(11) NOT NULL DEFAULT 0,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `product_variation_id` varchar(64) NOT NULL DEFAULT '',
   `destination_statuses` text NOT NULL,
   `data_quality_issues` text NOT NULL,
   `item_level_issues` text NOT NULL,
-  `google_expiration_date` int(11) NOT NULL DEFAULT 0
+  `google_expiration_date` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_id`,`store_id`,`product_variation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1597,10 +1677,11 @@ CREATE TABLE `ms_googleshopping_product_status` (
 --
 
 DROP TABLE IF EXISTS `ms_googleshopping_product_target`;
-CREATE TABLE `ms_googleshopping_product_target` (
+CREATE TABLE IF NOT EXISTS `ms_googleshopping_product_target` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
-  `advertise_google_target_id` int(11) UNSIGNED NOT NULL
+  `advertise_google_target_id` int(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`product_id`,`advertise_google_target_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1610,7 +1691,7 @@ CREATE TABLE `ms_googleshopping_product_target` (
 --
 
 DROP TABLE IF EXISTS `ms_googleshopping_target`;
-CREATE TABLE `ms_googleshopping_target` (
+CREATE TABLE IF NOT EXISTS `ms_googleshopping_target` (
   `advertise_google_target_id` int(11) UNSIGNED NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `campaign_name` varchar(255) NOT NULL DEFAULT '',
@@ -1619,7 +1700,9 @@ CREATE TABLE `ms_googleshopping_target` (
   `feeds` text NOT NULL,
   `status` enum('paused','active') NOT NULL DEFAULT 'paused',
   `date_added` date DEFAULT NULL,
-  `roas` int(11) NOT NULL DEFAULT 0
+  `roas` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`advertise_google_target_id`),
+  KEY `store_id` (`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1629,12 +1712,13 @@ CREATE TABLE `ms_googleshopping_target` (
 --
 
 DROP TABLE IF EXISTS `ms_information`;
-CREATE TABLE `ms_information` (
-  `information_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_information` (
+  `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `bottom` int(1) NOT NULL DEFAULT 0,
   `sort_order` int(3) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`information_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_information`
@@ -1653,14 +1737,15 @@ INSERT INTO `ms_information` (`information_id`, `bottom`, `sort_order`, `status`
 --
 
 DROP TABLE IF EXISTS `ms_information_description`;
-CREATE TABLE `ms_information_description` (
+CREATE TABLE IF NOT EXISTS `ms_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
   `description` mediumtext NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL
+  `meta_keyword` varchar(255) NOT NULL,
+  PRIMARY KEY (`information_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1680,10 +1765,11 @@ INSERT INTO `ms_information_description` (`information_id`, `language_id`, `titl
 --
 
 DROP TABLE IF EXISTS `ms_information_to_layout`;
-CREATE TABLE `ms_information_to_layout` (
+CREATE TABLE IF NOT EXISTS `ms_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`information_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1693,9 +1779,10 @@ CREATE TABLE `ms_information_to_layout` (
 --
 
 DROP TABLE IF EXISTS `ms_information_to_store`;
-CREATE TABLE `ms_information_to_store` (
+CREATE TABLE IF NOT EXISTS `ms_information_to_store` (
   `information_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`information_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1715,16 +1802,18 @@ INSERT INTO `ms_information_to_store` (`information_id`, `store_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_language`;
-CREATE TABLE `ms_language` (
-  `language_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_language` (
+  `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `code` varchar(5) NOT NULL,
   `locale` varchar(255) NOT NULL,
   `image` varchar(64) NOT NULL,
   `directory` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`language_id`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_language`
@@ -1740,10 +1829,11 @@ INSERT INTO `ms_language` (`language_id`, `name`, `code`, `locale`, `image`, `di
 --
 
 DROP TABLE IF EXISTS `ms_layout`;
-CREATE TABLE `ms_layout` (
-  `layout_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ms_layout` (
+  `layout_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`layout_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_layout`
@@ -1771,13 +1861,14 @@ INSERT INTO `ms_layout` (`layout_id`, `name`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_layout_module`;
-CREATE TABLE `ms_layout_module` (
-  `layout_module_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_layout_module` (
+  `layout_module_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `position` varchar(14) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`layout_module_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_layout_module`
@@ -1802,12 +1893,13 @@ INSERT INTO `ms_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 --
 
 DROP TABLE IF EXISTS `ms_layout_route`;
-CREATE TABLE `ms_layout_route` (
-  `layout_route_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_layout_route` (
+  `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `route` varchar(64) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `route` varchar(64) NOT NULL,
+  PRIMARY KEY (`layout_route_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_layout_route`
@@ -1835,10 +1927,11 @@ INSERT INTO `ms_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 --
 
 DROP TABLE IF EXISTS `ms_length_class`;
-CREATE TABLE `ms_length_class` (
-  `length_class_id` int(11) NOT NULL,
-  `value` decimal(15,8) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ms_length_class` (
+  `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` decimal(15,8) NOT NULL,
+  PRIMARY KEY (`length_class_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_length_class`
@@ -1856,11 +1949,12 @@ INSERT INTO `ms_length_class` (`length_class_id`, `value`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_length_class_description`;
-CREATE TABLE `ms_length_class_description` (
+CREATE TABLE IF NOT EXISTS `ms_length_class_description` (
   `length_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
-  `unit` varchar(4) NOT NULL
+  `unit` varchar(4) NOT NULL,
+  PRIMARY KEY (`length_class_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1879,8 +1973,8 @@ INSERT INTO `ms_length_class_description` (`length_class_id`, `language_id`, `ti
 --
 
 DROP TABLE IF EXISTS `ms_location`;
-CREATE TABLE `ms_location` (
-  `location_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_location` (
+  `location_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
   `telephone` varchar(32) NOT NULL,
@@ -1888,7 +1982,9 @@ CREATE TABLE `ms_location` (
   `geocode` varchar(32) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `open` text NOT NULL,
-  `comment` text NOT NULL
+  `comment` text NOT NULL,
+  PRIMARY KEY (`location_id`),
+  KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1898,12 +1994,13 @@ CREATE TABLE `ms_location` (
 --
 
 DROP TABLE IF EXISTS `ms_manufacturer`;
-CREATE TABLE `ms_manufacturer` (
-  `manufacturer_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_manufacturer` (
+  `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`manufacturer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_manufacturer`
@@ -1924,9 +2021,10 @@ INSERT INTO `ms_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`)
 --
 
 DROP TABLE IF EXISTS `ms_manufacturer_to_store`;
-CREATE TABLE `ms_manufacturer_to_store` (
+CREATE TABLE IF NOT EXISTS `ms_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`manufacturer_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1948,13 +2046,14 @@ INSERT INTO `ms_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_marketing`;
-CREATE TABLE `ms_marketing` (
-  `marketing_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_marketing` (
+  `marketing_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
   `code` varchar(64) NOT NULL,
   `clicks` int(5) NOT NULL DEFAULT 0,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`marketing_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1964,8 +2063,8 @@ CREATE TABLE `ms_marketing` (
 --
 
 DROP TABLE IF EXISTS `ms_modification`;
-CREATE TABLE `ms_modification` (
-  `modification_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_modification` (
+  `modification_id` int(11) NOT NULL AUTO_INCREMENT,
   `extension_install_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `code` varchar(64) NOT NULL,
@@ -1974,7 +2073,8 @@ CREATE TABLE `ms_modification` (
   `link` varchar(255) NOT NULL,
   `xml` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`modification_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1984,12 +2084,13 @@ CREATE TABLE `ms_modification` (
 --
 
 DROP TABLE IF EXISTS `ms_module`;
-CREATE TABLE `ms_module` (
-  `module_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_module` (
+  `module_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
-  `setting` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `setting` text NOT NULL,
+  PRIMARY KEY (`module_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_module`
@@ -2009,11 +2110,12 @@ INSERT INTO `ms_module` (`module_id`, `name`, `code`, `setting`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_option`;
-CREATE TABLE `ms_option` (
-  `option_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_option` (
+  `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`option_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_option`
@@ -2039,10 +2141,11 @@ INSERT INTO `ms_option` (`option_id`, `type`, `sort_order`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_option_description`;
-CREATE TABLE `ms_option_description` (
+CREATE TABLE IF NOT EXISTS `ms_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`option_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2069,12 +2172,13 @@ INSERT INTO `ms_option_description` (`option_id`, `language_id`, `name`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_option_value`;
-CREATE TABLE `ms_option_value` (
-  `option_value_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_option_value` (
+  `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `sort_order` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`option_value_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_option_value`
@@ -2103,11 +2207,12 @@ INSERT INTO `ms_option_value` (`option_value_id`, `option_id`, `image`, `sort_or
 --
 
 DROP TABLE IF EXISTS `ms_option_value_description`;
-CREATE TABLE `ms_option_value_description` (
+CREATE TABLE IF NOT EXISTS `ms_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`option_value_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2137,8 +2242,8 @@ INSERT INTO `ms_option_value_description` (`option_value_id`, `language_id`, `op
 --
 
 DROP TABLE IF EXISTS `ms_order`;
-CREATE TABLE `ms_order` (
-  `order_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_no` int(11) NOT NULL DEFAULT 0,
   `invoice_prefix` varchar(26) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0,
@@ -2198,7 +2303,8 @@ CREATE TABLE `ms_order` (
   `user_agent` varchar(255) NOT NULL,
   `accept_language` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2208,13 +2314,14 @@ CREATE TABLE `ms_order` (
 --
 
 DROP TABLE IF EXISTS `ms_order_history`;
-CREATE TABLE `ms_order_history` (
-  `order_history_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_history` (
+  `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT 0,
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`order_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2224,15 +2331,16 @@ CREATE TABLE `ms_order_history` (
 --
 
 DROP TABLE IF EXISTS `ms_order_option`;
-CREATE TABLE `ms_order_option` (
-  `order_option_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_option` (
+  `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
   `product_option_id` int(11) NOT NULL,
   `product_option_value_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL,
-  `type` varchar(32) NOT NULL
+  `type` varchar(32) NOT NULL,
+  PRIMARY KEY (`order_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2242,8 +2350,8 @@ CREATE TABLE `ms_order_option` (
 --
 
 DROP TABLE IF EXISTS `ms_order_product`;
-CREATE TABLE `ms_order_product` (
-  `order_product_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_product` (
+  `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2252,7 +2360,9 @@ CREATE TABLE `ms_order_product` (
   `price` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `total` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `tax` decimal(15,4) NOT NULL DEFAULT 0.0000,
-  `reward` int(8) NOT NULL
+  `reward` int(8) NOT NULL,
+  PRIMARY KEY (`order_product_id`),
+  KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2262,8 +2372,8 @@ CREATE TABLE `ms_order_product` (
 --
 
 DROP TABLE IF EXISTS `ms_order_recurring`;
-CREATE TABLE `ms_order_recurring` (
-  `order_recurring_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_recurring` (
+  `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2282,7 +2392,8 @@ CREATE TABLE `ms_order_recurring` (
   `trial_duration` smallint(6) NOT NULL,
   `trial_price` decimal(10,4) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`order_recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2292,13 +2403,14 @@ CREATE TABLE `ms_order_recurring` (
 --
 
 DROP TABLE IF EXISTS `ms_order_recurring_transaction`;
-CREATE TABLE `ms_order_recurring_transaction` (
-  `order_recurring_transaction_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_recurring_transaction` (
+  `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_recurring_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `amount` decimal(10,4) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`order_recurring_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2308,12 +2420,13 @@ CREATE TABLE `ms_order_recurring_transaction` (
 --
 
 DROP TABLE IF EXISTS `ms_order_shipment`;
-CREATE TABLE `ms_order_shipment` (
-  `order_shipment_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_shipment` (
+  `order_shipment_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   `shipping_courier_id` varchar(255) NOT NULL DEFAULT '',
-  `tracking_number` varchar(255) NOT NULL DEFAULT ''
+  `tracking_number` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`order_shipment_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2323,11 +2436,12 @@ CREATE TABLE `ms_order_shipment` (
 --
 
 DROP TABLE IF EXISTS `ms_order_status`;
-CREATE TABLE `ms_order_status` (
-  `order_status_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_status` (
+  `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`order_status_id`,`language_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_order_status`
@@ -2356,13 +2470,15 @@ INSERT INTO `ms_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_order_total`;
-CREATE TABLE `ms_order_total` (
-  `order_total_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_total` (
+  `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
   `title` varchar(255) NOT NULL,
   `value` decimal(15,4) NOT NULL DEFAULT 0.0000,
-  `sort_order` int(3) NOT NULL
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`order_total_id`),
+  KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2372,8 +2488,8 @@ CREATE TABLE `ms_order_total` (
 --
 
 DROP TABLE IF EXISTS `ms_order_voucher`;
-CREATE TABLE `ms_order_voucher` (
-  `order_voucher_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_order_voucher` (
+  `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -2384,7 +2500,8 @@ CREATE TABLE `ms_order_voucher` (
   `to_email` varchar(96) NOT NULL,
   `voucher_theme_id` int(11) NOT NULL,
   `message` text NOT NULL,
-  `amount` decimal(15,4) NOT NULL
+  `amount` decimal(15,4) NOT NULL,
+  PRIMARY KEY (`order_voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2394,8 +2511,8 @@ CREATE TABLE `ms_order_voucher` (
 --
 
 DROP TABLE IF EXISTS `ms_product`;
-CREATE TABLE `ms_product` (
-  `product_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
   `upc` varchar(12) NOT NULL,
@@ -2425,8 +2542,9 @@ CREATE TABLE `ms_product` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `viewed` int(5) NOT NULL DEFAULT 0,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product`
@@ -2460,11 +2578,12 @@ INSERT INTO `ms_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `is
 --
 
 DROP TABLE IF EXISTS `ms_product_attribute`;
-CREATE TABLE `ms_product_attribute` (
+CREATE TABLE IF NOT EXISTS `ms_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `text` text NOT NULL
+  `text` text NOT NULL,
+  PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2485,7 +2604,7 @@ INSERT INTO `ms_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 --
 
 DROP TABLE IF EXISTS `ms_product_description`;
-CREATE TABLE `ms_product_description` (
+CREATE TABLE IF NOT EXISTS `ms_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2493,7 +2612,9 @@ CREATE TABLE `ms_product_description` (
   `tag` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL
+  `meta_keyword` varchar(255) NOT NULL,
+  PRIMARY KEY (`product_id`,`language_id`),
+  KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2528,16 +2649,18 @@ INSERT INTO `ms_product_description` (`product_id`, `language_id`, `name`, `desc
 --
 
 DROP TABLE IF EXISTS `ms_product_discount`;
-CREATE TABLE `ms_product_discount` (
-  `product_discount_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_discount` (
+  `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `quantity` int(4) NOT NULL DEFAULT 0,
   `priority` int(5) NOT NULL DEFAULT 1,
   `price` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `date_start` date NOT NULL,
-  `date_end` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_end` date NOT NULL,
+  PRIMARY KEY (`product_discount_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=441 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_discount`
@@ -2555,9 +2678,10 @@ INSERT INTO `ms_product_discount` (`product_discount_id`, `product_id`, `custome
 --
 
 DROP TABLE IF EXISTS `ms_product_filter`;
-CREATE TABLE `ms_product_filter` (
+CREATE TABLE IF NOT EXISTS `ms_product_filter` (
   `product_id` int(11) NOT NULL,
-  `filter_id` int(11) NOT NULL
+  `filter_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2567,12 +2691,14 @@ CREATE TABLE `ms_product_filter` (
 --
 
 DROP TABLE IF EXISTS `ms_product_image`;
-CREATE TABLE `ms_product_image` (
-  `product_image_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_image` (
+  `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sort_order` int(3) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_image_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2352 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_image`
@@ -2648,13 +2774,14 @@ INSERT INTO `ms_product_image` (`product_image_id`, `product_id`, `image`, `sort
 --
 
 DROP TABLE IF EXISTS `ms_product_option`;
-CREATE TABLE `ms_product_option` (
-  `product_option_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_option` (
+  `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `value` text NOT NULL,
-  `required` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `required` tinyint(1) NOT NULL,
+  PRIMARY KEY (`product_option_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=227 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_option`
@@ -2681,8 +2808,8 @@ INSERT INTO `ms_product_option` (`product_option_id`, `product_id`, `option_id`,
 --
 
 DROP TABLE IF EXISTS `ms_product_option_value`;
-CREATE TABLE `ms_product_option_value` (
-  `product_option_value_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_option_value` (
+  `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -2694,8 +2821,9 @@ CREATE TABLE `ms_product_option_value` (
   `points` int(8) NOT NULL,
   `points_prefix` varchar(1) NOT NULL,
   `weight` decimal(15,8) NOT NULL,
-  `weight_prefix` varchar(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `weight_prefix` varchar(1) NOT NULL,
+  PRIMARY KEY (`product_option_value_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_option_value`
@@ -2726,10 +2854,11 @@ INSERT INTO `ms_product_option_value` (`product_option_value_id`, `product_optio
 --
 
 DROP TABLE IF EXISTS `ms_product_recurring`;
-CREATE TABLE `ms_product_recurring` (
+CREATE TABLE IF NOT EXISTS `ms_product_recurring` (
   `product_id` int(11) NOT NULL,
   `recurring_id` int(11) NOT NULL,
-  `customer_group_id` int(11) NOT NULL
+  `customer_group_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2739,9 +2868,10 @@ CREATE TABLE `ms_product_recurring` (
 --
 
 DROP TABLE IF EXISTS `ms_product_related`;
-CREATE TABLE `ms_product_related` (
+CREATE TABLE IF NOT EXISTS `ms_product_related` (
   `product_id` int(11) NOT NULL,
-  `related_id` int(11) NOT NULL
+  `related_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`related_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2761,12 +2891,13 @@ INSERT INTO `ms_product_related` (`product_id`, `related_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_product_reward`;
-CREATE TABLE `ms_product_reward` (
-  `product_reward_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_reward` (
+  `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT 0,
   `customer_group_id` int(11) NOT NULL DEFAULT 0,
-  `points` int(8) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `points` int(8) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_reward_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=546 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_reward`
@@ -2800,15 +2931,17 @@ INSERT INTO `ms_product_reward` (`product_reward_id`, `product_id`, `customer_gr
 --
 
 DROP TABLE IF EXISTS `ms_product_special`;
-CREATE TABLE `ms_product_special` (
-  `product_special_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_product_special` (
+  `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `priority` int(5) NOT NULL DEFAULT 1,
   `price` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `date_start` date NOT NULL,
-  `date_end` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_end` date NOT NULL,
+  PRIMARY KEY (`product_special_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_product_special`
@@ -2826,9 +2959,11 @@ INSERT INTO `ms_product_special` (`product_special_id`, `product_id`, `customer_
 --
 
 DROP TABLE IF EXISTS `ms_product_to_category`;
-CREATE TABLE `ms_product_to_category` (
+CREATE TABLE IF NOT EXISTS `ms_product_to_category` (
   `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`category_id`),
+  KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2874,9 +3009,10 @@ INSERT INTO `ms_product_to_category` (`product_id`, `category_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_product_to_download`;
-CREATE TABLE `ms_product_to_download` (
+CREATE TABLE IF NOT EXISTS `ms_product_to_download` (
   `product_id` int(11) NOT NULL,
-  `download_id` int(11) NOT NULL
+  `download_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2886,10 +3022,11 @@ CREATE TABLE `ms_product_to_download` (
 --
 
 DROP TABLE IF EXISTS `ms_product_to_layout`;
-CREATE TABLE `ms_product_to_layout` (
+CREATE TABLE IF NOT EXISTS `ms_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2899,9 +3036,10 @@ CREATE TABLE `ms_product_to_layout` (
 --
 
 DROP TABLE IF EXISTS `ms_product_to_store`;
-CREATE TABLE `ms_product_to_store` (
+CREATE TABLE IF NOT EXISTS `ms_product_to_store` (
   `product_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL DEFAULT 0
+  `store_id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2936,8 +3074,8 @@ INSERT INTO `ms_product_to_store` (`product_id`, `store_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_recurring`;
-CREATE TABLE `ms_recurring` (
-  `recurring_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_recurring` (
+  `recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `price` decimal(10,4) NOT NULL,
   `frequency` enum('day','week','semi_month','month','year') NOT NULL,
   `duration` int(10) UNSIGNED NOT NULL,
@@ -2948,7 +3086,8 @@ CREATE TABLE `ms_recurring` (
   `trial_duration` int(10) UNSIGNED NOT NULL,
   `trial_cycle` int(10) UNSIGNED NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `sort_order` int(11) NOT NULL
+  `sort_order` int(11) NOT NULL,
+  PRIMARY KEY (`recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2958,10 +3097,11 @@ CREATE TABLE `ms_recurring` (
 --
 
 DROP TABLE IF EXISTS `ms_recurring_description`;
-CREATE TABLE `ms_recurring_description` (
+CREATE TABLE IF NOT EXISTS `ms_recurring_description` (
   `recurring_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`recurring_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2971,8 +3111,8 @@ CREATE TABLE `ms_recurring_description` (
 --
 
 DROP TABLE IF EXISTS `ms_return`;
-CREATE TABLE `ms_return` (
-  `return_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_return` (
+  `return_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -2990,7 +3130,8 @@ CREATE TABLE `ms_return` (
   `comment` text DEFAULT NULL,
   `date_ordered` date NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`return_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3000,11 +3141,12 @@ CREATE TABLE `ms_return` (
 --
 
 DROP TABLE IF EXISTS `ms_return_action`;
-CREATE TABLE `ms_return_action` (
-  `return_action_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_return_action` (
+  `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(64) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`return_action_id`,`language_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_return_action`
@@ -3022,13 +3164,14 @@ INSERT INTO `ms_return_action` (`return_action_id`, `language_id`, `name`) VALUE
 --
 
 DROP TABLE IF EXISTS `ms_return_history`;
-CREATE TABLE `ms_return_history` (
-  `return_history_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_return_history` (
+  `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL,
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`return_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3038,11 +3181,12 @@ CREATE TABLE `ms_return_history` (
 --
 
 DROP TABLE IF EXISTS `ms_return_reason`;
-CREATE TABLE `ms_return_reason` (
-  `return_reason_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_return_reason` (
+  `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(128) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`return_reason_id`,`language_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_return_reason`
@@ -3062,11 +3206,12 @@ INSERT INTO `ms_return_reason` (`return_reason_id`, `language_id`, `name`) VALUE
 --
 
 DROP TABLE IF EXISTS `ms_return_status`;
-CREATE TABLE `ms_return_status` (
-  `return_status_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_return_status` (
+  `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`return_status_id`,`language_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_return_status`
@@ -3084,8 +3229,8 @@ INSERT INTO `ms_return_status` (`return_status_id`, `language_id`, `name`) VALUE
 --
 
 DROP TABLE IF EXISTS `ms_review`;
-CREATE TABLE `ms_review` (
-  `review_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_review` (
+  `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `author` varchar(64) NOT NULL,
@@ -3093,7 +3238,9 @@ CREATE TABLE `ms_review` (
   `rating` int(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`review_id`),
+  KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3103,13 +3250,16 @@ CREATE TABLE `ms_review` (
 --
 
 DROP TABLE IF EXISTS `ms_seo_url`;
-CREATE TABLE `ms_seo_url` (
-  `seo_url_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_seo_url` (
+  `seo_url_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `query` varchar(255) NOT NULL,
-  `keyword` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `keyword` varchar(255) NOT NULL,
+  PRIMARY KEY (`seo_url_id`),
+  KEY `query` (`query`),
+  KEY `keyword` (`keyword`)
+) ENGINE=MyISAM AUTO_INCREMENT=844 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_seo_url`
@@ -3191,10 +3341,11 @@ INSERT INTO `ms_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `key
 --
 
 DROP TABLE IF EXISTS `ms_session`;
-CREATE TABLE `ms_session` (
+CREATE TABLE IF NOT EXISTS `ms_session` (
   `session_id` varchar(32) NOT NULL,
   `data` text NOT NULL,
-  `expire` datetime NOT NULL
+  `expire` datetime NOT NULL,
+  PRIMARY KEY (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3204,14 +3355,15 @@ CREATE TABLE `ms_session` (
 --
 
 DROP TABLE IF EXISTS `ms_setting`;
-CREATE TABLE `ms_setting` (
-  `setting_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_setting` (
+  `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT 0,
   `code` varchar(128) NOT NULL,
   `key` varchar(128) NOT NULL,
   `value` text NOT NULL,
-  `serialized` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `serialized` tinyint(1) NOT NULL,
+  PRIMARY KEY (`setting_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_setting`
@@ -3427,10 +3579,11 @@ INSERT INTO `ms_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 --
 
 DROP TABLE IF EXISTS `ms_shipping_courier`;
-CREATE TABLE `ms_shipping_courier` (
+CREATE TABLE IF NOT EXISTS `ms_shipping_courier` (
   `shipping_courier_id` int(11) NOT NULL,
   `shipping_courier_code` varchar(255) NOT NULL DEFAULT '',
-  `shipping_courier_name` varchar(255) NOT NULL DEFAULT ''
+  `shipping_courier_name` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`shipping_courier_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -3452,11 +3605,12 @@ INSERT INTO `ms_shipping_courier` (`shipping_courier_id`, `shipping_courier_code
 --
 
 DROP TABLE IF EXISTS `ms_statistics`;
-CREATE TABLE `ms_statistics` (
-  `statistics_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_statistics` (
+  `statistics_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(64) NOT NULL,
-  `value` decimal(15,4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `value` decimal(15,4) NOT NULL,
+  PRIMARY KEY (`statistics_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_statistics`
@@ -3478,11 +3632,12 @@ INSERT INTO `ms_statistics` (`statistics_id`, `code`, `value`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_stock_status`;
-CREATE TABLE `ms_stock_status` (
-  `stock_status_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_stock_status` (
+  `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`stock_status_id`,`language_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_stock_status`
@@ -3501,11 +3656,12 @@ INSERT INTO `ms_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_store`;
-CREATE TABLE `ms_store` (
-  `store_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_store` (
+  `store_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `ssl` varchar(255) NOT NULL
+  `ssl` varchar(255) NOT NULL,
+  PRIMARY KEY (`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3515,13 +3671,14 @@ CREATE TABLE `ms_store` (
 --
 
 DROP TABLE IF EXISTS `ms_tax_class`;
-CREATE TABLE `ms_tax_class` (
-  `tax_class_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_tax_class` (
+  `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`tax_class_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_tax_class`
@@ -3538,15 +3695,16 @@ INSERT INTO `ms_tax_class` (`tax_class_id`, `title`, `description`, `date_added`
 --
 
 DROP TABLE IF EXISTS `ms_tax_rate`;
-CREATE TABLE `ms_tax_rate` (
-  `tax_rate_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_tax_rate` (
+  `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
   `geo_zone_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(32) NOT NULL,
   `rate` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `type` char(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`tax_rate_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_tax_rate`
@@ -3563,9 +3721,10 @@ INSERT INTO `ms_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`,
 --
 
 DROP TABLE IF EXISTS `ms_tax_rate_to_customer_group`;
-CREATE TABLE `ms_tax_rate_to_customer_group` (
+CREATE TABLE IF NOT EXISTS `ms_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
-  `customer_group_id` int(11) NOT NULL
+  `customer_group_id` int(11) NOT NULL,
+  PRIMARY KEY (`tax_rate_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -3583,13 +3742,14 @@ INSERT INTO `ms_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`)
 --
 
 DROP TABLE IF EXISTS `ms_tax_rule`;
-CREATE TABLE `ms_tax_rule` (
-  `tax_rule_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_tax_rule` (
+  `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
   `based` varchar(10) NOT NULL,
-  `priority` int(5) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `priority` int(5) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`tax_rule_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_tax_rule`
@@ -3608,13 +3768,14 @@ INSERT INTO `ms_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 --
 
 DROP TABLE IF EXISTS `ms_theme`;
-CREATE TABLE `ms_theme` (
-  `theme_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_theme` (
+  `theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `theme` varchar(64) NOT NULL,
   `route` varchar(64) NOT NULL,
   `code` mediumtext NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`theme_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3624,14 +3785,15 @@ CREATE TABLE `ms_theme` (
 --
 
 DROP TABLE IF EXISTS `ms_translation`;
-CREATE TABLE `ms_translation` (
-  `translation_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_translation` (
+  `translation_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `route` varchar(64) NOT NULL,
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`translation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3641,12 +3803,13 @@ CREATE TABLE `ms_translation` (
 --
 
 DROP TABLE IF EXISTS `ms_upload`;
-CREATE TABLE `ms_upload` (
-  `upload_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_upload` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`upload_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3656,12 +3819,10 @@ CREATE TABLE `ms_upload` (
 --
 
 DROP TABLE IF EXISTS `ms_user`;
-CREATE TABLE `ms_user` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` text NOT NULL,
-  `salt` varchar(9) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `first_name` varchar(32) NOT NULL,
   `last_name` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
@@ -3670,15 +3831,16 @@ CREATE TABLE `ms_user` (
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_user`
 --
 
-INSERT INTO `ms_user` (`id`, `user_group_id`, `username`, `password`, `salt`, `first_name`, `last_name`, `email`, `image`, `code`, `ip`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, '', '$2b$10$xp0bW.UyybLL/vBw0SfNTeLHx4dMBWnvD.dXf.1/G8A6hUeeiciXi', '', 'Pradeep', 'Kumar', 'pradeep.vwa@gmail.com', '', '', '', 1, '2022-01-20 19:55:41', '2022-01-20 19:55:41');
+INSERT INTO `ms_user` (`id`, `user_group_id`, `password`, `first_name`, `last_name`, `email`, `image`, `code`, `ip`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '161ebd7d45089b3446ee4e0d86dbcf92', 'Pradeep', 'Kumar', 'pradeep.vwa@gmail.com', '', '', '127.0.0.1', 1, '2022-01-23 11:45:54', '2022-01-23 11:45:54');
 
 -- --------------------------------------------------------
 
@@ -3687,11 +3849,12 @@ INSERT INTO `ms_user` (`id`, `user_group_id`, `username`, `password`, `salt`, `f
 --
 
 DROP TABLE IF EXISTS `ms_user_group`;
-CREATE TABLE `ms_user_group` (
-  `user_group_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_user_group` (
+  `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `permission` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `permission` text NOT NULL,
+  PRIMARY KEY (`user_group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_user_group`
@@ -3708,8 +3871,8 @@ INSERT INTO `ms_user_group` (`user_group_id`, `name`, `permission`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_voucher`;
-CREATE TABLE `ms_voucher` (
-  `voucher_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_voucher` (
+  `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
   `from_name` varchar(64) NOT NULL,
@@ -3720,7 +3883,8 @@ CREATE TABLE `ms_voucher` (
   `message` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3730,12 +3894,13 @@ CREATE TABLE `ms_voucher` (
 --
 
 DROP TABLE IF EXISTS `ms_voucher_history`;
-CREATE TABLE `ms_voucher_history` (
-  `voucher_history_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_voucher_history` (
+  `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`voucher_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3745,10 +3910,11 @@ CREATE TABLE `ms_voucher_history` (
 --
 
 DROP TABLE IF EXISTS `ms_voucher_theme`;
-CREATE TABLE `ms_voucher_theme` (
-  `voucher_theme_id` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ms_voucher_theme` (
+  `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`voucher_theme_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_voucher_theme`
@@ -3766,10 +3932,11 @@ INSERT INTO `ms_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_voucher_theme_description`;
-CREATE TABLE `ms_voucher_theme_description` (
+CREATE TABLE IF NOT EXISTS `ms_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`voucher_theme_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -3788,10 +3955,11 @@ INSERT INTO `ms_voucher_theme_description` (`voucher_theme_id`, `language_id`, `
 --
 
 DROP TABLE IF EXISTS `ms_weight_class`;
-CREATE TABLE `ms_weight_class` (
-  `weight_class_id` int(11) NOT NULL,
-  `value` decimal(15,8) NOT NULL DEFAULT 0.00000000
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ms_weight_class` (
+  `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` decimal(15,8) NOT NULL DEFAULT 0.00000000,
+  PRIMARY KEY (`weight_class_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_weight_class`
@@ -3810,11 +3978,12 @@ INSERT INTO `ms_weight_class` (`weight_class_id`, `value`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_weight_class_description`;
-CREATE TABLE `ms_weight_class_description` (
+CREATE TABLE IF NOT EXISTS `ms_weight_class_description` (
   `weight_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
-  `unit` varchar(4) NOT NULL
+  `unit` varchar(4) NOT NULL,
+  PRIMARY KEY (`weight_class_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -3834,13 +4003,14 @@ INSERT INTO `ms_weight_class_description` (`weight_class_id`, `language_id`, `ti
 --
 
 DROP TABLE IF EXISTS `ms_zone`;
-CREATE TABLE `ms_zone` (
-  `zone_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_zone` (
+  `zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `code` varchar(32) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`zone_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4239 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_zone`
@@ -7965,14 +8135,15 @@ INSERT INTO `ms_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 --
 
 DROP TABLE IF EXISTS `ms_zone_to_geo_zone`;
-CREATE TABLE `ms_zone_to_geo_zone` (
-  `zone_to_geo_zone_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_zone_to_geo_zone` (
+  `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT 0,
   `geo_zone_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`zone_to_geo_zone_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ms_zone_to_geo_zone`
@@ -8088,1404 +8259,6 @@ INSERT INTO `ms_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id
 (107, 222, 3954, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (108, 222, 3955, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (109, 222, 3972, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `ms_address`
---
-ALTER TABLE `ms_address`
-  ADD PRIMARY KEY (`address_id`),
-  ADD KEY `customer_id` (`customer_id`);
-
---
--- Indexes for table `ms_api`
---
-ALTER TABLE `ms_api`
-  ADD PRIMARY KEY (`api_id`);
-
---
--- Indexes for table `ms_api_ip`
---
-ALTER TABLE `ms_api_ip`
-  ADD PRIMARY KEY (`api_ip_id`);
-
---
--- Indexes for table `ms_api_session`
---
-ALTER TABLE `ms_api_session`
-  ADD PRIMARY KEY (`api_session_id`);
-
---
--- Indexes for table `ms_attribute`
---
-ALTER TABLE `ms_attribute`
-  ADD PRIMARY KEY (`attribute_id`);
-
---
--- Indexes for table `ms_attribute_description`
---
-ALTER TABLE `ms_attribute_description`
-  ADD PRIMARY KEY (`attribute_id`,`language_id`);
-
---
--- Indexes for table `ms_attribute_group`
---
-ALTER TABLE `ms_attribute_group`
-  ADD PRIMARY KEY (`attribute_group_id`);
-
---
--- Indexes for table `ms_attribute_group_description`
---
-ALTER TABLE `ms_attribute_group_description`
-  ADD PRIMARY KEY (`attribute_group_id`,`language_id`);
-
---
--- Indexes for table `ms_banner`
---
-ALTER TABLE `ms_banner`
-  ADD PRIMARY KEY (`banner_id`);
-
---
--- Indexes for table `ms_banner_image`
---
-ALTER TABLE `ms_banner_image`
-  ADD PRIMARY KEY (`banner_image_id`);
-
---
--- Indexes for table `ms_cart`
---
-ALTER TABLE `ms_cart`
-  ADD PRIMARY KEY (`cart_id`),
-  ADD KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`);
-
---
--- Indexes for table `ms_category`
---
-ALTER TABLE `ms_category`
-  ADD PRIMARY KEY (`category_id`),
-  ADD KEY `parent_id` (`parent_id`);
-
---
--- Indexes for table `ms_category_description`
---
-ALTER TABLE `ms_category_description`
-  ADD PRIMARY KEY (`category_id`,`language_id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `ms_category_filter`
---
-ALTER TABLE `ms_category_filter`
-  ADD PRIMARY KEY (`category_id`,`filter_id`);
-
---
--- Indexes for table `ms_category_path`
---
-ALTER TABLE `ms_category_path`
-  ADD PRIMARY KEY (`category_id`,`path_id`);
-
---
--- Indexes for table `ms_category_to_layout`
---
-ALTER TABLE `ms_category_to_layout`
-  ADD PRIMARY KEY (`category_id`,`store_id`);
-
---
--- Indexes for table `ms_category_to_store`
---
-ALTER TABLE `ms_category_to_store`
-  ADD PRIMARY KEY (`category_id`,`store_id`);
-
---
--- Indexes for table `ms_country`
---
-ALTER TABLE `ms_country`
-  ADD PRIMARY KEY (`country_id`);
-
---
--- Indexes for table `ms_coupon`
---
-ALTER TABLE `ms_coupon`
-  ADD PRIMARY KEY (`coupon_id`);
-
---
--- Indexes for table `ms_coupon_category`
---
-ALTER TABLE `ms_coupon_category`
-  ADD PRIMARY KEY (`coupon_id`,`category_id`);
-
---
--- Indexes for table `ms_coupon_history`
---
-ALTER TABLE `ms_coupon_history`
-  ADD PRIMARY KEY (`coupon_history_id`);
-
---
--- Indexes for table `ms_coupon_product`
---
-ALTER TABLE `ms_coupon_product`
-  ADD PRIMARY KEY (`coupon_product_id`);
-
---
--- Indexes for table `ms_currency`
---
-ALTER TABLE `ms_currency`
-  ADD PRIMARY KEY (`currency_id`);
-
---
--- Indexes for table `ms_customer`
---
-ALTER TABLE `ms_customer`
-  ADD PRIMARY KEY (`customer_id`);
-
---
--- Indexes for table `ms_customer_activity`
---
-ALTER TABLE `ms_customer_activity`
-  ADD PRIMARY KEY (`customer_activity_id`);
-
---
--- Indexes for table `ms_customer_affiliate`
---
-ALTER TABLE `ms_customer_affiliate`
-  ADD PRIMARY KEY (`customer_id`);
-
---
--- Indexes for table `ms_customer_approval`
---
-ALTER TABLE `ms_customer_approval`
-  ADD PRIMARY KEY (`customer_approval_id`);
-
---
--- Indexes for table `ms_customer_group`
---
-ALTER TABLE `ms_customer_group`
-  ADD PRIMARY KEY (`customer_group_id`);
-
---
--- Indexes for table `ms_customer_group_description`
---
-ALTER TABLE `ms_customer_group_description`
-  ADD PRIMARY KEY (`customer_group_id`,`language_id`);
-
---
--- Indexes for table `ms_customer_history`
---
-ALTER TABLE `ms_customer_history`
-  ADD PRIMARY KEY (`customer_history_id`);
-
---
--- Indexes for table `ms_customer_ip`
---
-ALTER TABLE `ms_customer_ip`
-  ADD PRIMARY KEY (`customer_ip_id`),
-  ADD KEY `ip` (`ip`);
-
---
--- Indexes for table `ms_customer_login`
---
-ALTER TABLE `ms_customer_login`
-  ADD PRIMARY KEY (`customer_login_id`),
-  ADD KEY `email` (`email`),
-  ADD KEY `ip` (`ip`);
-
---
--- Indexes for table `ms_customer_online`
---
-ALTER TABLE `ms_customer_online`
-  ADD PRIMARY KEY (`ip`);
-
---
--- Indexes for table `ms_customer_reward`
---
-ALTER TABLE `ms_customer_reward`
-  ADD PRIMARY KEY (`customer_reward_id`);
-
---
--- Indexes for table `ms_customer_search`
---
-ALTER TABLE `ms_customer_search`
-  ADD PRIMARY KEY (`customer_search_id`);
-
---
--- Indexes for table `ms_customer_transaction`
---
-ALTER TABLE `ms_customer_transaction`
-  ADD PRIMARY KEY (`customer_transaction_id`);
-
---
--- Indexes for table `ms_customer_wishlist`
---
-ALTER TABLE `ms_customer_wishlist`
-  ADD PRIMARY KEY (`customer_id`,`product_id`);
-
---
--- Indexes for table `ms_custom_field`
---
-ALTER TABLE `ms_custom_field`
-  ADD PRIMARY KEY (`custom_field_id`);
-
---
--- Indexes for table `ms_custom_field_customer_group`
---
-ALTER TABLE `ms_custom_field_customer_group`
-  ADD PRIMARY KEY (`custom_field_id`,`customer_group_id`);
-
---
--- Indexes for table `ms_custom_field_description`
---
-ALTER TABLE `ms_custom_field_description`
-  ADD PRIMARY KEY (`custom_field_id`,`language_id`);
-
---
--- Indexes for table `ms_custom_field_value`
---
-ALTER TABLE `ms_custom_field_value`
-  ADD PRIMARY KEY (`custom_field_value_id`);
-
---
--- Indexes for table `ms_custom_field_value_description`
---
-ALTER TABLE `ms_custom_field_value_description`
-  ADD PRIMARY KEY (`custom_field_value_id`,`language_id`);
-
---
--- Indexes for table `ms_download`
---
-ALTER TABLE `ms_download`
-  ADD PRIMARY KEY (`download_id`);
-
---
--- Indexes for table `ms_download_description`
---
-ALTER TABLE `ms_download_description`
-  ADD PRIMARY KEY (`download_id`,`language_id`);
-
---
--- Indexes for table `ms_event`
---
-ALTER TABLE `ms_event`
-  ADD PRIMARY KEY (`event_id`);
-
---
--- Indexes for table `ms_extension`
---
-ALTER TABLE `ms_extension`
-  ADD PRIMARY KEY (`extension_id`);
-
---
--- Indexes for table `ms_extension_install`
---
-ALTER TABLE `ms_extension_install`
-  ADD PRIMARY KEY (`extension_install_id`);
-
---
--- Indexes for table `ms_extension_path`
---
-ALTER TABLE `ms_extension_path`
-  ADD PRIMARY KEY (`extension_path_id`);
-
---
--- Indexes for table `ms_filter`
---
-ALTER TABLE `ms_filter`
-  ADD PRIMARY KEY (`filter_id`);
-
---
--- Indexes for table `ms_filter_description`
---
-ALTER TABLE `ms_filter_description`
-  ADD PRIMARY KEY (`filter_id`,`language_id`);
-
---
--- Indexes for table `ms_filter_group`
---
-ALTER TABLE `ms_filter_group`
-  ADD PRIMARY KEY (`filter_group_id`);
-
---
--- Indexes for table `ms_filter_group_description`
---
-ALTER TABLE `ms_filter_group_description`
-  ADD PRIMARY KEY (`filter_group_id`,`language_id`);
-
---
--- Indexes for table `ms_geo_zone`
---
-ALTER TABLE `ms_geo_zone`
-  ADD PRIMARY KEY (`geo_zone_id`);
-
---
--- Indexes for table `ms_googleshopping_category`
---
-ALTER TABLE `ms_googleshopping_category`
-  ADD PRIMARY KEY (`google_product_category`,`store_id`),
-  ADD KEY `category_id_store_id` (`category_id`,`store_id`);
-
---
--- Indexes for table `ms_googleshopping_product`
---
-ALTER TABLE `ms_googleshopping_product`
-  ADD PRIMARY KEY (`product_advertise_google_id`),
-  ADD UNIQUE KEY `product_id_store_id` (`product_id`,`store_id`);
-
---
--- Indexes for table `ms_googleshopping_product_status`
---
-ALTER TABLE `ms_googleshopping_product_status`
-  ADD PRIMARY KEY (`product_id`,`store_id`,`product_variation_id`);
-
---
--- Indexes for table `ms_googleshopping_product_target`
---
-ALTER TABLE `ms_googleshopping_product_target`
-  ADD PRIMARY KEY (`product_id`,`advertise_google_target_id`);
-
---
--- Indexes for table `ms_googleshopping_target`
---
-ALTER TABLE `ms_googleshopping_target`
-  ADD PRIMARY KEY (`advertise_google_target_id`),
-  ADD KEY `store_id` (`store_id`);
-
---
--- Indexes for table `ms_information`
---
-ALTER TABLE `ms_information`
-  ADD PRIMARY KEY (`information_id`);
-
---
--- Indexes for table `ms_information_description`
---
-ALTER TABLE `ms_information_description`
-  ADD PRIMARY KEY (`information_id`,`language_id`);
-
---
--- Indexes for table `ms_information_to_layout`
---
-ALTER TABLE `ms_information_to_layout`
-  ADD PRIMARY KEY (`information_id`,`store_id`);
-
---
--- Indexes for table `ms_information_to_store`
---
-ALTER TABLE `ms_information_to_store`
-  ADD PRIMARY KEY (`information_id`,`store_id`);
-
---
--- Indexes for table `ms_language`
---
-ALTER TABLE `ms_language`
-  ADD PRIMARY KEY (`language_id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `ms_layout`
---
-ALTER TABLE `ms_layout`
-  ADD PRIMARY KEY (`layout_id`);
-
---
--- Indexes for table `ms_layout_module`
---
-ALTER TABLE `ms_layout_module`
-  ADD PRIMARY KEY (`layout_module_id`);
-
---
--- Indexes for table `ms_layout_route`
---
-ALTER TABLE `ms_layout_route`
-  ADD PRIMARY KEY (`layout_route_id`);
-
---
--- Indexes for table `ms_length_class`
---
-ALTER TABLE `ms_length_class`
-  ADD PRIMARY KEY (`length_class_id`);
-
---
--- Indexes for table `ms_length_class_description`
---
-ALTER TABLE `ms_length_class_description`
-  ADD PRIMARY KEY (`length_class_id`,`language_id`);
-
---
--- Indexes for table `ms_location`
---
-ALTER TABLE `ms_location`
-  ADD PRIMARY KEY (`location_id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `ms_manufacturer`
---
-ALTER TABLE `ms_manufacturer`
-  ADD PRIMARY KEY (`manufacturer_id`);
-
---
--- Indexes for table `ms_manufacturer_to_store`
---
-ALTER TABLE `ms_manufacturer_to_store`
-  ADD PRIMARY KEY (`manufacturer_id`,`store_id`);
-
---
--- Indexes for table `ms_marketing`
---
-ALTER TABLE `ms_marketing`
-  ADD PRIMARY KEY (`marketing_id`);
-
---
--- Indexes for table `ms_modification`
---
-ALTER TABLE `ms_modification`
-  ADD PRIMARY KEY (`modification_id`);
-
---
--- Indexes for table `ms_module`
---
-ALTER TABLE `ms_module`
-  ADD PRIMARY KEY (`module_id`);
-
---
--- Indexes for table `ms_option`
---
-ALTER TABLE `ms_option`
-  ADD PRIMARY KEY (`option_id`);
-
---
--- Indexes for table `ms_option_description`
---
-ALTER TABLE `ms_option_description`
-  ADD PRIMARY KEY (`option_id`,`language_id`);
-
---
--- Indexes for table `ms_option_value`
---
-ALTER TABLE `ms_option_value`
-  ADD PRIMARY KEY (`option_value_id`);
-
---
--- Indexes for table `ms_option_value_description`
---
-ALTER TABLE `ms_option_value_description`
-  ADD PRIMARY KEY (`option_value_id`,`language_id`);
-
---
--- Indexes for table `ms_order`
---
-ALTER TABLE `ms_order`
-  ADD PRIMARY KEY (`order_id`);
-
---
--- Indexes for table `ms_order_history`
---
-ALTER TABLE `ms_order_history`
-  ADD PRIMARY KEY (`order_history_id`);
-
---
--- Indexes for table `ms_order_option`
---
-ALTER TABLE `ms_order_option`
-  ADD PRIMARY KEY (`order_option_id`);
-
---
--- Indexes for table `ms_order_product`
---
-ALTER TABLE `ms_order_product`
-  ADD PRIMARY KEY (`order_product_id`),
-  ADD KEY `order_id` (`order_id`);
-
---
--- Indexes for table `ms_order_recurring`
---
-ALTER TABLE `ms_order_recurring`
-  ADD PRIMARY KEY (`order_recurring_id`);
-
---
--- Indexes for table `ms_order_recurring_transaction`
---
-ALTER TABLE `ms_order_recurring_transaction`
-  ADD PRIMARY KEY (`order_recurring_transaction_id`);
-
---
--- Indexes for table `ms_order_shipment`
---
-ALTER TABLE `ms_order_shipment`
-  ADD PRIMARY KEY (`order_shipment_id`);
-
---
--- Indexes for table `ms_order_status`
---
-ALTER TABLE `ms_order_status`
-  ADD PRIMARY KEY (`order_status_id`,`language_id`);
-
---
--- Indexes for table `ms_order_total`
---
-ALTER TABLE `ms_order_total`
-  ADD PRIMARY KEY (`order_total_id`),
-  ADD KEY `order_id` (`order_id`);
-
---
--- Indexes for table `ms_order_voucher`
---
-ALTER TABLE `ms_order_voucher`
-  ADD PRIMARY KEY (`order_voucher_id`);
-
---
--- Indexes for table `ms_product`
---
-ALTER TABLE `ms_product`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Indexes for table `ms_product_attribute`
---
-ALTER TABLE `ms_product_attribute`
-  ADD PRIMARY KEY (`product_id`,`attribute_id`,`language_id`);
-
---
--- Indexes for table `ms_product_description`
---
-ALTER TABLE `ms_product_description`
-  ADD PRIMARY KEY (`product_id`,`language_id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `ms_product_discount`
---
-ALTER TABLE `ms_product_discount`
-  ADD PRIMARY KEY (`product_discount_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `ms_product_filter`
---
-ALTER TABLE `ms_product_filter`
-  ADD PRIMARY KEY (`product_id`,`filter_id`);
-
---
--- Indexes for table `ms_product_image`
---
-ALTER TABLE `ms_product_image`
-  ADD PRIMARY KEY (`product_image_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `ms_product_option`
---
-ALTER TABLE `ms_product_option`
-  ADD PRIMARY KEY (`product_option_id`);
-
---
--- Indexes for table `ms_product_option_value`
---
-ALTER TABLE `ms_product_option_value`
-  ADD PRIMARY KEY (`product_option_value_id`);
-
---
--- Indexes for table `ms_product_recurring`
---
-ALTER TABLE `ms_product_recurring`
-  ADD PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`);
-
---
--- Indexes for table `ms_product_related`
---
-ALTER TABLE `ms_product_related`
-  ADD PRIMARY KEY (`product_id`,`related_id`);
-
---
--- Indexes for table `ms_product_reward`
---
-ALTER TABLE `ms_product_reward`
-  ADD PRIMARY KEY (`product_reward_id`);
-
---
--- Indexes for table `ms_product_special`
---
-ALTER TABLE `ms_product_special`
-  ADD PRIMARY KEY (`product_special_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `ms_product_to_category`
---
-ALTER TABLE `ms_product_to_category`
-  ADD PRIMARY KEY (`product_id`,`category_id`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `ms_product_to_download`
---
-ALTER TABLE `ms_product_to_download`
-  ADD PRIMARY KEY (`product_id`,`download_id`);
-
---
--- Indexes for table `ms_product_to_layout`
---
-ALTER TABLE `ms_product_to_layout`
-  ADD PRIMARY KEY (`product_id`,`store_id`);
-
---
--- Indexes for table `ms_product_to_store`
---
-ALTER TABLE `ms_product_to_store`
-  ADD PRIMARY KEY (`product_id`,`store_id`);
-
---
--- Indexes for table `ms_recurring`
---
-ALTER TABLE `ms_recurring`
-  ADD PRIMARY KEY (`recurring_id`);
-
---
--- Indexes for table `ms_recurring_description`
---
-ALTER TABLE `ms_recurring_description`
-  ADD PRIMARY KEY (`recurring_id`,`language_id`);
-
---
--- Indexes for table `ms_return`
---
-ALTER TABLE `ms_return`
-  ADD PRIMARY KEY (`return_id`);
-
---
--- Indexes for table `ms_return_action`
---
-ALTER TABLE `ms_return_action`
-  ADD PRIMARY KEY (`return_action_id`,`language_id`);
-
---
--- Indexes for table `ms_return_history`
---
-ALTER TABLE `ms_return_history`
-  ADD PRIMARY KEY (`return_history_id`);
-
---
--- Indexes for table `ms_return_reason`
---
-ALTER TABLE `ms_return_reason`
-  ADD PRIMARY KEY (`return_reason_id`,`language_id`);
-
---
--- Indexes for table `ms_return_status`
---
-ALTER TABLE `ms_return_status`
-  ADD PRIMARY KEY (`return_status_id`,`language_id`);
-
---
--- Indexes for table `ms_review`
---
-ALTER TABLE `ms_review`
-  ADD PRIMARY KEY (`review_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `ms_seo_url`
---
-ALTER TABLE `ms_seo_url`
-  ADD PRIMARY KEY (`seo_url_id`),
-  ADD KEY `query` (`query`),
-  ADD KEY `keyword` (`keyword`);
-
---
--- Indexes for table `ms_session`
---
-ALTER TABLE `ms_session`
-  ADD PRIMARY KEY (`session_id`);
-
---
--- Indexes for table `ms_setting`
---
-ALTER TABLE `ms_setting`
-  ADD PRIMARY KEY (`setting_id`);
-
---
--- Indexes for table `ms_shipping_courier`
---
-ALTER TABLE `ms_shipping_courier`
-  ADD PRIMARY KEY (`shipping_courier_id`);
-
---
--- Indexes for table `ms_statistics`
---
-ALTER TABLE `ms_statistics`
-  ADD PRIMARY KEY (`statistics_id`);
-
---
--- Indexes for table `ms_stock_status`
---
-ALTER TABLE `ms_stock_status`
-  ADD PRIMARY KEY (`stock_status_id`,`language_id`);
-
---
--- Indexes for table `ms_store`
---
-ALTER TABLE `ms_store`
-  ADD PRIMARY KEY (`store_id`);
-
---
--- Indexes for table `ms_tax_class`
---
-ALTER TABLE `ms_tax_class`
-  ADD PRIMARY KEY (`tax_class_id`);
-
---
--- Indexes for table `ms_tax_rate`
---
-ALTER TABLE `ms_tax_rate`
-  ADD PRIMARY KEY (`tax_rate_id`);
-
---
--- Indexes for table `ms_tax_rate_to_customer_group`
---
-ALTER TABLE `ms_tax_rate_to_customer_group`
-  ADD PRIMARY KEY (`tax_rate_id`,`customer_group_id`);
-
---
--- Indexes for table `ms_tax_rule`
---
-ALTER TABLE `ms_tax_rule`
-  ADD PRIMARY KEY (`tax_rule_id`);
-
---
--- Indexes for table `ms_theme`
---
-ALTER TABLE `ms_theme`
-  ADD PRIMARY KEY (`theme_id`);
-
---
--- Indexes for table `ms_translation`
---
-ALTER TABLE `ms_translation`
-  ADD PRIMARY KEY (`translation_id`);
-
---
--- Indexes for table `ms_upload`
---
-ALTER TABLE `ms_upload`
-  ADD PRIMARY KEY (`upload_id`);
-
---
--- Indexes for table `ms_user`
---
-ALTER TABLE `ms_user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ms_user_group`
---
-ALTER TABLE `ms_user_group`
-  ADD PRIMARY KEY (`user_group_id`);
-
---
--- Indexes for table `ms_voucher`
---
-ALTER TABLE `ms_voucher`
-  ADD PRIMARY KEY (`voucher_id`);
-
---
--- Indexes for table `ms_voucher_history`
---
-ALTER TABLE `ms_voucher_history`
-  ADD PRIMARY KEY (`voucher_history_id`);
-
---
--- Indexes for table `ms_voucher_theme`
---
-ALTER TABLE `ms_voucher_theme`
-  ADD PRIMARY KEY (`voucher_theme_id`);
-
---
--- Indexes for table `ms_voucher_theme_description`
---
-ALTER TABLE `ms_voucher_theme_description`
-  ADD PRIMARY KEY (`voucher_theme_id`,`language_id`);
-
---
--- Indexes for table `ms_weight_class`
---
-ALTER TABLE `ms_weight_class`
-  ADD PRIMARY KEY (`weight_class_id`);
-
---
--- Indexes for table `ms_weight_class_description`
---
-ALTER TABLE `ms_weight_class_description`
-  ADD PRIMARY KEY (`weight_class_id`,`language_id`);
-
---
--- Indexes for table `ms_zone`
---
-ALTER TABLE `ms_zone`
-  ADD PRIMARY KEY (`zone_id`);
-
---
--- Indexes for table `ms_zone_to_geo_zone`
---
-ALTER TABLE `ms_zone_to_geo_zone`
-  ADD PRIMARY KEY (`zone_to_geo_zone_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `ms_address`
---
-ALTER TABLE `ms_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_api`
---
-ALTER TABLE `ms_api`
-  MODIFY `api_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_api_ip`
---
-ALTER TABLE `ms_api_ip`
-  MODIFY `api_ip_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_api_session`
---
-ALTER TABLE `ms_api_session`
-  MODIFY `api_session_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_attribute`
---
-ALTER TABLE `ms_attribute`
-  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `ms_attribute_group`
---
-ALTER TABLE `ms_attribute_group`
-  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `ms_banner`
---
-ALTER TABLE `ms_banner`
-  MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `ms_banner_image`
---
-ALTER TABLE `ms_banner_image`
-  MODIFY `banner_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
-
---
--- AUTO_INCREMENT for table `ms_cart`
---
-ALTER TABLE `ms_cart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_category`
---
-ALTER TABLE `ms_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT for table `ms_country`
---
-ALTER TABLE `ms_country`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
-
---
--- AUTO_INCREMENT for table `ms_coupon`
---
-ALTER TABLE `ms_coupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `ms_coupon_history`
---
-ALTER TABLE `ms_coupon_history`
-  MODIFY `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_coupon_product`
---
-ALTER TABLE `ms_coupon_product`
-  MODIFY `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_currency`
---
-ALTER TABLE `ms_currency`
-  MODIFY `currency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ms_customer`
---
-ALTER TABLE `ms_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_activity`
---
-ALTER TABLE `ms_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_approval`
---
-ALTER TABLE `ms_customer_approval`
-  MODIFY `customer_approval_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_group`
---
-ALTER TABLE `ms_customer_group`
-  MODIFY `customer_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `ms_customer_history`
---
-ALTER TABLE `ms_customer_history`
-  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_ip`
---
-ALTER TABLE `ms_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_login`
---
-ALTER TABLE `ms_customer_login`
-  MODIFY `customer_login_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_reward`
---
-ALTER TABLE `ms_customer_reward`
-  MODIFY `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_search`
---
-ALTER TABLE `ms_customer_search`
-  MODIFY `customer_search_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_customer_transaction`
---
-ALTER TABLE `ms_customer_transaction`
-  MODIFY `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_custom_field`
---
-ALTER TABLE `ms_custom_field`
-  MODIFY `custom_field_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_custom_field_value`
---
-ALTER TABLE `ms_custom_field_value`
-  MODIFY `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_download`
---
-ALTER TABLE `ms_download`
-  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_event`
---
-ALTER TABLE `ms_event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-
---
--- AUTO_INCREMENT for table `ms_extension`
---
-ALTER TABLE `ms_extension`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `ms_extension_install`
---
-ALTER TABLE `ms_extension_install`
-  MODIFY `extension_install_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_extension_path`
---
-ALTER TABLE `ms_extension_path`
-  MODIFY `extension_path_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_filter`
---
-ALTER TABLE `ms_filter`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_filter_group`
---
-ALTER TABLE `ms_filter_group`
-  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_geo_zone`
---
-ALTER TABLE `ms_geo_zone`
-  MODIFY `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `ms_googleshopping_product`
---
-ALTER TABLE `ms_googleshopping_product`
-  MODIFY `product_advertise_google_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_information`
---
-ALTER TABLE `ms_information`
-  MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `ms_language`
---
-ALTER TABLE `ms_language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `ms_layout`
---
-ALTER TABLE `ms_layout`
-  MODIFY `layout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `ms_layout_module`
---
-ALTER TABLE `ms_layout_module`
-  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT for table `ms_layout_route`
---
-ALTER TABLE `ms_layout_route`
-  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT for table `ms_length_class`
---
-ALTER TABLE `ms_length_class`
-  MODIFY `length_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ms_location`
---
-ALTER TABLE `ms_location`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_manufacturer`
---
-ALTER TABLE `ms_manufacturer`
-  MODIFY `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `ms_marketing`
---
-ALTER TABLE `ms_marketing`
-  MODIFY `marketing_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_modification`
---
-ALTER TABLE `ms_modification`
-  MODIFY `modification_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_module`
---
-ALTER TABLE `ms_module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `ms_option`
---
-ALTER TABLE `ms_option`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `ms_option_value`
---
-ALTER TABLE `ms_option_value`
-  MODIFY `option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT for table `ms_order`
---
-ALTER TABLE `ms_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_history`
---
-ALTER TABLE `ms_order_history`
-  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_option`
---
-ALTER TABLE `ms_order_option`
-  MODIFY `order_option_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_product`
---
-ALTER TABLE `ms_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_recurring`
---
-ALTER TABLE `ms_order_recurring`
-  MODIFY `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_recurring_transaction`
---
-ALTER TABLE `ms_order_recurring_transaction`
-  MODIFY `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_shipment`
---
-ALTER TABLE `ms_order_shipment`
-  MODIFY `order_shipment_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_status`
---
-ALTER TABLE `ms_order_status`
-  MODIFY `order_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `ms_order_total`
---
-ALTER TABLE `ms_order_total`
-  MODIFY `order_total_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_order_voucher`
---
-ALTER TABLE `ms_order_voucher`
-  MODIFY `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_product`
---
-ALTER TABLE `ms_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
---
--- AUTO_INCREMENT for table `ms_product_discount`
---
-ALTER TABLE `ms_product_discount`
-  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
-
---
--- AUTO_INCREMENT for table `ms_product_image`
---
-ALTER TABLE `ms_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2352;
-
---
--- AUTO_INCREMENT for table `ms_product_option`
---
-ALTER TABLE `ms_product_option`
-  MODIFY `product_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
-
---
--- AUTO_INCREMENT for table `ms_product_option_value`
---
-ALTER TABLE `ms_product_option_value`
-  MODIFY `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `ms_product_reward`
---
-ALTER TABLE `ms_product_reward`
-  MODIFY `product_reward_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
-
---
--- AUTO_INCREMENT for table `ms_product_special`
---
-ALTER TABLE `ms_product_special`
-  MODIFY `product_special_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440;
-
---
--- AUTO_INCREMENT for table `ms_recurring`
---
-ALTER TABLE `ms_recurring`
-  MODIFY `recurring_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_return`
---
-ALTER TABLE `ms_return`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_return_action`
---
-ALTER TABLE `ms_return_action`
-  MODIFY `return_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ms_return_history`
---
-ALTER TABLE `ms_return_history`
-  MODIFY `return_history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_return_reason`
---
-ALTER TABLE `ms_return_reason`
-  MODIFY `return_reason_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `ms_return_status`
---
-ALTER TABLE `ms_return_status`
-  MODIFY `return_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ms_review`
---
-ALTER TABLE `ms_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_seo_url`
---
-ALTER TABLE `ms_seo_url`
-  MODIFY `seo_url_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
-
---
--- AUTO_INCREMENT for table `ms_setting`
---
-ALTER TABLE `ms_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
-
---
--- AUTO_INCREMENT for table `ms_statistics`
---
-ALTER TABLE `ms_statistics`
-  MODIFY `statistics_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `ms_stock_status`
---
-ALTER TABLE `ms_stock_status`
-  MODIFY `stock_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `ms_store`
---
-ALTER TABLE `ms_store`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_tax_class`
---
-ALTER TABLE `ms_tax_class`
-  MODIFY `tax_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `ms_tax_rate`
---
-ALTER TABLE `ms_tax_rate`
-  MODIFY `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
-
---
--- AUTO_INCREMENT for table `ms_tax_rule`
---
-ALTER TABLE `ms_tax_rule`
-  MODIFY `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
-
---
--- AUTO_INCREMENT for table `ms_theme`
---
-ALTER TABLE `ms_theme`
-  MODIFY `theme_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_translation`
---
-ALTER TABLE `ms_translation`
-  MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_upload`
---
-ALTER TABLE `ms_upload`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_user`
---
-ALTER TABLE `ms_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `ms_user_group`
---
-ALTER TABLE `ms_user_group`
-  MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `ms_voucher`
---
-ALTER TABLE `ms_voucher`
-  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_voucher_history`
---
-ALTER TABLE `ms_voucher_history`
-  MODIFY `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ms_voucher_theme`
---
-ALTER TABLE `ms_voucher_theme`
-  MODIFY `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `ms_weight_class`
---
-ALTER TABLE `ms_weight_class`
-  MODIFY `weight_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `ms_zone`
---
-ALTER TABLE `ms_zone`
-  MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4239;
-
---
--- AUTO_INCREMENT for table `ms_zone_to_geo_zone`
---
-ALTER TABLE `ms_zone_to_geo_zone`
-  MODIFY `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
