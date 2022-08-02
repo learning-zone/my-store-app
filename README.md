@@ -4,9 +4,11 @@
 
 ### 1. Prerequisites
 
-- [NodeJs](https://nodejs.org/en/)
-- [NPM](https://npmjs.org/) - Node package manager
-- [MySQL](https://www.mysql.com/downloads/) - Relational database management system (RDBMS)
+- [Node.js](https://nodejs.org/en/) - Server
+- [MySQL](https://www.mysql.com/downloads/) - Relational Database Management System
+- [Visual Studio Code](https://code.visualstudio.com/download) - Code Editor
+- [Git](https://git-scm.com/downloads) - Git
+- [GitHub Desktop](https://desktop.github.com/) - Github Access tool
 
 ### 2. Installation
 
@@ -48,21 +50,24 @@ Username: pradeep.vwa@gmail.com
 Password: P@ssw0rd
 ```
 
-### 4. Useful Link
+### 5. Technologies used in project
 
-- Web framework for Node.js - [Express](http://expressjs.com/)
-- JavaScript ORM  for Node.js - [Bookshelf](http://bookshelfjs.org/)
-- SQL Query Builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, and Oracle - [Knex](http://knexjs.org/)
-- JSON Web Tokens(jwt) - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- Logging Library - [Winston](https://www.npmjs.com/package/winston)
-- Object schema validation  - [Joi](https://www.npmjs.com/package/joi)
-- API documentation using [swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc) and [swagger-ui](https://www.npmjs.com/package/swagger-ui)
-- JavaScript library for building user interfaces - [React](https://facebook.github.io/react/)
-- Predictable state container - [Redux](http://redux.js.org/)
-- A React component library implementing Google's Material Design - [Material-UI](https://material-ui-1dab0.firebaseapp.com/)
-- Redux Form - [Redux Form](http://redux-form.com/8.3.0/)
-- Declarative routing for React - [React-Router](https://reacttraining.com/react-router/)
-- Promise based HTTP client - [Axios](https://github.com/mzabriskie/axios)
-- Environment configuration - [dotenv](https://www.npmjs.com/package/dotenv)
-- Code linting tool - [ESLint](http://eslint.org/)
-- Code formatter - [Prettier](https://www.npmjs.com/package/prettier)
+| Technology | Description                                  |
+|------------|----------------------------------------------|
+|[Express](http://expressjs.com/)| Web framework for Node.js|
+|[Bookshelf](http://bookshelfjs.org/)| JavaScript ORM  for Node.js |
+|[Knex](http://knexjs.org/) |SQL Query Builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, and Oracle|
+|[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)|JSON Web Tokens ( jwt )|
+|[Winston](https://www.npmjs.com/package/winston)|Logging Library|
+|[Joi](https://www.npmjs.com/package/joi) | Object schema validation|
+|[swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc)| API documentation |
+|[swagger-ui](https://www.npmjs.com/package/swagger-ui)| API documentation |
+|[React](https://facebook.github.io/react/) | JavaScript library for building user interfaces |
+|[Redux](http://redux.js.org/) | Predictable state container |
+|[Material-UI](https://material-ui-1dab0.firebaseapp.com/)| A React component library implementing Google's Material Design|
+|[Redux Form](http://redux-form.com/8.3.0/)| Redux Form |
+|[React-Router](https://reacttraining.com/react-router/)| Declarative routing for React |
+|[Axios](https://github.com/mzabriskie/axios) | Promise based HTTP client |
+|[dotenv](https://www.npmjs.com/package/dotenv)| Environment configuration |
+|[ESLint](http://eslint.org/) | Code linting tool|
+|[Prettier](https://www.npmjs.com/package/prettier) | Code formatter|
