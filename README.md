@@ -1,4 +1,6 @@
-# My Store
+# My Store App
+
+<br/>
 
 ## Get Started
 
